@@ -1,8 +1,6 @@
 # OFFER
 
 # *Applied Project + Minor Dissertation Project 2016 - Year 4*
-## PasteHub
-
 
 **Name:** Pawel Borzym, Edvardas Lasauskas, Niks Gurins, Gediminas Saparauskas </br>
 **College:** Galway-Mayo Institute of Technology </br>
