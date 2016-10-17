@@ -65,5 +65,7 @@ Instead of storing data in tables, with MongoDB you store data in JSON-like docu
 ```
 #Architecture
 
+![image](http://i68.tinypic.com/2rdul9d.jpg)
+
 This is the 3-tier architecture of our project.</br>
 The user interacts with the client and requests some data. Jquery then makes a request to the server in order to obtain specific information, then the server talks to the database and the database returns the data requested by the server, to the server and then the server forwards the data to the client.
