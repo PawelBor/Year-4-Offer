@@ -45,21 +45,33 @@ J2EE is a platform-independent, Java-centric environment from Sun for developing
 It comes makes back end functionality development much easier to work with.
 
 ##Database
+###MongoDB
 
-For the databse we went with MongoDB, first of all we’ve never used Non-Relational Database and now is a great opportunity to learn how it works.
-MongoDB is a document-oriented database designed.
-Instead of storing data in tables, with MongoDB you store data in JSON-like document with dynamic schemas.
+####Prerequisites
+To get MongoDB up and running , download the mongodb installer from their [Website](https://www.mongodb.com/)
+</br>
+Once finished installing make a folder on your computer eg. ```C:\data\db``` , to store the data from the Mongo database.</br>
+You can also set up to use MongoDB in text editor eg. Intellij to interact with MongoDB.
+
+####MongoDB
+MongoDB is a cross platform document oriented database.</br> 
+There are no structured tables like in relational databases. Mongo uses dynamic schemas and similar to JSON-like documents to store data. Documents are stored in collections and the documents are indexed by MongoDB to keep track of the order of the documents inserted.</br>
+Mongo is used to handle diverse data types, fast queries and for ease of scalling the data.
+
+###Why MongoDB
+We decided to use Mongo for our project as we will not be dealing with complex transactions with the database.
+Another reason why we chose MongoDB is to learn a new technology and learn about using NoSQL databases.
 
 ##Collections within the database
-*	User collection for log in details. Eg,. UserName/Password
+*	User collection for log in details. Eg. UserName/Password
 *	Offer/Ad collection which contains users posts. Based on Category.
 ```
 {
         "userName":John,
         "productName":"OnePlus 3",
         "productCategory":"Electronics",
-	      "productPrice":"399",
-	      "productDescription" : "Flagship killer",
+	"productPrice":"399",
+	"productDescription" : "Flagship killer",
         "productLocation" : "Galway"
 	}
 ```
