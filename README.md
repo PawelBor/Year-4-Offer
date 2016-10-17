@@ -12,12 +12,16 @@
 
 #Introduction
 
-This is 4th year Software Development project. </br>
-The project will be a web based application created using technologies such as:
+This is our 4th year Software Development project. </br>
+The project will be a web / android based application created using technologies such as:
 * HTML, CSS + JavaScript
 * Bootstrap
 * J2EE
 * MongoDB
+* Java
+* XML + JSON
+* Google Api's
+
 
 #Functionality</br>
 
@@ -38,6 +42,10 @@ Advertisements will be displayed on the map with the location set by the seller 
 
 We’ve decided to create this application using HTML, CSS and JavaScript for the client side simply because it can be accessed by any device. For the design we’re going to use Bootstrap.
 Bootstrap comes with jQuery which we can then use for ease of Http Requests.
+
+We have also decided to create a native android application along side the web-based technologies for improved user interaction and UX.
+The main development language will be java with all necessary Google Api's and data-interchange formats.
+For a large portion of the development cycle the Android studio IDE will be utilized.
 
 ##Server - J2EE
 
