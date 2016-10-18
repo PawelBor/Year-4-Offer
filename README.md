@@ -21,6 +21,7 @@ The project will be a web / android based application created using technologies
 * Java
 * XML + JSON
 * Google Api's
+* Agile
 
 
 #Functionality</br>
@@ -75,13 +76,13 @@ Another reason why we chose MongoDB is to learn a new technology and learn about
 *	Offer/Ad collection which contains users posts. Based on Category.
 ```
 {
-        "userName":John,
-        "productName":"OnePlus 3",
-        "productCategory":"Electronics",
+	"userName":John,
+	"productName":"OnePlus 3",
+	"productCategory":"Electronics",
 	"productPrice":"399",
 	"productDescription" : "Flagship killer",
-        "productLocation" : "Galway"
-	}
+	"productLocation" : "Galway"
+}
 ```
 #Architecture
 
@@ -89,3 +90,12 @@ Another reason why we chose MongoDB is to learn a new technology and learn about
 
 This is the 3-tier architecture of our project.</br>
 The user interacts with the client and requests some data. Jquery then makes a request to the server in order to obtain specific information, then the server talks to the database and the database returns the data requested by the server, to the server and then the server forwards the data to the client.
+
+
+#Work Plan
+* *Week 1 - 2* Brainstorm ideas
+* *Week 3* Confirmed our idea with the supervisor
+* *Week 4* Begin research on the various technologies we'll use
+* *Week 5 - 8* Write up some documentation and create a basic connection between all the different technologies
+* *Week 9 - ?* Actualize the idea over the technologies, continue implementation
+* *Week 24* Deploy project on remote machine
