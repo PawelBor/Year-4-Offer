@@ -48,6 +48,48 @@ We have also decided to create a native android application along side the web-b
 The main development language will be java with all necessary Google Api's and data-interchange formats.
 For a large portion of the development cycle the Android studio IDE will be utilized.
 
+###***The Trio:*** HTML, CSS, JavaScript
+
+**HTML** stands for *HyperText Markup Language* and is a standard language used for creation of web pages and web aplications.</br>
+It describes the structure/architecture and overall appearance of the information on the Internet. Keywords and tags are used to format and demonstrate the content of Web Page.</br>
+Below we have example of a very simple HTML document with keywords and tags such as ```<p>``` which means "paragraph".
+```
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple HTML Document</title>
+</head>
+<body>
+
+<p>Hello HTML World.</p>
+
+</body>
+</html>
+```
+
+**CSS** represent Cascading Style Sheets, it is used to define how the HTML elements are to be laid out on the screen and in general how will the user see it. It's highly beneficial as the CSS document can manage the layout of not just one page or just specific item on the page but every single page in the project. </br>
+For example website made up of 5 different pages has button on each page, the CSS can manage the design of every button to be the same no matter what page it's on. CSS can be internal or external. Internal CSS means that the CSS will be inside the HTML document and the downside of this is that it will only affect the page containing the code rather than all the pages.
+External CSS on the other hand is saved as a separate file in the solution with ```.css``` extension and it may be used by all pages in the project.</br>
+Example of how to link HTML to CSS:</br>
+```
+<head>
+<link rel="stylesheet" type="text/css" href="design.css">
+</head>
+```
+Also below an example of actual CSS file.
+```
+body {
+    background-color: white;
+}
+
+h1 {
+    margin-left: 50px;
+    color: red;
+}
+```
+
+
+
 ##Server - J2EE
 
 J2EE is a platform-independent, Java-centric environment from Sun for developing, building and deploying Web-based enterprise applications online. The J2EE platform consists of a set of services, APIs, and protocols that provide the functionality for developing multitiered, Web-based applications.
@@ -86,7 +128,7 @@ Another reason why we chose MongoDB is to learn a new technology and learn about
 ```
 #Architecture
 
-![image](http://i68.tinypic.com/2rdul9d.jpg)
+![image](http://i63.tinypic.com/11hbhja.jpg)
 
 This is the 3-tier architecture of our project.</br>
 The user interacts with the client and requests some data. Jquery then makes a request to the server in order to obtain specific information, then the server talks to the database and the database returns the data requested by the server, to the server and then the server forwards the data to the client.
