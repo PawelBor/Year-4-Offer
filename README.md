@@ -88,8 +88,6 @@ h1 {
 }
 ```
 
-
-
 ##Server - J2EE
 
 J2EE is a platform-independent, Java-centric environment from Sun for developing, building and deploying Web-based enterprise applications online. The J2EE platform consists of a set of services, APIs, and protocols that provide the functionality for developing multitiered, Web-based applications.
@@ -128,16 +126,25 @@ Another reason why we chose MongoDB is to learn a new technology and learn about
 ```
 #Architecture
 
-![image](http://i63.tinypic.com/11hbhja.jpg)
+![ScreenShot](http://i63.tinypic.com/11hbhja.jpg)
 
-This is the 3-tier architecture of our project.</br>
-The user interacts with the client and requests some data. Jquery then makes a request to the server in order to obtain specific information, then the server talks to the database and the database returns the data requested by the server, to the server and then the server forwards the data to the client.
+Our project is based on the 3 tier client server architecture.</br>
+This involves a front end (the client), back end (server) and a database to store and retrieve data. </br>
+
+**Front end:** The client in our project is a web application written in HTML, CSS, bootstrap and Jquery. The user interacts with the front end of the app to display to enter data.</br>
+
+**Back end:** The server written in java using j2ee receives requests from the front end made by the users. A request could be to retrieve some data from the database or to send some data to update or insert into the database.</br>
+
+**Database:** The database we are using for our project is MongoDB. The server can run a query against the database to insert, update, delete or insert data. </br>
+
+***Example:*** The user can request some data to be displayed. A http get request is sent to the server with some parameters to use them to run a query against the database. The database will return a result set of the query to the server. The server then sends the data back and it is displayed to the user in the front end.
+
 
 
 #Work Plan
-* *Week 1 - 2* Brainstorm ideas
-* *Week 3* Confirmed our idea with the supervisor
-* *Week 4* Begin research on the various technologies we'll use
-* *Week 5 - 8* Write up some documentation and create a basic connection between all the different technologies
-* *Week 9 - ?* Actualize the idea over the technologies, continue implementation
-* *Week 24* Deploy project on remote machine
+* *Week 1 - 2*	Brainstorm ideas
+* *Week 3* 	Confirmed our idea with the supervisor
+* *Week 4* 	Begin research on the various technologies we'll use
+* *Week 5 - 8* 	Write up some documentation and create a basic connection between all the different technologies
+* *Week 9 - ?* 	Actualize the idea over the technologies, continue implementation
+* *Week 24* 	Deploy project on remote machine
