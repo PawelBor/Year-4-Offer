@@ -124,6 +124,34 @@ Another reason why we chose MongoDB is to learn a new technology and learn about
 	"productLocation" : "Galway"
 }
 ```
+
+
+##DATA
+###Login
+For Login functionality the user will be asked to provide user information such as:
+* E-Mail
+* Password (SHA-265)
+
+###Registration
+For Registration the user will be asked to provide:
+* E-Mail - which will be used for logging in
+* Password (SHA-265 Encrypted)
+* Full Name
+* County - Possibly display posts by county.
+* Phone Number - Make sure that the seller will be accessible if no other information is provided.
+
+##Advertisement Posting
+These are the following requirements to post an advertisement:
+* Advertisement Image (Optional)
+* Advertisement Name
+* Advertisement Description
+* Phone Number (Provided from Registration)
+* Seller ID/Name
+* Position (lat/long) - Will be used to post on map. The Seller will have a choice to use their location **OR** by placing a marker on the map.
+* Advertisement Category
+* Advertisement Price
+
+
 #Architecture
 
 ![ScreenShot](http://i63.tinypic.com/11hbhja.jpg)
