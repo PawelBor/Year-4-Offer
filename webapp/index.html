@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>iOffer</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/login.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script></script>
+	</head>
+	<body>
+		<!--xs - phones
+			sm - tablet
+			md - desktops/laptops
+			lg - large screens-->	
+		<div class="wrapper">
+			<form method="post" action="javaForm" class="form-signin">
+				<div>
+					<!-- data-toggle="collapse" data-target="#collapseLogin" -->
+					<!--<button class="btn btn-primary" type="button"  aria-expanded="false" aria-controls="collapseExample">
+						LOGIN
+						 </button>	-->
+				</div>
+				<div class="" id="collapseLogin">
+					<div class="card card-block">
+						<h2 class="form-signin-heading">Please login</h2>
+						<input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
+						<input type="password" class="form-control" name="password" placeholder="Password" required=""/>  
+						<label class="checkbox">
+						<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+						</label>
+						<button class="btn btn-lg btn-primary btn-block" type="submit" name="send">Login</button> 
+					</div>
+				</div>
+			</form>
+			<form action="register" method="post" class="form-signin">
+				<div align="center" >
+					<button class="btn btn-primary" id="btnRegister" hidden type="button" data-toggle="collapse" data-target="#collapseRegister" aria-controls="collapseRegister">
+					REGISTER
+                                        </button>
+				</div>
+				<div class="collapse" id="collapseRegister">
+					<div class="card card-block">
+						<h2 class="form-register-heading">Please Register</h2>
+						<input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
+						<input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+						<input type="text" class="form-control" name="name" placeholder="Name" required="" autofocus="" />
+						<input type="text" class="form-control" name="county" placeholder="County" required=""/>
+						<button class="btn btn-lg btn-primary btn-block" name="send" type="submit">Register</button> 
+					</div>
+				</div>
+			</form>
+		</div>
+                <script type="text/javascript">
+                    var btnRegister = document.getElementById("btnRegister");
+                    $("#btnRegister").click(function(){
+                        $("#btnRegister").hide();
+                    });
+                </script>
+	</body>
+</html>

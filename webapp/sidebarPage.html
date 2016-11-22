@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>iOffer</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/sidebar.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<!-- SIDEBAR-->
+			<div id="sidebar-wrapper">
+				<ul class="sidebar-nav">
+					<li> <img class="userPicture"/> </li>
+					<li><a href="#">Cars & Motor</a></li>
+					<li><a href="#">Electronics</a></li>
+					<li><a href="#">Food</a></li>
+					<li><a href="#">Leisure</a></li>
+					<li><a href="#">Entertainment</a></li>
+					<li><a href="#">Other</a></li>
+				</ul>
+			</div>
+			<!--Page content-->
+			<div id="page-content-wrapper">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-12">
+							<a href="#" class="btn btn-success" id="menu-toggle">Toggle Menu</a>
+							<h1>Welcome to iOffer</h1>
+							<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+							<div class = "panel panel-default">
+								<div class = "panel-heading">
+									<h3 class = "panel-title">Your Listed Ads:</h3>
+								</div>
+								<table class = "table">
+									<tr>
+										<th>Product</th>
+										<th>Price </th>
+									</tr>
+									<tr>
+										<td>OEMS 19" 5x112 (SET)</td>
+										<td>600</td>
+									</tr>
+									<tr>
+										<td>SPORTIVA MILANO 18" 5x112</td>
+										<td>350</td>
+									</tr>
+								</table>
+							</div>
+                                                        
+        <form action="createProduct" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" required="" placeholder="Name">
+                <input type="text" class="form-control" name="description" required="" placeholder="Description">
+                <input type="text" class="form-control" name="price" required="" placeholder="Price">
+                <input type="text" class="form-control" name="location" required="" placeholder="Location">
+                <input type="text" class="form-control" name="category" required="" placeholder="Category">
+                <input type="file" id="images" name="images" multiple />
+                <output id="list"></output>
+            </div>
+            <input type="submit" value="Submit" name="send">
+        </form>
+                                                       
+                 <!-- https://www.html5rocks.com/en/tutorials/file/dndfiles/ -->                                       
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Menu toggle -->
+		<script>
+			$("#menu-toggle").click(function (e){
+			e.preventDefault(); <!-- preveent default action - dont go to a link-->
+			$("#wrapper").toggleClass("menuDisplayed"); <!-- adds/rem,oves toggle class-->
+			});
+                
+                function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '</li>');
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('images').addEventListener('change', handleFileSelect, false);
+		</script>
+	</body>
+</html>

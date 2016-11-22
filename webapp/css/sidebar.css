@@ -1,0 +1,69 @@
+/*SIDEBAR*/
+
+#sidebar-wrapper{
+	z-index: 1;
+	position: absolute;
+	width: 0;
+	height: 100%;
+	overflow-y: hidden;
+	background: #2C3E50;
+	/*border: 2px solid red;*/
+	opacity: 0.9;
+}
+
+/* MAIN CONTENT*/
+#page-content-wrapper{/*set entire screen*/
+	width: 100%;
+	position: absolute;
+	padding: 15px;
+	/*border: 5px solid green;*/ 
+}
+
+/* Panel content*/
+#panel-content-wrapper{/*set entire screen*/
+	width: 100%;
+	position: absolute;
+	padding: 15px;
+	/*border: 5px solid green;*/ 
+}
+
+/* Change width of the sidebar to display */
+#wrapper.menuDisplayed #sidebar-wrapper{
+	width: 250px;
+}
+
+/* Change width of the sidebar to display */
+#wrapper.menuDisplayed #page-content-wrapper{
+	padding-left: 250px;
+}
+
+/*Sidebar Styling */
+.sidebar-nav{
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar-nav li{
+	text-indent: 20px;
+	line-height: 40px;
+}
+
+.sidebar-nav li a{
+	display: block;
+	text-decoration: none;
+	color: #ddd;
+	line-height: 60px;
+}
+
+.sidebar-nav li a:hover{
+	background: #16A085;
+}
+
+.userPicture{
+	width: 70px;
+	height: 70px;
+	margin: 0;
+	padding: 0;
+	content:url("https://3.bp.blogspot.com/-lnejHPRU7K8/V-o5Mq7W3EI/AAAAAAAAC7c/aPmXp7cAI-QlBJF6btFrcKUBaNpLYvEBgCLcB/s1600/pepe.jpg");
+	
+}
