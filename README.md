@@ -18,7 +18,7 @@ The project will be a web / android based application created using technologies
 * Bootstrap
 * J2EE
 * MongoDB
-* Java
+* Java, JAX RS, Jersey
 * XML + JSON
 * Google Api's
 * Agile
@@ -92,6 +92,29 @@ h1 {
 
 J2EE is a platform-independent, Java-centric environment from Sun for developing, building and deploying Web-based enterprise applications online. The J2EE platform consists of a set of services, APIs, and protocols that provide the functionality for developing multitiered, Web-based applications.
 It comes makes back end functionality development much easier to work with.
+
+We decided to implement a restful services to our website. For this we are going to use the **JAX RS** java API.
+
+JAX RS is a java API which provides support to create a functional web service using the representational state transfer programming pattern. **REST(Representational state transfer)** web applications allow for programs to have access to data in a variety of media types in an abstract way.
+
+REST also allows them to change textual representations of the websites resources, by using uniform and defined set of stateless operations, such as ***GET, POST, DELETE, PUT***. To implement JAX RS web services in our glassfish java back end server, we are going to use the **Jersey** framework.
+
+Jersey provides an API itself that can extend the JAX RS API with more features, which allow to make the RESTful web service development more simple. One of the goals of Jersey framework is to allow for easier development of RESTful web services using java programming language.
+
+Example of JAX RS:
+
+```
+@Path("/example")
+Public class example{
+	@GET
+	@Path("{id}")
+	Public Response getExample(@PathParam("id") String id){
+		return Response.status(200).entity(id).build();
+	} 
+}
+```
+
+This example code returns the value of the id variable, which is typed in by the user in the URL. Eg. ***Website.com/example/123***, would return to the web page 123, which is the **/(“{id}”)** part of the URL route.
 
 ##Database
 ###MongoDB
