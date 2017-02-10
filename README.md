@@ -134,6 +134,15 @@ Mongo is used to handle diverse data types, fast queries and for ease of scallin
 We decided to use Mongo for our project as we will not be dealing with complex transactions with the database.
 Another reason why we chose MongoDB is to learn a new technology and learn about using NoSQL databases.
 
+###Images with MongoDB
+We decided to store images that are stored on our MongoDB database by creating a product on the web site. 
+
+A common library is available with MongoDB called Gridfs, however we will not use it as we will not be storing images or files that are over 16 megabytes in size.
+
+Instead we decided to use something we have done in class one time, which is the Base64 encoding format. We wanted to put what we learned to practise. We select images in product creation using a file picker which filters file input only to .jpg, .jpeg and .png files. On the server side the images are converted to Base64 strings and stored in the database.
+
+To retrieve the images, we carry out the opposite of what we do to store them. We pass down the Base64 strings to javascript on the front end and it decodes the strings back to image format for display on the web site.
+
 ##Collections within the database
 *	User collection for log in details. Eg. UserName/Password
 *	Offer/Ad collection which contains users posts. Based on Category.
@@ -144,7 +153,8 @@ Another reason why we chose MongoDB is to learn a new technology and learn about
 	"productCategory":"Electronics",
 	"productPrice":"399",
 	"productDescription" : "Flagship killer",
-	"productLocation" : "Galway"
+	"productLocation" : "Galway",
+	"productImages" : "1..*"
 }
 ```
 
