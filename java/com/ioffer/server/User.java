@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ioffer.server;
+package ie.ioffer.web.service;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -19,7 +19,8 @@ import com.mongodb.MongoException;
  */
 public class User {
     MongoClient mongo = new MongoClient("localhost", 27017);
-    DB db = mongo.getDB("ioffer");
+    @SuppressWarnings("deprecation")
+	DB db = mongo.getDB("ioffer");
     DBCollection table = db.getCollection("users");
     
     public boolean create(String email, String password, String name, String county){

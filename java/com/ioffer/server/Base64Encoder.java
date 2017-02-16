@@ -1,30 +1,20 @@
-package com.ioffer.server;
+package ie.ioffer.web.service;
 
-import org.apache.commons.codec.BinaryEncoder;
 import org.apache.commons.codec.binary.*;
 
 public class Base64Encoder {
-    public byte[] message;
-
-    public Base64Encoder(String message){
-            this.message = message.getBytes();
+    
+    public Base64Encoder(){
     }
-
-    public Base64Encoder(byte[] message){
-            this.message = message;
+    
+    public String encode(byte[] file){
+        byte[] message = Base64.encodeBase64(file);
+        return new String(message);
     }
-
-    public String getEncoded() {
-            return new String(message);
-    }
-
-    public boolean encode(){
-            try{
-                message = Base64.encodeBase64(message);
-                return true;
-            }catch(Exception e){
-                return false;
-            }
+    
+    public String decode(byte[] file){
+        byte[] message = Base64.decodeBase64(file);
+        return new String(message);
     }
 }
 

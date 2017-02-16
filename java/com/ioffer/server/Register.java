@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ioffer.server;
+package ie.ioffer.web.service;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "register", urlPatterns = {"/register"})
 public class Register extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	private static final long serialVersionUID = 111L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ioffer.server;
+package ie.ioffer.web.service;
 
 public class Location {
     private float latitude;
