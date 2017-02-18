@@ -21,10 +21,10 @@ import com.mongodb.MongoException;
 @XmlRootElement
 public class Product {
     // MongoDB connection variables
-    private MongoClient mongo = new MongoClient("localhost", 27017);
+	protected MongoClient mongo = new MongoClient("localhost", 27017);
     @SuppressWarnings("deprecation")
-	private DB db = mongo.getDB("ioffer");
-    private DBCollection table = db.getCollection("products");
+    protected DB db = mongo.getDB("ioffer");
+    protected DBCollection table = db.getCollection("products");
     
     // Member variables for all products
     public String name;
@@ -35,6 +35,7 @@ public class Product {
     public String county;
     public String author;
     public String category;
+    public String productId;
 
     public String getName() {
         return name;
@@ -72,8 +73,9 @@ public class Product {
         
     }
     
-    public Product (String name, Double price, String description, String image, float lat, float lon, String county, String author, String category){
+    public Product (String name, Double price, String description, String image, float lat, float lon, String county, String author, String category, String productId){
         this();
+        this.productId = productId;
         this.name = name;
         this.price = price;
         this.description = description;
@@ -162,39 +164,10 @@ public class Product {
             float lon = Float.parseFloat(location.split(",")[1]);
             String county = (String)product.get("county");
             String author = (String)product.get("author");
+            String category = (String)product.get("category");
+            String productId = (String)product.get("_id");
             
-            Product p = new Product(name, price, description, image, lat, lon, county, author, category);
-            products.add(p);
-        }
-        
-        return products;
-    }
-
-    // readProducts by Category
-    public List<Product> readProduct(String category){
-        List<Product> products = new ArrayList<Product>();
-        BasicDBObject document = new BasicDBObject();
-        document.put("category", category);
-        
-        DBCursor cursor = table.find(document);
-        
-        while(cursor.hasNext()){
-            DBObject product = cursor.next();
-            
-            String name = (String)product.get("name");
-            //String price = (String)product.get("price");
-            double price = (Double) product.get("price");
-            String description = (String)product.get("description");
-            // Image decoding here
-            String image = (String)product.get("image");
-            // Get latitude and longitude from composed String
-            String location = (String)product.get("location");
-            float lat = Float.parseFloat(location.split(",")[0]);
-            float lon = Float.parseFloat(location.split(",")[1]);
-            String county = (String)product.get("county");
-            String author = (String)product.get("author");
-            
-            Product p = new Product(name, price, description, image, lat, lon, county, author, category);
+            Product p = new Product(name, price, description, image, lat, lon, county, author, category, productId);
             products.add(p);
         }
         

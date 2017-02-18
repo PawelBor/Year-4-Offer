@@ -49,6 +49,24 @@ public class Results extends HttpServlet {
         request.setAttribute("results", prodArray); // set your String value in the attribute
         dispatcher.forward(request, response);*/
     }
+	
+	public List<Product> getAllProducts(){
+		
+	        Query q = new Query("", "", "", "");
+	        Product controller = new Product();
+			List<Product> results = controller.search(q);
+	        return results;
+	        
+	}
+	
+	public List<Product> getProduct(int id){
+		
+        Query q = new Query("", "", "", "");
+        Product controller = new Product();
+		List<Product> results = controller.search(q);
+        return results;
+        
+	}
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -66,6 +84,6 @@ public class Results extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

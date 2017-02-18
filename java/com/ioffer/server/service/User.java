@@ -13,15 +13,32 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 
-/**
- *
- * @author Niks
- */
 public class User {
-    MongoClient mongo = new MongoClient("localhost", 27017);
+	
+	protected MongoClient mongo = new MongoClient("localhost", 27017);
     @SuppressWarnings("deprecation")
-	DB db = mongo.getDB("ioffer");
-    DBCollection table = db.getCollection("users");
+    protected DB db = mongo.getDB("ioffer");
+    protected DBCollection table = db.getCollection("users");
+    
+ // Member variables for all users
+    public String email;
+    public String password;
+    public String name;
+    public String county;
+    public String userId;
+    
+	public User(){
+	        
+    }
+	    
+    public User(String email, String password, String name, String county, String userId){
+        this();
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.county = county;
+        this.userId = userId;
+    }
     
     public boolean create(String email, String password, String name, String county){
         BasicDBObject document = new BasicDBObject();

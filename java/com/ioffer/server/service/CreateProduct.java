@@ -75,7 +75,7 @@ public class CreateProduct extends HttpServlet{
         String category = request.getParameter("category");
         //response.getWriter().write("Images: " + image + ", \nCounty: " + county + ", Author: " + author);
         
-        Product product = new Product(name, price, description, images, 12,13, county, author, category);
+        Product product = new Product(name, price, description, "", 12,13, county, author, category , "");
         product.createProduct();
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
