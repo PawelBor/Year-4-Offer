@@ -37,7 +37,7 @@ public class ProductService extends Product{
             String description = (String)Dbproduct.get("description");
             
             // Image decoding here
-            String image = (String)Dbproduct.get("image");
+            String image = (String)Dbproduct.get("images");
             
             // Get latitude and longitude from composed String
             String location = (String)Dbproduct.get("location");
@@ -46,7 +46,7 @@ public class ProductService extends Product{
             String county = (String)Dbproduct.get("county");
             String categories = (String)Dbproduct.get("category");
             String author = (String)Dbproduct.get("author");
-            String productId = (String)Dbproduct.get("productId");
+            String productId = Dbproduct.get("_id").toString();
             
             // Construct a Product from MongoDb values
             Product product = new Product(name, price, description, image, lat, lon, county, author, categories, productId);
@@ -74,8 +74,7 @@ public class ProductService extends Product{
             double price = (Double) product.get("price");
             String description = (String)product.get("description");
             
-            // Image decoding here
-            String image = (String)product.get("image");
+            String image = (String)product.get("images");
             
             // Get latitude and longitude from composed String
             String location = (String)product.get("location");
@@ -85,7 +84,7 @@ public class ProductService extends Product{
             String county = (String)product.get("county");
             String categories = (String)product.get("category");
             String author = (String)product.get("author");
-            String productId = (String)product.get("productId");
+            String productId = product.get("_id").toString();
             
             Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId);
             products.add(p); 
