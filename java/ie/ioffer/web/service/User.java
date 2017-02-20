@@ -49,11 +49,6 @@ public class User {
         
         try{
             table.insert(document);
-            
-            UserInstance user = UserInstance.getInstance();
-            user.setEmail(email);
-            user.setCounty(county);
-            user.setName(name);
         } catch(MongoException e){
             return false;
         }
@@ -73,17 +68,10 @@ public class User {
             
             String userpass = (String)user.get("password");
             if(userpass.equals(password)){
-                // Login successful - update user instance bean
-                UserInstance userInformation = UserInstance.getInstance();
-                userInformation.setEmail(email);
-                userInformation.setName((String)user.get("name"));
-                userInformation.setCounty((String)user.get("county"));
-                
                 // Return validation that login was successful
                 return true;
             }
         }
-        
         return false;
     }
 }
