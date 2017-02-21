@@ -5,13 +5,12 @@
    <head>
       <title>Login/Register</title>
       <meta charset="utf-8">
-	  <meta name="author" content="PawelB"
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
       <link rel="stylesheet" href="css/homeStyles.css">
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-      <script></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
    </head>
    <body>
       <div class="container">
@@ -70,12 +69,32 @@
       </div>
       <!-- END_container -->
       <script type="text/javascript">
+      	  
+      	  //function using the cryptoJs lib to encrypt password
+      	  function encryptPass(pass, key){
+    	 	  var encryptedPass = CryptoJS.AES.encrypt(pass, key);
+    	  
+	    	  return encryptedPass.toString();
+	      }
+      	  
+      	  //function ussing the cryptoJS lib to decrypt password
+      	  function decryptPass(pass, key){
+  	 	  var decryptedPass = CryptoJS.AES.decrypt(pass, key);
+  	  
+	    	  return decryptedPass.toString(CryptoJS.enc.Utf8);
+	      }
+      
 	      $("#loginButton").click(function(e){
 	  		// currently only returns false
+	  		
+	  		//vars to take password from html form and encrypt it.
+	  		var passKey = $("#loginPassword").val();
+	  		var encryptedPass = encryptPass(passkey, passKey);
+	  		
 	  		$.ajax({
 	  			url: '/service/login',
 	  			type: 'POST',
-	  			data: {email: $("#loginEmail").val(), password: $("#loginPassword").val()},
+	  			data: {email: $("#loginEmail").val(), password: encryptedpass},
 	  			success: function(response){
 	  				console.log("server returned: " + response + " current password: " + $("#loginPassword").val());
 	  				if(response === "success"){
