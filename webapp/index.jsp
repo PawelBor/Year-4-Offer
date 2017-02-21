@@ -1,54 +1,77 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>iOffer</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="css/login.css">
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script></script>
-	</head>
-	<body>
-		<!--xs - phones
-			sm - tablet
-			md - desktops/laptops
-			lg - large screens-->	
-		<div class="wrapper">
-			<form action="login" method="post" class="form-signin">
-				<div class="" id="collapseLogin">
-					<div class="card card-block">
-						<h2 class="form-signin-heading">Please login</h2>
-						<input type="email" class="form-control" id="loginEmail" name="email" placeholder="Email Address" required="" autofocus="" />
-						<input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required=""/>  
-						<label class="checkbox">
-						<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-						</label>
-						<button class="btn btn-lg btn-primary btn-block" id="loginButton">Login</button> 
-					</div>
-				</div>
-			</form>
-			<form action="register" method="post" class="form-signin">
-				<div align="center" >
-					<button class="btn btn-primary" id="btnRegister" hidden type="button" data-toggle="collapse" data-target="#collapseRegister" aria-controls="collapseRegister">
-					REGISTER
-                                        </button>
-				</div>
-				<div class="collapse" id="collapseRegister">
-					<div class="card card-block">
-						<h2 class="form-register-heading">Please Register</h2>
-						<input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
-						<input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-						<input type="text" class="form-control" name="name" placeholder="Name" required="" autofocus="" />
-						<input type="text" class="form-control" name="county" placeholder="County" required=""/>
-						<button class="btn btn-lg btn-primary btn-block" name="send" type="submit">Register</button> 
-					</div>
-				</div>
-			</form>
-		</div>
-        <script type="text/javascript">
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>iOffer</title>
+      <meta name="description" content="iOffer.">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="css/homeStyles.css">
+   </head>
+   <body background="images/cityBack.gif">
+      <body>
+         <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+               <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand page-scroll" href="index.jsp"><i class="ion-ios-analytics-outline"></i>iOffer</a>
+               </div>
+               <div class="navbar-collapse collapse" id="bs-navbar">
+                  <ul class="nav navbar-nav">
+                     <li>
+                        <a class="page-scroll" href="login.jsp">Register / Sign IN</a>
+                     </li>
+                     <li>
+                        <a class="page-scroll" href="locationPage.html">Map</a>
+                     </li>
+                     <li>
+                        <a class="page-scroll" href="profilePage.html">Profile</a>
+                     </li>
+                     <li>
+                        <a class="page-scroll" href="sidebarPage.html">testing stuff</a>
+                     </li>
+                     <li>
+                        <a class="page-scroll" href="shopHomePage.html">SHOP test</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+         <header id="first">
+            <div class="header-content">
+               <div class="inner">
+                  <h1 class="L4G-Big-Text"><span class="highlight"><span class="iHighlight">i</span>OFFER</span></h1>
+                  <h4>Anything can be found.</h4>
+                  <form action="searchByName" method="post">
+                     <div class="input-group">
+                        <div class="input-group-addon">
+                           <span class="glyphicon glyphicon-search"></span> 
+                        </div>
+                        <input class="form-control" id="searchText" name="searchText" type="text" required/>
+                     </div>
+                     <hr>
+                     <button type="submit" name="send" class="btn btn-primary btn-xl">Search</button>
+                  </form>
+                  <hr>
+               </div>
+               <div>
+                  <a href="*" class="btn btn-primary btn-xl floating-box">Electronics</a>
+                  <a href="*" class="btn btn-primary btn-xl floating-box">Entertainment</a>
+                  <a href="#" class="btn btn-primary btn-xl floating-box">Leisure</a>
+                  <a href="#" class="btn btn-primary btn-xl floating-box">Automotive</a>
+                  <a href="#" class="btn btn-primary btn-xl floating-box">Food</a>
+                  <a href="#" class="btn btn-primary btn-xl floating-box">Other</a>
+               </div>
+            </div>
+         </header>
+         <script type="text/javascript">
         	$("#loginButton").click(function(e){
         		// currently only returns false
         		$.ajax({
@@ -73,5 +96,5 @@
                 $("#btnRegister").hide();
             });
         </script>
-	</body>
+   </body>
 </html>

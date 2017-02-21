@@ -28,6 +28,12 @@ public class Login extends HttpServlet {
         User user = new User();
         
         boolean response = user.login(email, password);
-        resp.getWriter().print(response);
+        
+        resp.setHeader("Content-Type", "text/html; charset=utf-8");
+        if(response){
+        	resp.getWriter().write("success");
+        }else{
+        	resp.getWriter().write("failure");
+        }
     }
 }

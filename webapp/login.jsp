@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; utf-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -20,15 +22,15 @@
                <hr>
             </div>
             <div class="col-sm-6">
-               <form method="post" action="javaForm" class="form-signin">
+               <form method="post" class="form-signin">
                   <div>
                   </div>
                   <div class="" id="collapseLogin">
                      <div class="card card-block">
                         <h2 class="form-signin-heading">Please login</h2>
-                        <input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
-                        <input type="password" class="form-control" name="password" placeholder="Password" required=""/>  
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" name="send">Login</button> 
+                        <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Email Address" required="" autofocus="" />
+                        <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required=""/>  
+                        <button class="btn btn-lg btn-primary btn-block" id="loginButton" name="send">Login</button> 
                      </div>
                   </div>
                </form>
@@ -68,10 +70,31 @@
       </div>
       <!-- END_container -->
       <script type="text/javascript">
-         var btnRegister = document.getElementById("btnRegister");
-         $("#btnRegister").click(function(){
-             $("#btnRegister").hide();
-         });
+	      $("#loginButton").click(function(e){
+	  		// currently only returns false
+	  		$.ajax({
+	  			url: '/service/login',
+	  			type: 'POST',
+	  			data: {email: $("#loginEmail").val(), password: $("#loginPassword").val()},
+	  			success: function(response){
+	  				console.log("server returned: " + response + " current password: " + $("#loginPassword").val());
+	  				if(response === "success"){
+	  		        	// GO TO HOMEPAGE & SAVE COOKIES
+	  					window.location.assign("index.jsp");
+	  					console.log("Right credentials");
+	  		        }else{
+	  		        	// TELL USER THAT DETAILS ARE INCORRECT
+	  		        	console.log("Wrong credentials");
+	  		        }
+	  		    }
+	  		});
+	  	});
+  		
+      
+		var btnRegister = document.getElementById("btnRegister");
+		$("#btnRegister").click(function(){
+		    $("#btnRegister").hide();
+		});
       </script>
    </body>
 </html>
