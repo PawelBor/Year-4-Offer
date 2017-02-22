@@ -20,38 +20,43 @@
                <h4>Anything can be found.</h4>
                <hr>
             </div>
-            <div class="col-sm-6">
-               <form method="post" class="form-signin">
-                  <div>
-                  </div>
-                  <div class="" id="collapseLogin">
-                     <div class="card card-block">
-                        <h2 class="form-signin-heading">Please login</h2>
-                        <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Email Address" required="" autofocus="" />
-                        <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required=""/>  
-                        <button class="btn btn-lg btn-primary btn-block" id="loginButton" name="send">Login</button> 
+            <div id="genForm">
+               <p align="center" > Would you like to...</p>
+               <div align="center" style="width: 200px; margin: 0 auto;">
+                  <button style="float: left;" class="btn btn-lg btn-primary" id="showLogin">Sign In</button>
+                  <button style="float: right;" class="btn btn-lg btn-primary" id="showRegister">Sign Up</button>
+                  <br>
+                  <br>
+               </div>
+               <hr style="width: 300px;">
+               <div class="container login">
+                  <form id="collapseLogin" method="post" class="form-signin">
+                     <div id="loginForm" class="card card-block">
+                        <div class="card card-block">
+                           <h2 class="form-signin-heading">Please Login</h2>
+                           <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Email Address" required="" autofocus="" />
+                           <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required=""/>  
+                           <button class="btn btn-lg btn-success btn-block" id="loginButton" name="send">Login</button> 
+                        </div>
                      </div>
-                  </div>
-               </form>
-               <form action="register" method="post" class="form-signin">
-                  <div align="center">
-                     <button class="btn btn-primary" id="btnRegister" hidden type="button" data-toggle="collapse" data-target="#collapseRegister" aria-controls="collapseRegister">
-                     REGISTER
-                     </button>
-                  </div>
-                  <div class="collapse" id="collapseRegister">
-                     <div class="card card-block">
-                        <h2 class="form-register-heading">Please Register</h2>
-                        <input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
-                        <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-                        <input type="text" class="form-control" name="name" placeholder="Name" required="" autofocus="" />
-                        <input type="text" class="form-control" name="county" placeholder="County" required=""/>
-                        <button class="btn btn-lg btn-primary btn-block" name="send" type="submit">Register</button> 
+                  </form>
+                  <form action="register" method="post" class="form-signin">
+                     <div class="collapse" id="collapseRegister">
+                        <div class="card card-block">
+                           <h2 class="form-register-heading">Please Register</h2>
+                           <input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
+                           <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+                           <input type="text" class="form-control" name="name" placeholder="Name" required="" autofocus="" />
+                           <input type="text" class="form-control" name="county" placeholder="County" required=""/>
+                           <button class="btn btn-lg btn-success btn-block" name="send" type="submit">Register</button>
+                           <div align="center">
+                           </div>
+                        </div>
                      </div>
-                  </div>
-               </form>
+                  </form>
+               </div>
             </div>
-            <!--END_col-md-6-->
+            <!--END_div genForm-->
          </div>
          <!--END_row-->
       </div>
@@ -65,11 +70,28 @@
                </div>
             </div>
          </footer>
-		 <!--END_footer-->
+         <!--END_footer-->
       </div>
       <!-- END_container -->
       <script type="text/javascript">
       	  
+/*Page Login/Register Switch*/
+
+		var showRegister = document.getElementById("showRegister");
+         $("#showRegister").click(function(){
+             $("#collapseLogin").hide();
+             $("#collapseRegister").show();
+         
+         });
+         var showLogin = document.getElementById("showLogin");
+         $("#showLogin").click(function(){
+             $("#collapseLogin").show();
+             $("#collapseRegister").hide();;
+         });
+
+
+
+/*Encryption*/
       	  //function using the cryptoJs lib to encrypt password
       	  function encryptPass(pass, key){
     	 	  var encryptedPass = CryptoJS.AES.encrypt(pass, key);
