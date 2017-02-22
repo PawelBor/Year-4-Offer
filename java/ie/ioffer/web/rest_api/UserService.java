@@ -22,7 +22,6 @@ public class UserService extends User{
         
         if(cursor != null)
         {
-            
         	// Get the first returned user object
         	DBObject Dbproduct = cursor.next();
         

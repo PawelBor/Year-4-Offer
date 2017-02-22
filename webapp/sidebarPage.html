@@ -31,7 +31,8 @@
 							<a href="#" class="btn btn-success" id="menu-toggle">Toggle Menu</a>
 							<h1>Welcome to iOffer</h1>
 							<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-							<div class = "panel panel-default">
+                                                        <a href="search.jsp">Results</a>
+                                                        <div class = "panel panel-default">
 								<div class = "panel-heading">
 									<h3 class = "panel-title">Your Listed Ads:</h3>
 								</div>
@@ -51,14 +52,14 @@
 								</table>
 							</div>
                                                         
-        <form action="createProduct" method="post">
+        <form action="createProduct" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <input type="text" class="form-control" name="name" required="" placeholder="Name">
                 <input type="text" class="form-control" name="description" required="" placeholder="Description">
                 <input type="text" class="form-control" name="price" required="" placeholder="Price">
                 <input type="text" class="form-control" name="location" required="" placeholder="Location">
                 <input type="text" class="form-control" name="category" required="" placeholder="Category">
-                <input type="file" id="images" name="images" multiple />
+                <input type="file" accept=".jpg,.jpeg,.png" id="images" name="image" multiple />
                 <output id="list"></output>
             </div>
             <input type="submit" value="Submit" name="send">
@@ -72,26 +73,19 @@
 		</div>
 		<!--Menu toggle -->
 		<script>
-			$("#menu-toggle").click(function (e){
-			e.preventDefault(); <!-- preveent default action - dont go to a link-->
-			$("#wrapper").toggleClass("menuDisplayed"); <!-- adds/rem,oves toggle class-->
-			});
-                
-                function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
+                    $("#menu-toggle").click(function (e){
+                    e.preventDefault(); //<!-- preveent default action - dont go to a link-->
+                    $("#wrapper").toggleClass("menuDisplayed"); //<!-- adds/rem,oves toggle class-->
+                    });
 
-    // files is a FileList of File objects. List some properties.
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-                  '</li>');
-    }
-    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-  }
+                    function handleFileSelect(evt) {
+                        for (var i = 0, f; f = evt.target.files[i]; i++){
+                            var output = '<img width="150" "height="100" src="' + URL.createObjectURL(f) + '">';
+                            document.getElementById('list').innerHTML += output;
+                        }
+                    }
 
-  document.getElementById('images').addEventListener('change', handleFileSelect, false);
+                    document.getElementById('images').addEventListener('change', handleFileSelect, false);
 		</script>
 	</body>
 </html>
