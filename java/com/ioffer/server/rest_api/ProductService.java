@@ -10,6 +10,7 @@ import org.bson.types.ObjectId;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.MongoException;
 
 import ie.ioffer.web.service.Product;
 
@@ -93,6 +94,27 @@ public class ProductService extends Product{
         }
         
         return products;
+    }
+    
+    public Product insertProduct(Product x)
+    {
+    	BasicDBObject document = new BasicDBObject();
+        document.put("name", x.name);
+        document.put("price", x.price);
+        document.put("description", x.description);
+        document.put("images", x.image);
+        document.put("location", x.location.toString());
+        document.put("county", x.county);
+        document.put("author", x.author);
+        document.put("category", x.category);
+        
+        try{
+            table.insert(document);
+        } catch(MongoException e){
+            return x;
+        }
+        
+    	return null;
     }
    
 }
