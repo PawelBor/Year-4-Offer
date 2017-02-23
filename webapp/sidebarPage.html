@@ -63,7 +63,7 @@
                 <output id="list"></output>
                 <button id="postButton" value="Submit" name="send"></button>
             </div>
-            
+            <button class="btn btn-lg btn-success" id="locationbtn">Get location</button>
         </div>
                                                        
                  <!-- https://www.html5rocks.com/en/tutorials/file/dndfiles/ -->                                       
@@ -112,6 +112,23 @@
                     }
 
                     document.getElementById('images').addEventListener('change', handleFileSelect, false);
+					
+					function loc(position) {
+                		var location = {
+                			latitude: null,
+                			longitude: null
+                		};
+                    	
+                    	location.latitude  = position.coords.latitude;
+                		location.longitude = position.coords.longitude;
+                		console.log(location.latitude + ' '  + location.longitude);
+                		
+                		return location;
+                	  }
+					  
+					  $("#locationbtn").click(function (e){
+                    	navigator.geolocation.getCurrentPosition(loc);
+                    });
 		</script>
 	</body>
 </html>
