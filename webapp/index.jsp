@@ -32,13 +32,13 @@
                         <a class="page-scroll" href="locationPage.html">Map</a>
                      </li>
                      <li>
-                        <a class="page-scroll" href="profilePage.html">Profile</a>
+                        <a class="page-scroll" href="profile.jsp">Profile</a>
                      </li>
                      <li>
                         <a class="page-scroll" href="sidebarPage.html">testing stuff</a>
                      </li>
                      <li>
-                        <a class="page-scroll" href="shopHomePage.html">SHOP test</a>
+                        <a class="page-scroll" href="search.jsp">SHOP test</a>
                      </li>
                   </ul>
                </div>
@@ -71,30 +71,5 @@
                </div>
             </div>
          </header>
-         <script type="text/javascript">
-        	$("#loginButton").click(function(e){
-        		// currently only returns false
-        		$.ajax({
-        			url: '/service/login',
-        			type: 'POST',
-        			data: {username: $("#loginEmail").val(), password: $("#loginPassword").val()},
-        			success: function(data){
-        				console.log("server returned: " + data + " current password: " + $("#loginPassword").val());
-        				if(data){
-        		        	// GO TO HOMEPAGE & SAVE COOKIES
-        					window.location.assign("sidebarPage.html");
-        		        }else{
-        		        	// TELL USER THAT DETAILS ARE INCORRECT
-        		        	console.log("Wrong credentials");
-        		        }
-        		    }
-        		});
-        	});
-        	
-        	// Quick code so that the register tab can be collapsed when clicked again
-            $("#btnRegister").click(function(){
-                $("#btnRegister").hide();
-            });
-        </script>
    </body>
 </html>

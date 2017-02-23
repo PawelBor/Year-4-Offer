@@ -95,7 +95,7 @@ public class ProductService extends Product{
         return products;
     }
     
-    public Product insertProduct(Product x)
+    public String insertProduct(Product x)
     {
     	BasicDBObject document = new BasicDBObject();
         document.put("name", x.name);
@@ -109,11 +109,11 @@ public class ProductService extends Product{
         
         try{
             table.insert(document);
+            
+            return (String)document.get("_id");
         } catch(MongoException e){
-            return x;
+        	return null;
         }
-        
-    	return null;
     }
    
 }

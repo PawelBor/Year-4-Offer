@@ -47,6 +47,13 @@ h1,h2,h3,h4,h5,h6 {
 	
 }
 
+.error p{
+	color: white;
+	padding-top: 15px;
+	font-size: 20px;
+	text-align: center;
+}
+
 
 .navbar-header > .navbar-brand {
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;

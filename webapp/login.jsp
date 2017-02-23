@@ -37,6 +37,7 @@
                            <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Email Address" required="" autofocus="" />
                            <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required=""/>  
                            <button class="btn btn-lg btn-success btn-block" id="loginButton" name="send">Login</button> 
+                           <div class="error"><p id="errorMessage"></p></div>
                         </div>
                      </div>
                   </form>
@@ -107,25 +108,30 @@
 	      }
       
 	      $("#loginButton").click(function(e){
-	  		// currently only returns false
-	  		
-	  		//vars to take password from html form and encrypt it.
+	    	  var email = $("#loginEmail").val(); 
+	    	  
+	  		//vars to take password from html form and encrypt it.	  		
 	  		var passKey = $("#loginPassword").val();
 	  		var encryptedPass = encryptPass(passkey, passKey);
 	  		
 	  		$.ajax({
 	  			url: '/service/login',
 	  			type: 'POST',
-	  			data: {email: $("#loginEmail").val(), password: encryptedpass},
+	  			data: {email: email, password: encryptedpass},
 	  			success: function(response){
 	  				console.log("server returned: " + response + " current password: " + $("#loginPassword").val());
 	  				if(response === "success"){
 	  		        	// GO TO HOMEPAGE & SAVE COOKIES
+	  		        	var date = Date();
+	  		        	var cookie = "email=" + email + "; " + date.setHours(date.getHours()+1) + " path=/";
+	  		        	document.cookie = cookie;
+	  		        	
 	  					window.location.assign("index.jsp");
 	  					console.log("Right credentials");
 	  		        }else{
 	  		        	// TELL USER THAT DETAILS ARE INCORRECT
 	  		        	console.log("Wrong credentials");
+	  		        	$("#errorMessage").text("- Wrong credentials");
 	  		        }
 	  		    }
 	  		});

@@ -52,18 +52,19 @@
 								</table>
 							</div>
                                                         
-        <form action="createProduct" method="post" enctype="multipart/form-data">
+        <div>
             <div class="form-group">
-                <input type="text" class="form-control" name="name" required="" placeholder="Name">
-                <input type="text" class="form-control" name="description" required="" placeholder="Description">
-                <input type="text" class="form-control" name="price" required="" placeholder="Price">
-                <input type="text" class="form-control" name="location" required="" placeholder="Location">
-                <input type="text" class="form-control" name="category" required="" placeholder="Category">
+                <input type="text" class="form-control" id="prodName" name="name" required="" placeholder="Name">
+                <input type="text" class="form-control" id="prodDescription" name="description" required="" placeholder="Description">
+                <input type="text" class="form-control" id="prodPrice" name="price" required="" placeholder="Price">
+                <input type="text" class="form-control" id="prodLocation" name="location" required="" placeholder="Location">
+                <input type="text" class="form-control" id="prodCategory" name="category" required="" placeholder="Category">
                 <input type="file" accept=".jpg,.jpeg,.png" id="images" name="image" multiple />
                 <output id="list"></output>
+                <button id="postButton" value="Submit" name="send"></button>
             </div>
-            <input type="submit" value="Submit" name="send">
-        </form>
+            
+        </div>
                                                        
                  <!-- https://www.html5rocks.com/en/tutorials/file/dndfiles/ -->                                       
 						</div>
@@ -77,6 +78,31 @@
                     e.preventDefault(); //<!-- preveent default action - dont go to a link-->
                     $("#wrapper").toggleClass("menuDisplayed"); //<!-- adds/rem,oves toggle class-->
                     });
+                    
+                    $("#postButton").click(function(e){
+          	    	  	var name = $("#prodName").val();
+	          	  		var description = $("#prodDescription").val();
+	          	  		var price = $("#prodPrice").val();
+	          	  		var location = $("#prodLocation").val();
+	          	  		var category = $("#prodCategory").val();
+	          	  		var images = $("#images").val();
+          	    	  	
+	          	  		$.ajax({
+	          	  			url: '/webapi/product',
+	          	  			type: 'POST',
+	          	  			data: {name: name, description: description, price : price, location: location, category: category, images: images, county: "Gaillimh", author: "Baldwan"},
+	          	  			contentType: 'multipart/form-data',
+	          	  			success: function(response){
+	          	  				console.log(response)
+	          	  				if(response != null){
+	          	  					window.location.assign("/webapi/product/" + response);
+	          	  		        }else{
+	          	  		        	// TELL USER THAT DETAILS ARE INCORRECT
+	          	  		        	console.log("Putting into db failed");
+	          	  		        }
+	          	  		    }
+	          	  		});
+	          	  	});
 
                     function handleFileSelect(evt) {
                         for (var i = 0, f; f = evt.target.files[i]; i++){
