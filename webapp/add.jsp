@@ -58,7 +58,7 @@
          <div class="row">
             <div class="col-xs-12">
                <h2>Product Details</h2>
-               <form action="createProduct" method="post">
+               <div>
                   <div class="form-group">
                      <label for="prodName">Name:</label>
                      <input type="text" class="form-control" id="prodName" name="name" required="" >
@@ -105,7 +105,7 @@
                   <div class="form-group">
                      <button class="btn btn-lg btn-success btn-block" type="submit" id="postButton" name="send">Submit</button>
                   </div>
-               </form>
+               </div>
             </div>
          </div>
       </div>
@@ -134,25 +134,28 @@
 			var location = $("#prodLocation").val();
 			var category = $("#prodCategory").val();
 			var images = $("#images").val();
+			
+			var data = new FormData();
+			data.append("name", name);
+			data.append("description", description);
+			data.append("price", price);
+			data.append("location", location);
+			data.append("category", category);
+			data.append("images", images);
+			data.append("county", "Gaillimh");
+			data.append("author", "Spinnerbaitman");
+			
 
 			$.ajax({
-				url: '/webapi/product',
-				type: 'POST',
-				data: {
-					name: name,
-					description: description,
-					price: price,
-					location: location,
-					category: category,
-					images: images,
-					county: "Gaillimh",
-					author: "Baldwan"
-				},
-				contentType: 'multipart/form-data',
+				url: "webapi/product",
+				type: "POST",
+				data: data,
+				contentType: false,
+				processData: false,
 				success: function (response) {
 					console.log(response)
 					if (response != null) {
-						window.location.assign("/webapi/product/" + response);
+						window.location.assign("/service/webapi/product/" + response);
 					} else {
 						// TELL USER THAT DETAILS ARE INCORRECT
 						console.log("Putting into db failed");

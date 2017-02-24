@@ -110,7 +110,7 @@ public class ProductService extends Product{
         try{
             table.insert(document);
             
-            return (String)document.get("_id");
+            return (String)document.get("_id").toString();
         } catch(MongoException e){
         	return null;
         }

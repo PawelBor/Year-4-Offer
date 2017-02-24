@@ -18,10 +18,6 @@ import ie.ioffer.web.service.Base64Encoder;
 import ie.ioffer.web.service.Location;
 import ie.ioffer.web.service.Product;
 
-/*
- * This class uses the GET HTTP method
- * to retrieve a particular product
- */
 @Path("product")
 public class postProduct {
 
@@ -30,8 +26,7 @@ public class postProduct {
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces(MediaType.TEXT_PLAIN)
-	
-	public String getJSON(@FormDataParam("name") String name,@FormDataParam("description") String description,
+	public String getProduct(@FormDataParam("name") String name,@FormDataParam("description") String description,
 			@FormDataParam("location") String location, @FormDataParam("images") List<FormDataBodyPart> imgBodyParts, 
 			@FormDataParam("county") String county, @FormDataParam("author") String author, 
 			@FormDataParam("category") String category,@FormDataParam("price") String price) {

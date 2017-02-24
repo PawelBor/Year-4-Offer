@@ -35,7 +35,7 @@
                         <a class="page-scroll" href="profile.jsp">Profile</a>
                      </li>
                      <li>
-                        <a class="page-scroll" href="sidebarPage.html">testing stuff</a>
+                        <a class="page-scroll" href="add.jsp">testing stuff</a>
                      </li>
                      <li>
                         <a class="page-scroll" href="search.jsp">SHOP test</a>

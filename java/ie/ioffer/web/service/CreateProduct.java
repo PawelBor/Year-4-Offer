@@ -82,8 +82,6 @@ public class CreateProduct extends HttpServlet{
         
         request.setAttribute("images", images); // set your String value in the attribute
         dispatcher.forward( request, response );
-        
-        response.sendRedirect("index.jsp");
     }
 
 
