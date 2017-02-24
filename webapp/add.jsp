@@ -72,7 +72,7 @@
                      <textarea class="form-control" id="prodDescription" name="description" required="" rows="5"></textarea>
                   </div>
                   <div class="form-group">
-                     <label for="prodLocation">Price:</label>
+                     <label for="prodLocation">Location:</label>
                      <input class="form-control" id="prodLocation" name="location" required=""></input>
                   </div>
                   <div class="form-group">
@@ -172,22 +172,21 @@
 		}
 
 		document.getElementById('images').addEventListener('change', handleFileSelect, false);
-/*Location*/
-		function loc(position) {
-			var location = {
-				latitude: null,
-				longitude: null
-			};
-
-			location.latitude = position.coords.latitude;
-			location.longitude = position.coords.longitude;
-			console.log(location.latitude + ' ' + location.longitude);
-
-			return location;
-		}
-
+		
+		var userLocation = "0 0";
 		$("#locationbtn").click(function (e) {
-			navigator.geolocation.getCurrentPosition(loc);
+			function loc(position) {
+				latitude = position.coords.latitude;
+				longitude = position.coords.longitude;
+				
+				userLocation = latitude + " " + longitude;
+
+				return userLocation;
+			}
+			
+			navigator.geolocation.getCurrentPosition(loc)
+			
+			setTimeout(function(){ document.getElementById('prodLocation').value = userLocation; }, 1000);
 		});
       </script>
    </body>
