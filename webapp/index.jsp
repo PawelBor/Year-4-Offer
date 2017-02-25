@@ -10,7 +10,7 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="css/homeStyles.css">
    </head>
-   <body background="images/cityBack.gif">
+   <body background="images/blurBCK.jpg">
       <body>
          <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -21,13 +21,10 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand page-scroll" href="index.jsp"><i class="ion-ios-analytics-outline"></i>iOffer</a>
+                  <a class="navbar-brand page-scroll" href="index.jsp"><i class="ion-ios-analytics-outline"></i><span class="glyphicon glyphicon-home"></span> iOffer</a>
                </div>
                <div class="navbar-collapse collapse" id="bs-navbar">
                   <ul class="nav navbar-nav">
-                     <li>
-                        <a class="page-scroll" href="login.jsp">Register / Sign IN</a>
-                     </li>
                      <li>
                         <a class="page-scroll" href="locationPage.html">Map</a>
                      </li>
@@ -39,6 +36,11 @@
                      </li>
                      <li>
                         <a class="page-scroll" href="search.jsp">SHOP test</a>
+                     </li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                     <li>
+                        <a class="page-scroll" href="login.jsp"><span class="glyphicon glyphicon-user"></span> Register / Sign IN</a>
                      </li>
                   </ul>
                </div>
@@ -61,15 +63,76 @@
                   </form>
                   <hr>
                </div>
-               <div>
+               <!--<div>
                   <a href="*" class="btn btn-primary btn-xl floating-box">Electronics</a>
                   <a href="*" class="btn btn-primary btn-xl floating-box">Entertainment</a>
                   <a href="#" class="btn btn-primary btn-xl floating-box">Leisure</a>
                   <a href="#" class="btn btn-primary btn-xl floating-box">Automotive</a>
                   <a href="#" class="btn btn-primary btn-xl floating-box">Food</a>
                   <a href="#" class="btn btn-primary btn-xl floating-box">Other</a>
+                  </div> -->
+               <!-- NEW BAR-->
+               <div class="container" id="selFadeIn">
+                  <div class="row">
+                     <a href="#">
+                        <div class="col-sm-4">
+                           <div class="tile category">
+                              <h3 class="title">Electronics</h3>
+                              <p>Parapgraph.........to be done....</p>
+                           </div>
+                        </div>
+                     </a>
+                     <a href="#">
+                        <div class="col-sm-4">
+                           <div class="tile category">
+                              <h3 class="title">Entertainment</h3>
+                              <p>Parapgraph.........to be done....</p>
+                           </div>
+                        </div>
+                     </a>
+                     <a href="#">
+                        <div class="col-sm-4">
+                           <div class="tile category">
+                              <h3 class="title">Leisure</h3>
+                              <p>Parapgraph.........to be done....</p>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+                  <div class="row">
+                     <a href="#">
+                        <div class="col-sm-4">
+                           <div class="tile category">
+                              <h3 class="title">Automotive</h3>
+                              <p>Parapgraph.........to be done....</p>
+                           </div>
+                        </div>
+                     </a>
+                     <a href="#">
+                        <div class="col-sm-4">
+                           <div class="tile category">
+                              <h3 class="title">Food</h3>
+                              <p>Parapgraph.........to be done....</p>
+                           </div>
+                        </div>
+                     </a>
+                     <a href="#">
+                        <div class="col-sm-4">
+                           <div class="tile category">
+                              <h3 class="title">Other</h3>
+                              <p>Parapgraph.........to be done....e</p>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
                </div>
             </div>
          </header>
+         <script>
+            $(function(){  // $(document).ready shorthand
+              $('#selFadeIn').hide().fadeIn('slow');
+            });
+            
+         </script>
    </body>
 </html>
