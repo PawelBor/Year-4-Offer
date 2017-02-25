@@ -59,7 +59,7 @@
                         <input class="form-control" id="searchText" name="searchText" type="text" required/>
                      </div>
                      <hr>
-                     <button type="submit" name="send" class="btn btn-primary btn-xl">Search</button>
+                     <button type="submit" name="send" class="btn btn-warning btn-xl" style="width: 25%; background-color: #FFA500;">Search</button>
                   </form>
                   <hr>
                </div>
