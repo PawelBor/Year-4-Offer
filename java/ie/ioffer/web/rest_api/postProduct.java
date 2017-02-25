@@ -1,6 +1,8 @@
 package ie.ioffer.web.rest_api;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 
@@ -12,6 +14,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.glassfish.jersey.media.multipart.BodyPartEntity;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import ie.ioffer.web.service.Base64Encoder;
@@ -27,17 +31,23 @@ public class postProduct {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getProduct(@FormDataParam("name") String name,@FormDataParam("description") String description,
-			@FormDataParam("location") String location, @FormDataParam("images") List<FormDataBodyPart> imgBodyParts, 
+			@FormDataParam("location") String location, @FormDataParam("images") FormDataBodyPart imgBodyParts,
 			@FormDataParam("county") String county, @FormDataParam("author") String author, 
 			@FormDataParam("category") String category,@FormDataParam("price") String price) {
 		
 		String images = "";
         Base64Encoder enc = new Base64Encoder();
-		
-		for (FormDataBodyPart part : imgBodyParts){
+        String[] imgs = imgBodyParts.getValue().split(",");
+
+        //for (FormDataBodyPart part : imgBodyParts){
+        	for(int i = 0; i < imgs.length; i++){
             try {
-            	BodyPartEntity bodyPartEntity = (BodyPartEntity) part.getEntity();
-                InputStream filecontent = bodyPartEntity.getInputStream();
+            	String x = "C:\\" + imgs[i];
+        		
+            	//BodyPartEntity bodyPartEntity = (BodyPartEntity) part.getEntity();
+            	File img = new File(x);
+            	//InputStream filecontent = part.getValueAs(InputStream.class);
+            	InputStream filecontent = new FileInputStream(img);
                 ByteArrayOutputStream buffer = new ByteArrayOutputStream();
                 int nRead;
                 byte[] data = new byte[16384];
@@ -60,7 +70,8 @@ public class postProduct {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+          }
+        //}
 		
 		Product x = new Product();
 		x.author = author;

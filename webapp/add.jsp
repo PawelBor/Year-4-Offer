@@ -80,7 +80,7 @@
                         <label for="productImages">Image Select:</label>
                      </div>
                      <label class="btn btn-lg btn-warning" for="images">
-                     Select File<input type="file" accept=".jpg,.jpeg,.png" id="images" style="display:none;" id="images" name="images" multiple />
+                     Select File<input type="file" accept=".jpg,.jpeg,.png" id="images" style="display:none;" name="images" multiple />
                      </label>
                      <output id="list"></output>
                   </div>
@@ -133,7 +133,7 @@
 			var price = $("#prodPrice").val();
 			var location = $("#prodLocation").val();
 			var category = $("#prodCategory").val();
-			var images = $("#images").val();
+			var images = img;
 			
 			var data = new FormData();
 			data.append("name", name);
@@ -145,7 +145,6 @@
 			data.append("county", "Gaillimh");
 			data.append("author", "Spinnerbaitman");
 			
-
 			$.ajax({
 				url: "webapi/product",
 				type: "POST",
@@ -163,11 +162,12 @@
 				}
 			});
 		});
-
+		var img = [];
 		function handleFileSelect(evt) {
 			for (var i = 0, f; f = evt.target.files[i]; i++) {
 				var output = '<img width="150" "height="100" src="' + URL.createObjectURL(f) + '">';
 				document.getElementById('list').innerHTML += output;
+				img.push(f.name);
 			}
 		}
 
