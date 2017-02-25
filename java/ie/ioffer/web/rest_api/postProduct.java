@@ -38,7 +38,7 @@ public class postProduct {
 		String images = "";
         Base64Encoder enc = new Base64Encoder();
         String[] imgs = imgBodyParts.getValue().split(",");
-
+        
         //for (FormDataBodyPart part : imgBodyParts){
         	for(int i = 0; i < imgs.length; i++){
             try {

@@ -60,6 +60,42 @@ public class ProductService extends Product{
         return null;  // Return a null object if nothing is found in the database
     }
     
+    public List<Product> readProductsByCounty(String productcounty){
+    	List<Product> products = new ArrayList<Product>();
+        BasicDBObject document = new BasicDBObject();
+        
+        // Search by ObjectId
+        document.put("county", new ObjectId(productcounty));
+        DBCursor cursor = table.find(document); 
+        
+    	while(cursor.hasNext()){
+    	
+	        DBObject product = cursor.next();
+	        
+	        String name = (String)product.get("name");
+	
+	        double price = (Double) product.get("price");
+	        String description = (String)product.get("description");
+	        
+	        String image = (String)product.get("images");
+	        
+	        // Get latitude and longitude from composed String
+	        String location = (String)product.get("location");
+	        float lat = Float.parseFloat(location.split(",")[0]);
+	        float lon = Float.parseFloat(location.split(",")[1]);
+	        
+	        String county = (String)product.get("county");
+	        String categories = (String)product.get("category");
+	        String author = (String)product.get("author");
+	        String productId = product.get("_id").toString();
+	        
+	        Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId);
+	        products.add(p);
+        }
+		
+		return products;
+    }
+    
     // Get all products from MongoDb
     public List<Product> readAllProducts(){
         List<Product> products = new ArrayList<Product>();

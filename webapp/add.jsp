@@ -12,6 +12,7 @@
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEXEWAlb54kadBS390PHS6ME-huUDaM9I"></script>
       <link rel="stylesheet" href="css/homeStyles.css">
    </head>
    <body class="login-body">
@@ -174,11 +175,15 @@
 		document.getElementById('images').addEventListener('change', handleFileSelect, false);
 		
 		var userLocation = "0 0";
+		var lat;
+		var lon;
 		$("#locationbtn").click(function (e) {
 			function loc(position) {
 				latitude = position.coords.latitude;
 				longitude = position.coords.longitude;
 				
+				lat = latitude;
+				lon = longitude;
 				userLocation = latitude + " " + longitude;
 
 				return userLocation;
@@ -186,8 +191,25 @@
 			
 			navigator.geolocation.getCurrentPosition(loc)
 			
-			setTimeout(function(){ document.getElementById('prodLocation').value = userLocation; }, 1000);
+			setTimeout(function(){ document.getElementById('prodLocation').value = userLocation;
+			getCounty(lat, lon);}, 1000);
 		});
+		
+		//http://stackoverflow.com/questions/6478914/reverse-geocoding-code
+		function getCounty(lat, lng) {
+		    var latlng = new google.maps.LatLng(lat, lng);
+		    var geocoder = new google.maps.Geocoder();
+		    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+		        if (status !== google.maps.GeocoderStatus.OK) {
+		            alert(status);
+		        }
+		        if (status == google.maps.GeocoderStatus.OK) {
+		            console.log(results);
+		            var county = (results[0].address_components[4].long_name);
+		            console.log(county);
+		        }
+		    });
+		}
       </script>
    </body>
 </html>
