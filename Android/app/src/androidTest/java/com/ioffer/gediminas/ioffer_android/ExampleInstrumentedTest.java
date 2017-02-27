@@ -1,4 +1,4 @@
-package com.ioffer.gediminas.ioffer;
+package com.ioffer.gediminas.ioffer_android;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.ioffer.gediminas.ioffer", appContext.getPackageName());
+        assertEquals("com.ioffer.gediminas.ioffer_android", appContext.getPackageName());
     }
 }

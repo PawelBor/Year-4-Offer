@@ -1,4 +1,4 @@
-package com.ioffer.gediminas.ioffer;
+package com.ioffer.gediminas.ioffer_android;
 
 import org.junit.Test;
 
