@@ -361,6 +361,17 @@ footer {
 
 /* INDEX METRO TILE STYLES */
 
+/* R -> L */
+#rowSlideLeft {
+	left: 25%;
+	position: relative;
+}
+/* L -> R */
+#rowSlideRight {
+	right: 25%;
+	position: relative;
+}
+
 .tile {
   width: 100%;
   display: inline-block;
