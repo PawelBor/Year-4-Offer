@@ -37,6 +37,9 @@
                            <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Email Address" required="" autofocus="" />
                            <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required=""/>  
                            <button class="btn btn-lg btn-success btn-block" id="loginButton" name="send">Login</button> 
+                           <div class="checkbox">
+							  <label><input type="checkbox" id="loginRemember" value="">Remember Me</label>
+						   </div>
                            <div class="error"><p id="errorMessage"></p></div>
                         </div>
                      </div>
@@ -147,15 +150,15 @@
 	    	  
 	  		//vars to take password from html form and encrypt it.	  		
 	  		var passKey = $("#loginPassword").val();
-	  		var encryptedPass = encryptPass(passkey, passKey);
+	  		//var encryptedPass = encryptPass(passKey, passKey);
 	  		
 	  		$.ajax({
 	  			url: '/service/login',
 	  			type: 'POST',
-	  			data: {email: email, password: encryptedpass},
+	  			data: {email: email, password: passKey},
 	  			success: function(response){
 	  				console.log("server returned: " + response + " current password: " + $("#loginPassword").val());
-	  				if(response === "success"){
+	  				if(response !== ""){
 	  		        	// GO TO HOMEPAGE & SAVE COOKIES
 	  					var date = new Date();
 	  		        	var cEmail;
