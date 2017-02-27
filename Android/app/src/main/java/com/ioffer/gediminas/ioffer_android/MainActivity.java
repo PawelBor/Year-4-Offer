@@ -12,14 +12,52 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ListView list;
+    String[] web = {
+            "Clutch, in brand new condition Price: $$$.",
+            "Renault Clio, low mileage, pure clean diesel. Must go! Price: $$$",
+            "IPhone 4, decent condition. Price: $$$",
+            "Clutch, in brand new condition Price: $$$.",
+            "Renault Clio, low mileage, pure clean diesel. Must go! Price: $$$",
+            "IPhone 4, decent condition. Price: $$$",
+    } ;
+    Integer[] imageId = {
+            R.drawable.ic_menu_camera,
+            R.drawable.ic_menu_send,
+            R.drawable.ic_menu_send,
+            R.drawable.ic_menu_camera,
+            R.drawable.ic_menu_camera,
+            R.drawable.ic_menu_camera,
+            R.drawable.ic_menu_camera
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        CustomList adapter = new
+                CustomList(MainActivity.this, web, imageId);
+        list=(ListView)findViewById(R.id.list);
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(MainActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

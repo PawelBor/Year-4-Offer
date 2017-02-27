@@ -5,13 +5,14 @@
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.ioffer.gediminas.ioffer_android.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    >
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
@@ -32,7 +33,7 @@
                 android:layout_width="fill_parent"
                 android:padding="0dp"
                 android:layout_margin="0dp"
-                android:layout_height="240dp"
+                android:layout_height="174.4dp"
                 android:src="@drawable/blured_background" />
 
 
@@ -44,7 +45,7 @@
                 android:paddingLeft="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="90dp"
+                android:layout_marginTop="60dp"
                 android:hint="Search iOffer"
                 android:textColor="#ffffff"
                 android:textColorHint="#444444"
@@ -67,7 +68,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="245dp">
+                android:layout_marginTop="180dp">
                 <Button
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -103,7 +104,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="300dp">
+                android:layout_marginTop="235dp">
                 <Button
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -136,6 +137,20 @@
 
             </LinearLayout>
 
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="{relativePackage}.${activityClass}"
+                android:layout_marginTop="285dp"
+                >
+
+                <ListView
+                    android:id="@+id/list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                </ListView>
+            </RelativeLayout>
         </RelativeLayout>
 
 
