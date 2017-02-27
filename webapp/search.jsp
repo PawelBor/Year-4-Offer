@@ -129,13 +129,52 @@
       
       <script type="text/javascript">
         	$(window).on("load", function() {
-        		$.getJSON("webapi/products", function (data){
-        			for (var i=0;i < data.length ;i++) {
-        				var tab = createTab(data[i])
-        				$('#products').append(tab);
-                    }
-        		});	
-        	});
+            
+            
+            var QueryString = function () {
+                // This function is anonymous, is executed immediately and 
+                // the return value is assigned to QueryString.
+                var query_string = {};
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++) {
+                  var pair = vars[i].split("=");
+                      // If first entry with this name
+                  if (typeof query_string[pair[0]] === "undefined") {
+                    query_string[pair[0]] = decodeURIComponent(pair[1]);
+                      // If second entry with this name
+                  } else if (typeof query_string[pair[0]] === "string") {
+                    var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+                    query_string[pair[0]] = arr;
+                      // If third or later entry with this name
+                  } else {
+                    query_string[pair[0]].push(decodeURIComponent(pair[1]));
+                  }
+                } 
+                return query_string;
+            }();
+            
+            var catagory = QueryString.category;
+            
+            if(catagory != null)
+            {
+              $.getJSON("webapi/product/category/"+catagory, function (data){
+                  for (var i=0;i < data.length ;i++) {
+                    var tab = createTab(data[i])
+                    $('#getCategory').append(tab);
+                        }
+                });
+            }else // No category selected
+          {
+              $.getJSON("webapi/products", function (data){
+                  for (var i=0;i < data.length ;i++) {
+                    var tab = createTab(data[i])
+                    $('#products').append(tab);
+                        }
+                }); 
+          }
+              
+          });
         	
         	// A function to create a template for each item returned from the search
         	function createTab(data){

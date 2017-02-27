@@ -16,7 +16,7 @@ ProductService productService = new ProductService();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Product> getJSON(@PathParam("category") String category) {	
+	public List<Product> getCategory(@PathParam("category") String category) {	
 		return productService.readProductsByCategory(category);
 	}
 }

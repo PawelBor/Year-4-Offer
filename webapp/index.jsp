@@ -73,8 +73,8 @@
                   </div> -->
                <!-- NEW BAR-->
                <div class="container" id="selFadeIn">
-                  <div class="row" id="rowSlideLeft">
-                     <a href="#">
+                  <div class="row">
+                     <a href="javascript:category('electronics');">
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Electronics</h3>
@@ -82,7 +82,7 @@
                            </div>
                         </div>
                      </a>
-                     <a href="#">
+                     <a href="javascript:category('entertainment');">
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Entertainment</h3>
@@ -90,7 +90,7 @@
                            </div>
                         </div>
                      </a>
-                     <a href="#">
+                     <a href="javascript:category('leisure');">
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Leisure</h3>
@@ -99,8 +99,8 @@
                         </div>
                      </a>
                   </div>
-                  <div class="row" id="rowSlideRight">
-                     <a href="#">
+                  <div class="row">
+                     <a href="javascript:category('automotive');">
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Automotive</h3>
@@ -108,7 +108,7 @@
                            </div>
                         </div>
                      </a>
-                     <a href="#">
+                     <a href="javascript:category('food');">
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Food</h3>
@@ -116,7 +116,7 @@
                            </div>
                         </div>
                      </a>
-                     <a href="#">
+                     <a href="javascript:category('other');">
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Other</h3>
@@ -144,6 +144,10 @@
               $("#rowSlideLeft").animate({left: '0'}, "slow");
 			  $("#rowSlideRight").animate({right: '0'}, "slow");
             });
+
+         function category(x){
+               window.location.href = 'search.jsp?category='+x;
+            }
 			
             
          </script>
