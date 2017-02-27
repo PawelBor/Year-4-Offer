@@ -57,7 +57,7 @@ public class User {
     }
     
     
-    public boolean login(String email, String password){
+    public String login(String email, String password){
         BasicDBObject document = new BasicDBObject();
         document.put("email", email);
         
@@ -66,12 +66,13 @@ public class User {
         while(cursor.hasNext()){
             DBObject user = cursor.next();
             
+            String county = (String)user.get("county");
             String userpass = (String)user.get("password");
             if(userpass.equals(password)){
                 // Return validation that login was successful
-                return true;
+                return county;
             }
         }
-        return false;
+        return county;
     }
 }

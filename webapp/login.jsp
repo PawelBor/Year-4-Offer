@@ -30,7 +30,7 @@
                </div>
                <hr style="width: 300px;">
                <div class="container login">
-                  <form id="collapseLogin" method="post" class="form-signin">
+                  <div id="collapseLogin" class="form-signin">
                      <div id="loginForm" class="card card-block">
                         <div class="card card-block">
                            <h2 class="form-signin-heading">Please Login</h2>
@@ -40,7 +40,7 @@
                            <div class="error"><p id="errorMessage"></p></div>
                         </div>
                      </div>
-                  </form>
+                  </div>
                   <form action="register" method="post" class="form-signin">
                      <div class="collapse" id="collapseRegister">
                         <div class="card card-block">
@@ -157,11 +157,21 @@
 	  				console.log("server returned: " + response + " current password: " + $("#loginPassword").val());
 	  				if(response === "success"){
 	  		        	// GO TO HOMEPAGE & SAVE COOKIES
-	  		        	var date = Date();
-	  		        	var cookie = "email=" + email + "; " + date.setHours(date.getHours()+1) + " path=/";
-	  		        	document.cookie = cookie;
+	  					var date = new Date();
+	  		        	var cEmail;
+	  		        	var cCounty;
+	  		        	if(loginRemember){
+	  		        		var cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 720) + ";path=/";
+	  		        		var cCounty = "county=" + response + ";expires=" + date.setHours(date.getHours() + 720) + ";path=/";
+	  		        	}else{
+	  		        		var cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
+	  		        		var cCounty = "county=" + response + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
+	  		        	}
 	  		        	
-	  					window.location.assign("index.jsp");
+	  		        	document.cookie = cEmail;
+	  		        	document.cookie = cCounty;
+	  		        	
+	  		        	window.location.assign("index.jsp");
 	  					console.log("Right credentials");
 	  		        }else{
 	  		        	// TELL USER THAT DETAILS ARE INCORRECT

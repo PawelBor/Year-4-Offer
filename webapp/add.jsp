@@ -134,7 +134,7 @@
 			var price = $("#prodPrice").val();
 			var location = $("#prodLocation").val();
 			var category = $("#prodCategory").val();
-			var images = document.getElementById("images").files[0];
+			var images = document.getElementById("images").files;
 			
 			var data = new FormData();
 			data.append("name", name);

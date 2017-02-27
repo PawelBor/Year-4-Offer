@@ -129,6 +129,14 @@
             </div>
          </header>
          <script>
+	         $(document).ready(function() {
+	     		// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+	     	    var cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	     	    var cookieCounty = document.cookie.replace(/(?:(?:^|.*;\s*)county\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	     	    console.log(cookieEmail);
+	     	    console.log(cookieCounty)
+	     	});
+         
             $(function(){  // $(document).ready shorthand
               $('#selFadeIn').hide().fadeIn('slow');
             });
