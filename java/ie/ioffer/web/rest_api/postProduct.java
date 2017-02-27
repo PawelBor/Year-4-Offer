@@ -31,23 +31,23 @@ public class postProduct {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getProduct(@FormDataParam("name") String name,@FormDataParam("description") String description,
-			@FormDataParam("location") String location, @FormDataParam("images") FormDataBodyPart imgBodyParts,
+			@FormDataParam("location") String location, @FormDataParam("images") File imgBodyParts,
 			@FormDataParam("county") String county, @FormDataParam("author") String author, 
 			@FormDataParam("category") String category,@FormDataParam("price") String price) {
 		
 		String images = "";
         Base64Encoder enc = new Base64Encoder();
-        String[] imgs = imgBodyParts.getValue().split(",");
+        //String[] imgs = imgBodyParts.getValue().split(",");
         
         //for (FormDataBodyPart part : imgBodyParts){
-        	for(int i = 0; i < imgs.length; i++){
+        	//for(int i = 0; i < imgs.length; i++){
             try {
-            	String x = "C:\\" + imgs[i];
+            	//String x = "C:\\" + imgs[i];
         		
             	//BodyPartEntity bodyPartEntity = (BodyPartEntity) part.getEntity();
-            	File img = new File(x);
+            	//File img = new File(x);
             	//InputStream filecontent = part.getValueAs(InputStream.class);
-            	InputStream filecontent = new FileInputStream(img);
+            	InputStream filecontent = new FileInputStream(imgBodyParts);
                 ByteArrayOutputStream buffer = new ByteArrayOutputStream();
                 int nRead;
                 byte[] data = new byte[16384];
@@ -70,7 +70,7 @@ public class postProduct {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-          }
+         // }
         //}
 		
 		Product x = new Product();

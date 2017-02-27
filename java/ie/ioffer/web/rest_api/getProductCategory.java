@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import ie.ioffer.web.service.Product;
 
-@Path("product/{category}")
+@Path("product/category/{category}")
 public class getProductCategory {
 ProductService productService = new ProductService();
 	

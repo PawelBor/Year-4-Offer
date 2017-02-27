@@ -134,7 +134,7 @@
 			var price = $("#prodPrice").val();
 			var location = $("#prodLocation").val();
 			var category = $("#prodCategory").val();
-			var images = img;
+			var images = document.getElementById("images").files[0];
 			
 			var data = new FormData();
 			data.append("name", name);
@@ -163,12 +163,12 @@
 				}
 			});
 		});
-		var img = [];
+		var img;
 		function handleFileSelect(evt) {
 			for (var i = 0, f; f = evt.target.files[i]; i++) {
 				var output = '<img width="150" "height="100" src="' + URL.createObjectURL(f) + '">';
 				document.getElementById('list').innerHTML += output;
-				img.push(f.name);
+				//img.push(f);
 			}
 		}
 

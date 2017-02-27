@@ -10,9 +10,9 @@ import javax.ws.rs.core.MediaType;
 
 import ie.ioffer.web.service.Product;
 
-@Path("product/{county}")
+@Path("product/county/{county}")
 public class getProductCounty {
-ProductService productService = new ProductService();
+	ProductService productService = new ProductService();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
