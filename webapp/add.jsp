@@ -197,22 +197,6 @@
 			setTimeout(function(){ document.getElementById('prodLocation').value = userLocation;
 			getCounty(lat, lon);}, 1000);
 		});
-		
-		//http://stackoverflow.com/questions/6478914/reverse-geocoding-code
-		function getCounty(lat, lng) {
-		    var latlng = new google.maps.LatLng(lat, lng);
-		    var geocoder = new google.maps.Geocoder();
-		    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-		        if (status !== google.maps.GeocoderStatus.OK) {
-		            alert(status);
-		        }
-		        if (status == google.maps.GeocoderStatus.OK) {
-		            console.log(results);
-		            var county = (results[0].address_components[4].long_name);
-		            console.log(county);
-		        }
-		    });
-		}
       </script>
    </body>
 </html>
