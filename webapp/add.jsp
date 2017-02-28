@@ -158,7 +158,7 @@
 				success: function (response) {
 					console.log(response)
 					if (response != null) {
-						window.location.assign("/service/webapi/product/" + response);
+						window.location.assign("item.jsp?id=" + response);
 					} else {
 						// TELL USER THAT DETAILS ARE INCORRECT
 						console.log("Putting into db failed");

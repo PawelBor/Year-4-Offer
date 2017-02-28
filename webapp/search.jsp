@@ -184,7 +184,7 @@
         		tab += '<div class="caption">';
         		tab += '<h4 class="pull-right">€' + data.price + '</h4>';
         		// This href takes the user to a different page displaying the ad clicked
-        		tab += '<h4><a href="webapi/product/' + data.productId + '">'+ data.name + '</a></h4>';
+        		tab += '<h4><a href="item.jsp?id=' + data.productId + '">'+ data.name + '</a></h4>';
         		tab += '<p>' + data.description + '</p>';
         		tab += '</div></div></div>';
         		
