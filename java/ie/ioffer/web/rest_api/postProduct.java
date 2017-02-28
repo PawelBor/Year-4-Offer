@@ -3,15 +3,27 @@ package ie.ioffer.web.rest_api;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.glassfish.jersey.media.multipart.BodyPartEntity;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
@@ -24,55 +36,55 @@ import ie.ioffer.web.service.Product;
 
 @Path("product")
 public class postProduct {
-
 	ProductService productService = new ProductService();
-	
+
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getProduct(@FormDataParam("name") String name,@FormDataParam("description") String description,
-			@FormDataParam("location") String location, @FormDataParam("images") File imgBodyParts,
-			@FormDataParam("county") String county, @FormDataParam("author") String author, 
-			@FormDataParam("category") String category,@FormDataParam("price") String price) {
+	public String getProduct(@FormDataParam("name") String name, @FormDataParam("author") String author,
+			@FormDataParam("category") String category, @FormDataParam("county") String county,
+			@FormDataParam("description") String description, @FormDataParam("location") String location,
+			@FormDataParam("price") String price, @FormDataParam("images") List<FormDataBodyPart> imgBodyParts) throws Exception {
 		
 		String images = "";
         Base64Encoder enc = new Base64Encoder();
         //String[] imgs = imgBodyParts.getValue().split(",");
-        
-        //for (FormDataBodyPart part : imgBodyParts){
-        	//for(int i = 0; i < imgs.length; i++){
-            try {
-            	//String x = "C:\\" + imgs[i];
-        		
-            	//BodyPartEntity bodyPartEntity = (BodyPartEntity) part.getEntity();
-            	//File img = new File(x);
-            	//InputStream filecontent = part.getValueAs(InputStream.class);
-            	InputStream filecontent = new FileInputStream(imgBodyParts);
-                ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-                int nRead;
-                byte[] data = new byte[16384];
 
-                while ((nRead = filecontent.read(data, 0, data.length)) != -1) {
-                    buffer.write(data, 0, nRead);
+        if (imgBodyParts != null){
+        	for (FormDataBodyPart part : imgBodyParts){
+                try {
+                	FormDataContentDisposition file = part.getFormDataContentDisposition();
+                	System.out.println(file);
+                	//String x = "C:\\" + imgs[i];
+            		
+                	//BodyPartEntity bodyPartEntity = (BodyPartEntity) part.getEntity();
+                	InputStream filecontent = part.getValueAs(InputStream.class);
+                	//InputStream filecontent = new FileInputStream(imgBodyParts);
+                    ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+                    int nRead;
+                    byte[] data = new byte[16384];
+
+                    while ((nRead = filecontent.read(data, 0, data.length)) != -1) {
+                        buffer.write(data, 0, nRead);
+                    }
+                    
+                    byte[] message = buffer.toByteArray();
+                    String encryption = enc.encode(message);
+                    
+                    if(images.equals("")){
+                        images = encryption;
+                    }else{
+                        images += "," + encryption;
+                    }
+                    
+                    buffer.close();
+                    filecontent.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                
-                byte[] message = buffer.toByteArray();
-                String encryption = enc.encode(message);
-                
-                if(images.equals("")){
-                    images = encryption;
-                }else{
-                    images += "," + encryption;
-                }
-                
-                buffer.close();
-                filecontent.close();
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-         // }
-        //}
-		
+        }
+      
 		Product x = new Product();
 		x.author = author;
 		x.category = category;

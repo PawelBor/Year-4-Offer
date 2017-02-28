@@ -134,7 +134,6 @@
 			var price = $("#prodPrice").val();
 			var location = $("#prodLocation").val();
 			var category = $("#prodCategory").val();
-			var images = document.getElementById("images").files;
 			
 			var data = new FormData();
 			data.append("name", name);
@@ -142,9 +141,13 @@
 			data.append("price", price);
 			data.append("location", location);
 			data.append("category", category);
-			data.append("images", images);
 			data.append("county", "Gaillimh");
 			data.append("author", "Spinnerbaitman");
+			
+			for(i = 0; i < document.getElementById("images").files.length; i++){
+				data.append("images", document.getElementById("images").files[i]);
+			}
+			
 			
 			$.ajax({
 				url: "webapi/product",
