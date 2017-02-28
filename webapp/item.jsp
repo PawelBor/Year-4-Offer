@@ -51,41 +51,14 @@
       <!-- Page Content -->
       <div class="container">
          <div class="row">
-            <div class="col-md-3">
-               <p class="lead">iOffer</p>
-               <hr>
-               <form action="searchProduct" method="post">
-                  <div class="form-group">
-                     <label for="productName">Product Name:</label>
-                     <input class="form-control" id="productName" type="text">
-                     <label for="minPrice">Min Price:</label>
-                     <input class="form-control" id="minPrice" type="text">
-                     <label for="maxPrice">Max Price:</label>
-                     <input class="form-control" id="maxPrice" type="text">
-                     <label for="categorySelect">Category:</label></br>
-                     <select class="form-control" id="categorySelect" name="category">
-                        <option value="" disabled selected hidden>Please Choose Category...</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="entertainment">Entertainment</option>
-                        <option value="leisure">Leisure</option>
-                        <option value="automotive">Automotive</option>
-                        <option value="food">Food</option>
-                        <option value="other">Other</option>
-                     </select>
-                     <hr>
-                     <button type="submit" name="send" class="btn btn-primary btn-xl">Submit</button>
-                  </div>
-                  <!--<button type="submit" value="Submit" name="send">-->
-               </form>
-            </div>
             <div class="col-md-9">
                <div class="thumbnail">
-                  <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                  <img class="img-responsive" id="images" width="50px" height="50px" src="" alt="">
                   <div class="caption-full">
-                     <h4 class="pull-right">PriceOfItemHERE</h4>
-                     <h4><a href="#">ProductNameHERE</a>
+                     <h4 class="pull-right" id="prodPrice"></h4>
+                     <h4 id="prodName">
                      </h4>
-                     <p>Paragraph describing the item.</p>
+                     <p id="prodDescription"></p>
                   </div>
                </div>
                <div class="well">
@@ -123,4 +96,29 @@
          </footer>
       </div>
    </body>
+   <script type="text/javascript">
+   		var response = "";
+   		
+	    window.onload = function () {
+		    var url = document.location.href,
+		        params = url.split('?')[1].split('&'),
+		        data = {}, tmp;
+		    for (var i = 0, l = params.length; i < l; i++) {
+		         tmp = params[i].split('=');
+		         data[tmp[0]] = tmp[1];
+		    }
+		    
+		    response = data.id;
+		    
+		    $.getJSON("webapi/product/"+response, function (data){
+                $("#prodName").text(data.name);
+                $("#prodPrice").text("€" + data.price);
+                $("#prodDescription").text(data.description);
+                var images = data.image.split(",");
+                $("#images").attr("src", "data:image/png;base64," + images[0]);
+            });
+		}
+   
+   		
+   </script>
 </html>
