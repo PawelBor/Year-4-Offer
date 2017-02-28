@@ -21,26 +21,32 @@ public class User {
     protected DBCollection table = db.getCollection("users");
     
  // Member variables for all users
-    public String email;
-    public String password;
-    public String name;
-    public String county;
-    public String userId;
-    
-	public User(){
-	        
+    private String email;
+    private String password;
+    private String name;
+    private String county;
+    private String userId;
+   
+    public User(){
+    	
     }
-	    
-    public User(String email, String password, String name, String county, String userId){
-        this();
+    
+    public User(String email, String password, String name, String county){
         this.email = email;
         this.password = password;
         this.name = name;
         this.county = county;
-        this.userId = userId;
     }
     
-    public boolean create(String email, String password, String name, String county){
+    public User(String email, String password, String name, String county, String id){
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.county = county;
+        this.userId = id;
+    }
+    
+    public boolean create(){
         BasicDBObject document = new BasicDBObject();
         document.put("email", email);
         document.put("password", password);
@@ -55,7 +61,6 @@ public class User {
         
         return true;
     }
-    
     
     public String login(String email, String password){
         BasicDBObject document = new BasicDBObject();

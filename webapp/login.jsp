@@ -44,14 +44,14 @@
                         </div>
                      </div>
                   </div>
-                  <form action="register" method="post" class="form-signin">
+                  <div class="form-signin">
                      <div class="collapse" id="collapseRegister">
                         <div class="card card-block">
                            <h2 class="form-register-heading">Please Register</h2>
-                           <input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
-                           <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-                           <input type="text" class="form-control" name="name" placeholder="Name" required="" autofocus="" />
-                           <input type="text" class="form-control" name="county" placeholder="County" required=""/><select class="form-control"  name="county" placeholder="County" required="">
+                           <input type="email" class="form-control" id="regEmail" name="email" placeholder="Email Address" required="" autofocus="" />
+                           <input type="password" class="form-control" id="regPassword" name="password" placeholder="Password" required=""/>
+                           <input type="text" class="form-control" id="regName" name="name" placeholder="Name" required="" autofocus="" />
+                           <select class="form-control"  id="regCounty" name="county" placeholder="County" required="">
 								<option value="" disabled selected hidden>Please Choose County...</option>
 								<option value="antrim">Antrim</option>
 								<option value="armagh">Armagh</option>
@@ -87,12 +87,12 @@
 								<option value="wicklow">Wicklow</option>
 							 </select>
 							 <br>
-                           <button class="btn btn-lg btn-success btn-block" name="send" type="submit">Register</button>
+                           <button class="btn btn-lg btn-success btn-block" name="send" id="regButton">Register</button>
                            <div align="center">
                            </div>
                         </div>
                      </div>
-                  </form>
+                  </div>
                </div>
             </div>
             <!--END_div genForm-->
@@ -150,14 +150,14 @@
 	    	  
 	  		//vars to take password from html form and encrypt it.	  		
 	  		var passKey = $("#loginPassword").val();
-	  		//var encryptedPass = encryptPass(passKey, passKey);
+	  		var encryptedPass = encryptPass(passKey, passKey);
 	  		
 	  		$.ajax({
 	  			url: '/service/login',
 	  			type: 'POST',
-	  			data: {email: email, password: passKey},
+	  			data: {email: email, password: encryptedPass},
 	  			success: function(response){
-	  				console.log("server returned: " + response + " current password: " + $("#loginPassword").val());
+	  				console.log("server returned: " + response + " current password: " + encryptedPass);
 	  				if(response !== ""){
 	  		        	// GO TO HOMEPAGE & SAVE COOKIES
 	  					var date = new Date();
@@ -180,6 +180,46 @@
 	  		        	// TELL USER THAT DETAILS ARE INCORRECT
 	  		        	console.log("Wrong credentials");
 	  		        	$("#errorMessage").text("- Wrong credentials");
+	  		        }
+	  		    }
+	  		});
+	  	});
+	      
+	      $("#regButton").click(function(e){
+	    	var email = $("#regEmail").val(); 
+	    	var name = $("#regName").val();
+	    	var county = $("#regCounty").val();
+	  		//vars to take password from html form and encrypt it.	  		
+	  		var passKey = $("#regPassword").val();
+	  		var encryptedPass = encryptPass(passKey, passKey);
+	  		
+	  		$.ajax({
+	  			url: "webapi/user",
+	  			type: "POST",
+	  			data: {email: email, password: encryptedPass, name: name, county: county},
+	  			success: function(response){
+	  				console.log("server returned: " + response);
+	  				if(response){
+	  		        	// GO TO HOMEPAGE & SAVE COOKIES
+	  					var date = new Date();
+	  		        	var cEmail;
+	  		        	var cCounty;
+	  		        	if(loginRemember){
+	  		        		var cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 720) + ";path=/";
+	  		        		var cCounty = "county=" + response + ";expires=" + date.setHours(date.getHours() + 720) + ";path=/";
+	  		        	}else{
+	  		        		var cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
+	  		        		var cCounty = "county=" + response + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
+	  		        	}
+	  		        	
+	  		        	document.cookie = cEmail;
+	  		        	document.cookie = cCounty;
+	  		        	
+	  		        	window.location.assign("index.jsp");
+	  					console.log("Register success");
+	  		        }else{
+	  		        	// TELL USER THAT DETAILS ARE INCORRECT
+	  		        	console.log("Register failure");
 	  		        }
 	  		    }
 	  		});

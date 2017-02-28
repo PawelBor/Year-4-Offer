@@ -26,8 +26,8 @@ public class Register extends HttpServlet {
         String county = request.getParameter("county");
         
         //response.getWriter().println(email + " " + password + " " + name + " " + county);
-        User user = new User();
-        user.create(email, password, name, county);
+        User user = new User(email, password, name, county);
+        user.create();
         
         response.sendRedirect("sidebarPage.html");
     }

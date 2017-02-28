@@ -5,12 +5,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.MongoException;
 
 import ie.ioffer.web.service.User;
 
 @XmlRootElement
 public class UserService extends User{
-	
+
 	// Get a user by email
     public User readUser(String email){
 
@@ -40,6 +41,22 @@ public class UserService extends User{
         }
         
         return null;  // Return a null object if nothing is found in the database
+    }
+    
+    public boolean insertUser(String email, String password, String name, String county){
+    	 BasicDBObject document = new BasicDBObject();
+         document.put("email", email);
+         document.put("password", password);
+         document.put("name", name);
+         document.put("county", county);
+         
+         try{
+             table.insert(document);
+         } catch(MongoException e){
+             return false;
+         }
+         
+         return true;
     }
 
 }
