@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.ioffer.gediminas.ioffer_android.MainActivity"
+    >
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            >
+
+            <ImageView
+                android:id="@+id/myImageView"
+                android:layout_width="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="100dp"
+                android:src="@drawable/clutch" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="55dp"
+                android:layout_marginLeft="155dp"
+                android:text="Title: "
+                android:id="@+id/title" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="155dp"
+                android:layout_marginTop="75dp"
+                android:text="Price: "
+                android:id="@+id/price" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="95dp"
+                android:layout_marginLeft="155dp"
+                android:text="County: "
+                android:id="@+id/county" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="185dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="16dp"
+                android:text="PRODUCT DESCRIPTION: "
+                android:id="@+id/descriptiontxt" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="225dp"
+                android:gravity="left"
+                android:layout_marginLeft="15dp"
+                android:textSize="14dp"
+                android:text=" kfjsdkfklsdjj kjskjfj skljfksajfj sajjfjas s;afjsj kjf sljfsjafjk sjaj
+                , dsfsdaf asjkjfs jfjsdaj jsajf lsa jasj. safsfkjsa, dsfsdaf asjkjfs jfjsdaj jsajf lsa jasj. safsfkjsa
+                , dsfsdaf asjkjfs jfjsdaj jsajf lsa jasj. safsfkjsa, dsfsdaf asjkjfs jfjsdaj jsajf lsa jasj. safsfkjsa
+                , dsfsdaf asjkjfs jfjsdaj jsajf lsa jasj. safsfkjsa, dsfsdaf asjkjfs jfjsdaj jsajf lsa jasj. safsfkjsa
+                , dsfsdaf asjkjfs jfjsdaj jsajf lsa jasj. safsfkjsa, dsfsdaf asjkjfs jfjsdaj jsajf lsa jasj. safsfkjsa
+                , dsfsdaf asjkjfs jfjsdaj jsajf lsa jasj. safsfkjsa."
+                android:id="@+id/description" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#FF0000"
+                android:layout_marginTop="455dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="18dp"
+                android:text="Contact: "
+                android:id="@+id/contact" />
+
+        </RelativeLayout>
+
+
+
+
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

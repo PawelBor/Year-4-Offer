@@ -1,5 +1,7 @@
 package com.ioffer.gediminas.ioffer_android;
 
+import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,9 +32,9 @@ public class MainActivity extends AppCompatActivity
             "IPhone 4, decent condition. Price: $$$",
     } ;
     Integer[] imageId = {
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_send,
-            R.drawable.ic_menu_send,
+            R.drawable.clutch,
+            R.drawable.clio,
+            R.drawable.iphone,
             R.drawable.ic_menu_camera,
             R.drawable.ic_menu_camera,
             R.drawable.ic_menu_camera,
@@ -55,6 +58,8 @@ public class MainActivity extends AppCompatActivity
                                     int position, long id) {
                 Toast.makeText(MainActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
 
+                Intent myIntent = new Intent(MainActivity.this, ItemActivity.class);
+                startActivity(myIntent);
             }
         });
 
@@ -69,7 +74,18 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ImageView img = (ImageView) findViewById(R.id.imageView1);
+
+        img.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
+                startActivity(myIntent);
+            }
+        });
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -109,14 +125,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_map) {
+            Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
+            startActivity(myIntent);
+        } else if (id == R.id.nav_account) {
+            Intent myIntent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(myIntent);
+        } else if (id == R.id.nav_liked) {
+            Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
+            startActivity(myIntent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

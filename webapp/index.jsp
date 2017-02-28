@@ -73,7 +73,7 @@
                   </div> -->
                <!-- NEW BAR-->
                <div class="container" id="selFadeIn">
-                  <div class="row">
+                  <div class="row"  id="rowSlideLeft">
                      <a href="javascript:category('electronics');">
                         <div class="col-sm-4">
                            <div class="tile category">
@@ -99,7 +99,7 @@
                         </div>
                      </a>
                   </div>
-                  <div class="row">
+                  <div class="row" id="rowSlideRight">
                      <a href="javascript:category('automotive');">
                         <div class="col-sm-4">
                            <div class="tile category">
