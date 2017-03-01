@@ -42,7 +42,7 @@
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                      <li>
-                        <a class="page-scroll" href="login.jsp"><span class="glyphicon glyphicon-user"></span> Register / Sign IN</a>
+                        <a class="page-scroll" id="btnLogin" href="login.jsp"><span class="glyphicon glyphicon-user"></span><p id="btnLoginText">Register / Sign IN</p></a>
                      </li>
                   </ul>
                </div>
@@ -91,7 +91,22 @@
          </div>
       </div>
       <script type="text/javascript">
-      	 
+	      $(document).ready(function() {
+	   		// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+	   	    
+	   	    // Check if cookie called "email" exists. If it does, change the reg/login button to a different one
+	   	    if (document.cookie.indexOf('email') > -1 ) {
+	   		  	var cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	   		 	$("#btnLoginText").text(cookieEmail);
+	     	    $("#btnLogin").prop("href", "profile.jsp");
+	   		  	$.getJSON("webapi/user/" + cookieEmail, function (data){
+	   		  		console.log(data);
+	   		  		// Update html controls to reflect the user details
+	   		  	});
+	   		}else{
+	   			window.location.assign("login.jsp");
+	   		}
+	   	 });
       
          $(function(){
            $('#profiletabs ul li a').on('click', function(e){

@@ -45,7 +45,7 @@
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                      <li>
-                        <a class="page-scroll" href="login.jsp"><span class="glyphicon glyphicon-user"></span> Register / Sign IN</a>
+                        <a class="page-scroll" id="btnLogin" href="login.jsp"><span class="glyphicon glyphicon-user"></span><p id="btnLoginText">Register / Sign IN</p></a>
                      </li>
                   </ul>
                </div>
@@ -162,6 +162,20 @@
          </footer>
       </div>
       <script>
+      	var cookieEmail;
+	      $(document).ready(function() {
+	   		// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+	   	    
+	   	    // Check if cookie called "email" exists. If it does, change the reg/login button to a different one
+	   	    if (document.cookie.indexOf('email') > -1 ) {
+	   		    cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	   		 	$("#btnLoginText").text(cookieEmail);
+	     	    $("#btnLogin").prop("href", "profile.jsp");
+	   		}else{
+	   			window.location.assing("login.jsp");
+	   		}
+	   	});
+      
 		$("#menu-toggle").click(function (e) {
 			e.preventDefault(); //<!-- preveent default action - dont go to a link-->
 			$("#wrapper").toggleClass("menuDisplayed"); //<!-- adds/rem,oves toggle class-->
@@ -182,7 +196,7 @@
 			data.append("location", location);
 			data.append("category", category);
 			data.append("county", county);
-			data.append("author", "Spinnerbaitman");
+			data.append("author", cookieEmail);
 			
 			for(i = 0; i < document.getElementById("images").files.length; i++){
 				data.append("images", document.getElementById("images").files[i]);

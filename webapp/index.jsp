@@ -40,7 +40,7 @@
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                      <li>
-                        <a class="page-scroll" href="login.jsp"><span class="glyphicon glyphicon-user"></span> Register / Sign IN</a>
+                        <a class="page-scroll" id="btnLogin" href="login.jsp"><span class="glyphicon glyphicon-user"></span><p id="btnLoginText">Register / Sign IN</p></a>
                      </li>
                   </ul>
                </div>
@@ -129,14 +129,17 @@
             </div>
          </header>
          <script>
-	         $(document).ready(function() {
+	        $(document).ready(function() {
 	     		// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
-	     	    var cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-	     	    console.log(cookieEmail);
+	     	    
 	     	    // Check if cookie called "email" exists. If it does, change the reg/login button to a different one
-	     	   /* if (document.cookie.indexOf('county') > -1 ) {
-	     		  alert("cookie exists");
-	     		} */
+	     	    if (document.cookie.indexOf('email') > -1 ) {
+	     		    var cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		     	    console.log(cookieEmail);
+		     	    // Change button value/href
+		     	    $("#btnLoginText").text(cookieEmail);
+		     	    $("#btnLogin").prop("href", "profile.jsp");
+	     		}
 	     	});
          
             $(function(){  // $(document).ready shorthand

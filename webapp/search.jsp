@@ -44,7 +44,7 @@
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                      <li>
-                        <a class="page-scroll" href="login.jsp"><span class="glyphicon glyphicon-user"></span> Register / Sign IN</a>
+                        <a class="page-scroll" id="btnLogin" href="login.jsp"><span class="glyphicon glyphicon-user"></span><p id="btnLoginText">Register / Sign IN</p></a>
                      </li>
                   </ul>
                </div>
@@ -81,36 +81,7 @@
                </form>
             </div>
             <div class="col-md-9">
-               <div class="row carousel-holder">
-                  <div class="col-md-12">
-                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                           <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                           <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                           <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                           <div class="item active">
-                              <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                           </div>
-                           <div class="item">
-                              <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                           </div>
-                           <div class="item">
-                              <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                           </div>
-                        </div>
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                     </div>
-                  </div>
-               </div>
                <div class="row" id="products">
-
                </div>
             </div>
          </div>
@@ -130,52 +101,62 @@
       <!-- /.container -->
       
       <script type="text/javascript">
+	      $(document).ready(function() {
+	   		// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+	   	    
+	   	    // Check if cookie called "email" exists. If it does, change the reg/login button to a different one
+	   	    if (document.cookie.indexOf('email') > -1 ) {
+	   		    var cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		     	    console.log(cookieEmail);
+		     	    // Change button value/href
+		     	    $("#btnLoginText").text(cookieEmail);
+		     	    $("#btnLogin").prop("href", "profile.jsp");
+	   		}
+	   	});
+      
         	$(window).on("load", function() {
-            
-            
-            var QueryString = function () {
-                // This function is anonymous, is executed immediately and 
-                // the return value is assigned to QueryString.
-                var query_string = {};
-                var query = window.location.search.substring(1);
-                var vars = query.split("&");
-                for (var i=0;i<vars.length;i++) {
-                  var pair = vars[i].split("=");
-                      // If first entry with this name
-                  if (typeof query_string[pair[0]] === "undefined") {
-                    query_string[pair[0]] = decodeURIComponent(pair[1]);
-                      // If second entry with this name
-                  } else if (typeof query_string[pair[0]] === "string") {
-                    var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
-                    query_string[pair[0]] = arr;
-                      // If third or later entry with this name
-                  } else {
-                    query_string[pair[0]].push(decodeURIComponent(pair[1]));
-                  }
-                } 
-                return query_string;
-            };
-            
-            var catagory = QueryString.category;
-            
-            if(catagory != null)
-            {
-              $.getJSON("webapi/product/category/"+catagory, function (data){
-                  for (var i=0;i < data.length ;i++) {
-                    var tab = createTab(data[i])
-                    $('#getCategory').append(tab);
-                        }
-                });
-            }else // No category selected
-          {
-              $.getJSON("webapi/products", function (data){
-                  for (var i=0;i < data.length ;i++) {
-                    var tab = createTab(data[i])
-                    $('#products').append(tab);
-                        }
-                }); 
-          }
-              
+	            var QueryString = function () {
+	                // This function is anonymous, is executed immediately and 
+	                // the return value is assigned to QueryString.
+	                var query_string = {};
+	                var query = window.location.search.substring(1);
+	                var vars = query.split("&");
+	                for (var i=0;i<vars.length;i++) {
+	                  var pair = vars[i].split("=");
+	                      // If first entry with this name
+	                  if (typeof query_string[pair[0]] === "undefined") {
+	                    query_string[pair[0]] = decodeURIComponent(pair[1]);
+	                      // If second entry with this name
+	                  } else if (typeof query_string[pair[0]] === "string") {
+	                    var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+	                    query_string[pair[0]] = arr;
+	                      // If third or later entry with this name
+	                  } else {
+	                    query_string[pair[0]].push(decodeURIComponent(pair[1]));
+	                  }
+	                } 
+	                return query_string;
+	            };
+	            
+	            var catagory = QueryString.category;
+	            
+	            if(catagory != null)
+	            {
+	              $.getJSON("webapi/product/category/"+catagory, function (data){
+	                  for (var i=0;i < data.length ;i++) {
+	                    var tab = createTab(data[i])
+	                    $('#getCategory').append(tab);
+	                  }
+	                });
+	            }else // No category selected
+	          {
+	              $.getJSON("webapi/products", function (data){
+	                  for (var i=0;i < data.length ;i++) {
+	                    var tab = createTab(data[i])
+	                    $('#products').append(tab);
+	                        }
+	                }); 
+	          }
           });
         	
         	// A function to create a template for each item returned from the search

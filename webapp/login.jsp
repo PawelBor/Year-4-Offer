@@ -80,7 +80,15 @@
       </div>
       <!-- END_container -->
       <script type="text/javascript">
-      	  
+	      $(document).ready(function() {
+	   		// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+	   	    
+	   	    // Check if cookie called "email" exists. If it does, change the reg/login button to a different one
+	   	    if (document.cookie.indexOf('email') > -1 ) {
+	   		  var cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		     	window.location.assign("profile.jsp");
+	   		}
+	   	});
 /*Page Login/Register Switch*/
 
 		var showRegister = document.getElementById("showRegister");
