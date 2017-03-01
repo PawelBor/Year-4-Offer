@@ -91,6 +91,8 @@
          </div>
       </div>
       <script type="text/javascript">
+      	 
+      
          $(function(){
            $('#profiletabs ul li a').on('click', function(e){
              e.preventDefault();

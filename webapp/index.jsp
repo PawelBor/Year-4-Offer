@@ -133,6 +133,10 @@
 	     		// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
 	     	    var cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	     	    console.log(cookieEmail);
+	     	    // Check if cookie called "email" exists. If it does, change the reg/login button to a different one
+	     	   /* if (document.cookie.indexOf('county') > -1 ) {
+	     		  alert("cookie exists");
+	     		} */
 	     	});
          
             $(function(){  // $(document).ready shorthand
