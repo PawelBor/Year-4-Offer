@@ -10,7 +10,7 @@
       <link rel="stylesheet" href="css/homeStyles.css">
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9/crypto-js.js"</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9/crypto-js.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/sha256.js"></script>
    </head>
    <body>
@@ -131,9 +131,9 @@
 	  					var date = new Date();
 	  		        	var cEmail;
 	  		        	if(loginRemember){
-	  		        		var cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 720) + ";path=/";
+	  		        		cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 720) + ";path=/";
 	  		        	}else{
-	  		        		var cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
+	  		        		cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
 	  		        	}
 	  		        	
 	  		        	document.cookie = cEmail;
@@ -167,9 +167,9 @@
 	  					var date = new Date();
 	  		        	var cEmail;
 	  		        	if(loginRemember){
-	  		        		var cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 720) + ";path=/";
+	  		        		cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 720) + ";path=/";
 	  		        	}else{
-	  		        		var cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
+	  		        		cEmail = "email=" + email + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
 	  		        	}
 	  		        	
 	  		        	document.cookie = cEmail;

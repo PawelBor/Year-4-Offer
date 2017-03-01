@@ -170,6 +170,7 @@
 	   	    if (document.cookie.indexOf('email') > -1 ) {
 	   		    cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	   			// Update the time before the user is logged out
+	   			var date = new Date();
 	   		 	var cEmail = "email=" + cookieEmail + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
 	   		 	document.cookie = cEmail;
 	   		 	$("#btnLoginText").text(cookieEmail);
