@@ -29,10 +29,9 @@ public class UserService extends User{
         	// Variables
         	String password = (String)Dbproduct.get("password");
             String name = (String)Dbproduct.get("name");
-            String id = Dbproduct.get("_id").toString();
 
             // Construct a user from MongoDb values
-            User user = new User(email, password, name, id);
+            User user = new User(email, password, name);
             
             // Return the user object
             return user;

@@ -24,7 +24,6 @@ public class User {
     private String email;
     private String password;
     private String name;
-    private String userId;
    
     public User(){
     	
@@ -34,13 +33,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.name = name;
-    }
-    
-    public User(String email, String password, String name, String id){
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.userId = id;
     }
     
     public boolean create(){
