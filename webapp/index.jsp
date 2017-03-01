@@ -135,7 +135,9 @@
 	     	    // Check if cookie called "email" exists. If it does, change the reg/login button to a different one
 	     	    if (document.cookie.indexOf('email') > -1 ) {
 	     		    var cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-		     	    console.log(cookieEmail);
+	     			// Update the time before the user is logged out
+		   		 	var cEmail = "email=" + cookieEmail + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
+		   		 	document.cookie = cEmail;
 		     	    // Change button value/href
 		     	    $("#btnLoginText").text(cookieEmail);
 		     	    $("#btnLogin").prop("href", "profile.jsp");
