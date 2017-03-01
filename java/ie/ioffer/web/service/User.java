@@ -24,25 +24,22 @@ public class User {
     private String email;
     private String password;
     private String name;
-    private String county;
     private String userId;
    
     public User(){
     	
     }
     
-    public User(String email, String password, String name, String county){
+    public User(String email, String password, String name){
         this.email = email;
         this.password = password;
         this.name = name;
-        this.county = county;
     }
     
-    public User(String email, String password, String name, String county, String id){
+    public User(String email, String password, String name, String id){
         this.email = email;
         this.password = password;
         this.name = name;
-        this.county = county;
         this.userId = id;
     }
     
@@ -51,7 +48,6 @@ public class User {
         document.put("email", email);
         document.put("password", password);
         document.put("name", name);
-        document.put("county", county);
         
         try{
             table.insert(document);
@@ -62,7 +58,7 @@ public class User {
         return true;
     }
     
-    public String login(String email, String password){
+    public boolean login(String email, String password){
         BasicDBObject document = new BasicDBObject();
         document.put("email", email);
         
@@ -71,13 +67,12 @@ public class User {
         while(cursor.hasNext()){
             DBObject user = cursor.next();
             
-            String county = (String)user.get("county");
             String userpass = (String)user.get("password");
             if(userpass.equals(password)){
                 // Return validation that login was successful
-                return county;
+                return true;
             }
         }
-        return county;
+        return false;
     }
 }

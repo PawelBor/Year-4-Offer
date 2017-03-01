@@ -13,9 +13,9 @@ public class postUser {
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	public boolean insert(@FormParam("email") String email, @FormParam("password") String password,
-			@FormParam("name") String name, @FormParam("county") String county) {
+			@FormParam("name") String name) {
 		
-		boolean response = userService.insertUser(email, password, name, county);
+		boolean response = userService.insertUser(email, password, name);
 		return response;
 	}
 }// Class end

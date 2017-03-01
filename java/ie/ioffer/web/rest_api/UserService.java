@@ -29,11 +29,10 @@ public class UserService extends User{
         	// Variables
         	String password = (String)Dbproduct.get("password");
             String name = (String)Dbproduct.get("name");
-            String county = (String)Dbproduct.get("county");
             String id = Dbproduct.get("_id").toString();
 
             // Construct a user from MongoDb values
-            User user = new User(email, password, name, county, id);
+            User user = new User(email, password, name, id);
             
             // Return the user object
             return user;
@@ -43,12 +42,11 @@ public class UserService extends User{
         return null;  // Return a null object if nothing is found in the database
     }
     
-    public boolean insertUser(String email, String password, String name, String county){
+    public boolean insertUser(String email, String password, String name){
     	 BasicDBObject document = new BasicDBObject();
          document.put("email", email);
          document.put("password", password);
          document.put("name", name);
-         document.put("county", county);
          
          try{
              table.insert(document);

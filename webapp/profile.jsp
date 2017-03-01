@@ -14,38 +14,40 @@
       <link rel="stylesheet" href="css/homeStyles.css">
    </head>
    <body>
-      <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
-         <div class="container-fluid">
-            <div class="navbar-header">
-               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               </button>
-               <a class="navbar-brand page-scroll" href="homePage.html"><i class="ion-ios-analytics-outline"></i>iOffer</a>
+      <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+               <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand page-scroll" href="index.jsp"><i class="ion-ios-analytics-outline"></i><span class="glyphicon glyphicon-home"></span> iOffer</a>
+               </div>
+               <div class="navbar-collapse collapse" id="bs-navbar">
+                  <ul class="nav navbar-nav">
+                     <li>
+                        <a class="page-scroll" href="locationPage.html">Map</a>
+                     </li>
+                     <li>
+                        <a class="page-scroll" href="profile.jsp">Profile</a>
+                     </li>
+                     <li>
+                        <a class="page-scroll" href="add.jsp">testing stuff</a>
+                     </li>
+                     <li>
+                        <a class="page-scroll" href="search.jsp">SHOP test</a>
+                     </li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                     <li>
+                        <a class="page-scroll" href="login.jsp"><span class="glyphicon glyphicon-user"></span> Register / Sign IN</a>
+                     </li>
+                  </ul>
+               </div>
             </div>
-            <div class="navbar-collapse collapse" id="bs-navbar">
-               <ul class="nav navbar-nav">
-                  <li>
-                     <a class="page-scroll" href="loginPage.html">Register / Sign IN</a>
-                  </li>
-                  <li>
-                     <a class="page-scroll" href="locationPage.html">Map</a>
-                  </li>
-                  <li>
-                     <a class="page-scroll" href="profilePage.html">Profile</a>
-                  </li>
-                  <li>
-                     <a class="page-scroll" href="sidebarPage.html">testing stuff</a>
-                  </li>
-                  <li>
-                     <a class="page-scroll" href="shopHomePage.html">SHOP test</a>
-                  </li>
-               </ul>
-            </div>
-         </div>
-      </nav>
+         </nav>
       <div class="container">
          <div class="row">
 		 <div class="profile-header-content">
