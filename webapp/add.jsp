@@ -18,39 +18,41 @@
    <body class="login-body">
       <!-- Navigation -->
       <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand page-scroll" href="index.jsp"><i class="ion-ios-analytics-outline"></i><span class="glyphicon glyphicon-home"></span> iOffer</a>
-               </div>
-               <div class="navbar-collapse collapse" id="bs-navbar">
-                  <ul class="nav navbar-nav">
-                     <li>
-                        <a class="page-scroll" href="locationPage.html">Map</a>
-                     </li>
-                     <li>
-                        <a class="page-scroll" href="profile.jsp">Profile</a>
-                     </li>
-                     <li>
-                        <a class="page-scroll" href="add.jsp">testing stuff</a>
-                     </li>
-                     <li>
-                        <a class="page-scroll" href="search.jsp">SHOP test</a>
-                     </li>
-                  </ul>
-                  <ul class="nav navbar-nav navbar-right">
-                     <li>
-                        <a class="page-scroll" id="btnLogin" href="login.jsp"><span class="glyphicon glyphicon-user"></span><p id="btnLoginText">Register / Sign IN</p></a>
-                     </li>
-                  </ul>
-               </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="index.jsp"><i class="ion-ios-analytics-outline"></i><span class="glyphicon glyphicon-home"></span> iOffer</a>
             </div>
-         </nav>
+            <div class="navbar-collapse collapse" id="bs-navbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="page-scroll" href="location.jsp">Map</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="profile.jsp">Profile</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="add.jsp">testing stuff</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="search.jsp">SHOP test</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" id="btnLogin" href="login.jsp">
+                            <p id="btnLoginText"><span class="glyphicon glyphicon-user"></span> Register / Sign IN</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
       <!-- Page Content -->
       <div class="container">
          <div class="row">
