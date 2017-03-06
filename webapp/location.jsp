@@ -35,8 +35,7 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
@@ -53,13 +52,7 @@
                         <a class="page-scroll" href="location.jsp">Map</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="profile.jsp">Profile</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="add.jsp">testing stuff</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="search.jsp">SHOP test</a>
+                        <a class="page-scroll" href="search.jsp">Search Product</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

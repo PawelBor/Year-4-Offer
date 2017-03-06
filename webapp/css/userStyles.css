@@ -1,0 +1,102 @@
+/** Profile Page Styles **/
+
+#content p {
+    line-height: 1.55em;
+    margin-bottom: 10px;
+    color: black;
+}
+
+#content {
+    display: block;
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5);
+}
+#profilePhoto {
+    display: block;
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 8px;
+}
+#profilePhoto img {
+    display: block;
+    padding: 2px;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5);
+}
+/** Activity/Settings Spacing**/
+
+#selectOpt {
+    display: block;
+    margin-bottom: 60px;
+    height: 50px;
+}
+#selectOpt ul {
+    list-style: none;
+    display: block;
+    width: 70%;
+    height: 50px;
+}
+#selectOpt ul li a {
+    display: block;
+    float: left;
+    padding: 10px 25px;
+    background-color: #29292D;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-family: "Open Sans", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5em;
+    font-weight: 300;
+    font-size: 1.2em;
+    color: white;
+    width: 200px;
+    text-align: center;
+}
+#selectOpt ul li a:hover {
+    text-decoration: none;
+    background: #FFA500;
+    color: black;
+}
+#selectOpt ul li a.sel {
+    background: white;
+    background-color: #a86c00;
+    color: black;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5);
+}
+/** profile content sections display styles **/
+
+.activity {
+    border-bottom: 1px solid #d6d1af;
+    padding-bottom: 6px;
+}
+.setting {
+    padding-bottom: 6px;
+    border-bottom: 1px solid #d6d1af;
+}
+.advertisement {
+    padding-bottom: 6px;
+    border-bottom: 1px solid #d6d1af;
+}
+.setting span {
+    float: left;
+    width: 250px;
+    font-weight: bold;
+}
+.activity span {
+    float: left;
+    width: 250px;
+    font-weight: bold;
+}
+.advertisement span {
+    float: left;
+    width: 250px;
+    font-weight: bold;
+}
+.setting span img {
+    cursor: pointer;
+}
