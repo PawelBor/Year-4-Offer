@@ -8,9 +8,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.bson.types.ObjectId;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoException;
+import com.mongodb.client.model.DBCollectionRemoveOptions;
 
 import ie.ioffer.web.service.Product;
 
@@ -58,6 +61,20 @@ public class ProductService extends Product{
         }
         
         return null;  // Return a null object if nothing is found in the database
+    }
+    
+    public boolean deleteProduct(String id){
+
+        BasicDBObject document = new BasicDBObject();
+        System.out.println(id);
+        document.put("_id", new ObjectId(id));
+        if(table.remove(document) != null){
+        	return true;
+        }
+        else{
+        	return false;
+        }
+        
     }
     
     public List<Product> readProductsByCounty(String productcounty){

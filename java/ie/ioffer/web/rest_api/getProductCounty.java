@@ -16,7 +16,7 @@ public class getProductCounty {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Product> getJSON(@PathParam("county") String county) {	
+	public List<Product> getCounty(@PathParam("county") String county) {	
 		return productService.readProductsByCounty(county);
 	}
 }

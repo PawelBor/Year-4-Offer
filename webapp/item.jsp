@@ -75,6 +75,7 @@
                      <h4 id="prodName">
                      </h4>
                      <p id="prodDescription"></p>
+                     <button id="deletebtn" class="btn btn-danger btn-block" style="display: none;">Delete</button>
                   </div>
                </div>
                <div class="well">
@@ -126,6 +127,7 @@
 	    	    // Change button value/href
 	    	    $("#btnLoginText").text(cookieEmail);
 	    	    $("#btnLogin").prop("href", "profile.jsp");
+	    	    $("#deletebtn").show();
 			}
 		});   
    
@@ -163,6 +165,26 @@
                 }
             });
 		}
+	    
+	    $("#deletebtn").click(function (e) {
+			var data = new FormData();
+			data.append("id", response);
+			
+			$.ajax({
+				url: "webapi/product/"+response,
+				type: "DELETE",
+				processData: false,
+				success: function (response) {
+					console.log(response)
+					if (response) {
+						window.location.assign("profile.jsp");
+					} else {
+						// TELL USER THAT DETAILS ARE INCORRECT
+						console.log("Putting into db failed");
+					}
+				}
+			});
+		});
    
    		
    </script>

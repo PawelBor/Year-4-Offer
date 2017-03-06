@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; utf-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
    <head>
@@ -45,53 +46,40 @@
     </nav>
       <div class="container">
          <div class="row" style="margin-top:60px;">
-            <div id="profilePhoto"><img src="images/avatar.png" alt="default avatar"></div>
             <h1>User Profile</h1>
+            
             <nav id="selectOpt">
                <ul>
-                  <li><a href="#activity" class="sel">Activity</a></li>
                   <li><a href="#settings">Settings</a></li>
 				  <li><a href="#advertisements">Advertisements</a></li>
                </ul>
+               <a class="btn btn-lg btn-success pull-right" href="add.jsp">Post Item</a>
             </nav>
+            		
 
             <div id="content">
-               <div id="activity" >
-                  <p>Your Activity:</p>
-                  <p class="activity">Act1</p>
-                  <p class="activity">Act2</p>
-                  <p class="activity">Act3</p>
-                  <p class="activity"><span>Act4</span><strong>test</strong> test2</p>
-				  <p class="activity"><span>Profile Status <img src="images/edit.png" alt="*Edit*"></span> Public</p>
-                  <p class="activity">Act5</p>
-               </div>
-               <div id="settings" class="hidden">
-                  <p>Settings:</p>
-                  <p class="setting"><span>E-mail Address <img src="images/edit.png" alt="*Edit*"></span> testuseremail@gmail.com</p>
-                  <p class="setting"><span>Phone Number <img src="images/edit.png" alt="*Edit*"></span> 089-111-1111</p>
+               
+               <div id="settings">
+                  <p>Information:</p>
+                  <p class="setting" id="useremail"><span>E-mail Address <img src="images/edit.png" alt="*Edit*"></span></p>
+                  <p class="setting" id="username"><span>Name <img src="images/edit.png" alt="*Edit*"></span></p>
                   <p class="setting"><span>Profile Status <img src="images/edit.png" alt="*Edit*"></span> Public</p>
-
-
                </div>
 			   <div id="advertisements" class="hidden">
                   <p>Your listed Ads:</p>
-                  <p class="advertisement">WHeels</p>
-                  <p class="advertisement">Guitar</p>
-                  <p class="advertisement">4BD House</p>
-                  <p class="advertisement">Audi A4</p>
-                  <p class="advertisement">Iphone</p>
                </div>
             </div>
             <!-- @end #content -->
          </div>
       </div>
       <script type="text/javascript">
+      var cookieEmail;
 	  $(document).ready(function() {
 	   		// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
 	   	    
 	   	    // Check if cookie called "email" exists. If it does, change the reg/login button to a different one
 	   	    if (document.cookie.indexOf('email') > -1 ) {
-	   		  	var cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	   		  	cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	   			// Update the time before the user is logged out
 	   			var date = new Date();
 	   		 	var cEmail = "email=" + cookieEmail + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
@@ -100,17 +88,23 @@
 	   		 	$("#btnLoginText").text(cookieEmail);
 	     	    $("#btnLogin").prop("href", "profile.jsp");
 	   		  	$.getJSON("webapi/user/" + cookieEmail, function (data){
-	   		  		console.log(data);
 	   		  		// Update html controls to reflect the user details
+	   		  		$("#useremail").append(data.email);
+	   		  		$("#username").append(data.name);
 	   		  	});
+	   		  	
+	   		 	$.getJSON("webapi/product/author/"+cookieEmail, function (data){
+	   		 		console.log(data);
+	   		 		for(i = 0; i<data.length; i++){
+	   		 		$("#advertisements").append('<hr><p style="font-size: 1.5em; color: black;">'+ data[i].name + '<a href="item.jsp?id=' + data[i].productId + '">' + '<span class="pull-right">More Info..</span>' + '</a></p>');
+	   		 		}
+		       });
 	   		}else{
 	   			window.location.assign("login.jsp");
 	   		}
 	   	 });
-	  
-	  
-	  
-         $(function(){
+	
+	  	 $(function(){
            $('#selectOpt ul li a').on('click', function(e){
              e.preventDefault();
              var newcontent = $(this).attr('href');
