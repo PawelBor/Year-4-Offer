@@ -86,6 +86,30 @@
          </div>
       </div>
       <script type="text/javascript">
+	  $(document).ready(function() {
+	   		// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+	   	    
+	   	    // Check if cookie called "email" exists. If it does, change the reg/login button to a different one
+	   	    if (document.cookie.indexOf('email') > -1 ) {
+	   		  	var cookieEmail = document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	   			// Update the time before the user is logged out
+	   			var date = new Date();
+	   		 	var cEmail = "email=" + cookieEmail + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
+	   		 	document.cookie = cEmail;
+	   		  	
+	   		 	$("#btnLoginText").text(cookieEmail);
+	     	    $("#btnLogin").prop("href", "profile.jsp");
+	   		  	$.getJSON("webapi/user/" + cookieEmail, function (data){
+	   		  		console.log(data);
+	   		  		// Update html controls to reflect the user details
+	   		  	});
+	   		}else{
+	   			window.location.assign("login.jsp");
+	   		}
+	   	 });
+	  
+	  
+	  
          $(function(){
            $('#selectOpt ul li a').on('click', function(e){
              e.preventDefault();
