@@ -29,16 +29,14 @@ public class UserService extends User{
         	// Variables
         	String password = (String)Dbproduct.get("password");
             String name = (String)Dbproduct.get("name");
-
             // Construct a user from MongoDb values
             User user = new User(email, password, name);
             
             // Return the user object
             return user;
-    
+        }else{
+        	return null;  // Return a null object if nothing is found in the database
         }
-        
-        return null;  // Return a null object if nothing is found in the database
     }
     
     public boolean insertUser(String email, String password, String name){

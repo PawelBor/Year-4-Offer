@@ -172,7 +172,7 @@
 	   		 	$("#btnLoginText").text(cookieEmail);
 	     	    $("#btnLogin").prop("href", "profile.jsp");
 	   		}else{
-	   			window.location.assing("login.jsp");
+	   			window.location.assign("login.jsp");
 	   		}
 	   	});
       

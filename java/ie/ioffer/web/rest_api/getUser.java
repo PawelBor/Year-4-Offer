@@ -25,15 +25,11 @@ public class getUser {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getJSON(@PathParam("email") String email) {
+	public User getUserJSON(@PathParam("email") String email) {
 		
-		User ObjIdProduct = userService.readUser(email);
+		User ObjIdUser = userService.readUser(email);
 		
-		if(ObjIdProduct != null)
-			return ObjIdProduct;
-		else
-			return null; // Redirect to user not found page.
-		
+		return ObjIdUser;
 	}
 	
 }// Class end

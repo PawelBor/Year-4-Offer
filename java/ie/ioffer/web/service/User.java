@@ -5,6 +5,8 @@
  */
 package ie.ioffer.web.service;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -13,6 +15,7 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 
+@XmlRootElement
 public class User {
 	
 	protected MongoClient mongo = new MongoClient("localhost", 27017);
@@ -21,9 +24,9 @@ public class User {
     protected DBCollection table = db.getCollection("users");
     
  // Member variables for all users
-    private String email;
-    private String password;
-    private String name;
+    public String email;
+    public String password;
+    public String name;
    
     public User(){
     	
