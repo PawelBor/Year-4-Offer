@@ -77,14 +77,15 @@
 
         <input class="btn btn-primary" onclick="clearMarkers();" type=button value="Hide Markers">
         <input class="btn btn-primary" onclick="showMarkers();" type=button value="Show All Markers">
-        <input class="btn btn-primary" onclick="deleteMarkers();" type=button value="Delete Markers">
-        <input class="btn btn-primary" onclick="initMap();" type=button value="Initialize">
 
     </div>
     <div id="map"></div>
-    <script>
-	//Taken from:
-	// https://developers.google.com/maps/documentation/javascript/markers
+    
+    <script type="text/javascript">
+    
+		//Taken from:
+		// https://developers.google.com/maps/documentation/javascript/markers
+		// https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
         // In the following example, markers appear when the user clicks on the map.
         // The markers are stored in an array.
         // The user can then click an option to hide, show or delete the markers.
@@ -92,14 +93,21 @@
         var markers = [];
         var clatitude;
         var clongitude;
+        var prods;
+        var j = 0;
+        
+        $.getJSON("webapi/product/county/galway", function (data){
+            console.log(data);
+            prods = data;
+        });
 
         function success(position) {
             clatitude = position.coords.latitude;
             clongitude = position.coords.longitude;
-
         }
 
         function initMap() {
+        	j++;
             navigator.geolocation.getCurrentPosition(success);
 
             var userLocation = {
@@ -112,36 +120,43 @@
                 center: userLocation,
                 mapTypeId: 'terrain'
             });
-
-            // This event listener will call addMarker() when the map is clicked.
-            map.addListener('click', function(event) {
-                addMarker(event.latLng);
-                console.log(event.latLng);
-            });
-
-            // Adds a marker at the center of the map.
-            addMarker(userLocation);
-        }
-
-        // Adds a marker to the map and push to the array.
-        function addMarker(location) {
-            var marker = new google.maps.Marker({
-                position: location,
-                map: map
-
-            });
-            markers.push(marker);
-
-        }
-
-        // Sets the map on all markers in the array.
-        function setMapOnAll(map) {
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(map);
+            
+         	// Adds a marker to the map and push to the array.
+            function addMarker(location, contentString) {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+                
+                var infowindow = new google.maps.InfoWindow({
+          	      content: contentString
+          	    });
+                
+                marker.addListener('click', function() {
+          	      infowindow.open(map, marker);
+          	    });
+                
+                markers.push(marker);
             }
-        }
-
-        // Removes the markers from the map, but keeps them in the array.
+         	
+         	if(j==2){
+	            for(i = 0; i<prods.length; i++){
+	            	var pLocation = {
+	                   	lat: parseFloat(prods[i].location.latitude),
+	                    lng: parseFloat(prods[i].location.longitude)
+	                };
+	            	console.log(prods[i].name + " price: " + prods[i].price);
+	            	
+	            	var contentString =  '<p style="font-size: 24px;"><b>'+ prods[i].name +'</b></p>' + ' Price: ' + prods[i].price
+	            	+ '<br>Description: ' + prods[i].description + '<a href="item.jsp?id=' + prods[i].productId + '">'+ '<br> More Info..' + '</a>';
+	            	
+	            	addMarker(pLocation, contentString);
+	            }
+         	}   
+            
+        } // init map ------
+        
+     	// Removes the markers from the map, but keeps them in the array.
         function clearMarkers() {
             setMapOnAll(null);
         }
@@ -150,15 +165,20 @@
         function showMarkers() {
             setMapOnAll(map);
         }
-
-        // Deletes all markers in the array by removing references to them.
-        function deleteMarkers() {
-            clearMarkers();
-            markers = [];
+	    
+        // Sets the map on all markers in the array.
+        function setMapOnAll(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
         }
-
-        setTimeout(initMap, 4000);
+        
+        setTimeout(function(){
+        	initMap();
+        }, 4000);
+		    
     </script>
+    
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEXEWAlb54kadBS390PHS6ME-huUDaM9I&callback=initMap">
     </script>
 </body>
