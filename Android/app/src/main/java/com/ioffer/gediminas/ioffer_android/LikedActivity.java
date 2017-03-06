@@ -19,6 +19,7 @@ public class LikedActivity extends Activity{
             "Renault Clio, low mileage, pure clean diesel. Must go! Price: $$$",
             "IPhone 4, decent condition. Price: $$$",
     } ;
+
     Integer[] imageId = {
             R.drawable.clutch,
             R.drawable.clio,

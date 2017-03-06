@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,8 +20,24 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String URL =
+            "http://ec2-52-214-199-81.eu-west-1.compute.amazonaws.com/webapi/products/";
 
     ListView list;
     String[] web = {
@@ -39,7 +56,6 @@ public class MainActivity extends AppCompatActivity
             R.drawable.ic_menu_camera,
             R.drawable.ic_menu_camera,
             R.drawable.ic_menu_camera
-
     };
 
     @Override
@@ -83,6 +99,59 @@ public class MainActivity extends AppCompatActivity
                 startActivity(myIntent);
             }
         });
+    }
+
+    // Altered from
+    // http://www.ssaurel.com/blog/learn-to-consume-a-rest-web-service-and-parse-json-result-in-android/
+    public String requestContent(String url) {
+        HttpClient httpclient = new DefaultHttpClient();
+        String result = null;
+        HttpGet httpget = new HttpGet(url);
+        HttpResponse response = null;
+        InputStream instream = null;
+
+        try {
+            response = httpclient.execute(httpget);
+            HttpEntity entity = response.getEntity();
+
+            if (entity != null) {
+                instream = entity.getContent();
+                result = convertStreamToString(instream);
+            }
+
+        } catch (Exception e) {
+            // manage exceptions
+        } finally {
+            if (instream != null) {
+                try {
+                    instream.close();
+                } catch (Exception exc) {
+
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public String convertStreamToString(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+        } catch (IOException e) {
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+            }
+        }
+
+        return sb.toString();
     }
 
 
@@ -138,6 +207,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        }else if (id == R.id.nav_login) {
+            Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(myIntent);
+        }
+        else if (id == R.id.nav_logout) {
+            Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(myIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
