@@ -137,11 +137,11 @@
 	                return query_string;
 	            };
 	            
-	            var catagory = QueryString.category;
-	            
-	            if(catagory != null)
+	            var category = QueryString.category;
+	            console.log(category);
+	            if(category != null)
 	            {
-	              $.getJSON("webapi/product/category/"+catagory, function (data){
+	              $.getJSON("webapi/product/category/"+category, function (data){
 	                  for (var i=0;i < data.length ;i++) {
 	                    var tab = createTab(data[i])
 	                    $('#getCategory').append(tab);

@@ -19,6 +19,7 @@ import com.mongodb.util.JSON;
 
 import ie.ioffer.web.service.Comment;
 import ie.ioffer.web.service.Product;
+import ie.ioffer.web.service.Query;
 
 @XmlRootElement
 public class ProductService extends Product{
@@ -249,6 +250,74 @@ public class ProductService extends Product{
             Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId, mobileNo);
             products.add(p); 
             
+        }
+        
+        return products;
+    }
+    
+    public List<Product> search(Query query){
+        List<Product> products = new ArrayList<Product>();
+        boolean empty = false;
+        
+        BasicDBObject document = new BasicDBObject();
+        List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
+        
+        if(!(query.getName().equals("undefined"))){
+            empty = true;
+            obj.add(new BasicDBObject("name", java.util.regex.Pattern.compile(query.getName())));
+        }
+        
+        if(!(query.getCategory().equals("undefined"))){
+            empty = true;
+            obj.add(new BasicDBObject("category", query.getCategory()));
+        }
+        
+        if(!(query.getMinPrice().equals("undefined")) && query.getMaxPrice().equals("undefined")){
+            empty = true;
+            obj.add(new BasicDBObject("price", new BasicDBObject("$gte", Double.parseDouble(query.getMinPrice()))));
+        }
+        
+        if(query.getMinPrice().equals("undefined") && !(query.getMaxPrice().equals("undefined"))){
+            empty = true;
+            obj.add(new BasicDBObject("price", new BasicDBObject("$lte", Double.parseDouble(query.getMaxPrice()))));
+        }
+        
+        if(!(query.getMinPrice().equals("undefined")) && !(query.getMaxPrice().equals("undefined"))){
+            empty = true;
+            obj.add(new BasicDBObject("price", new BasicDBObject("$gte", Double.parseDouble(query.getMinPrice())).append("$lte", Double.parseDouble(query.getMaxPrice()))));
+        }
+        
+        DBCursor cursor;
+        
+        if(empty == true){
+            document.put("$and", obj);
+            cursor = table.find(document);
+        }
+        else{
+            cursor = table.find().limit(10);
+        }
+        
+        while (cursor.hasNext()) {
+            DBObject product = cursor.next();
+            
+            String name = (String)product.get("name");
+            //String price = (String)product.get("price");
+            double price = (Double) product.get("price");
+            String description = (String)product.get("description");
+            // Image decoding here
+            String image = (String)product.get("image");
+            // Get latitude and longitude from composed String
+            String location = (String)product.get("location");
+            float lat = Float.parseFloat(location.split(",")[0]);
+            float lon = Float.parseFloat(location.split(",")[1]);
+            String county = (String)product.get("county");
+            String author = (String)product.get("author");
+            String category = (String)product.get("category");
+            String productId = product.get("_id").toString();
+            String mobileNo = (String)product.get("mobileNo");
+            
+            Product p = new Product(name, price, description, image, lat, lon, county, author, category, productId, mobileNo);
+            products.add(p);
         }
         
         return products;

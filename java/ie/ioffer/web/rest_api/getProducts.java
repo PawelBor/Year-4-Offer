@@ -17,8 +17,6 @@ import ie.ioffer.web.service.Product;
 
 @Path("products")
 public class getProducts {
-	String product;
-	
 	ProductService productSerice = new ProductService();
 	
 	@GET

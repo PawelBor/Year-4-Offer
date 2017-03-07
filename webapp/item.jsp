@@ -114,6 +114,7 @@
       </div>
    </body>
    <script type="text/javascript">
+   		var pmail = "";
 	   $(document).ready(function() {
 			// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
 		    
@@ -124,10 +125,10 @@
 			 	var date = new Date();
 	   		 	var cEmail = "email=" + cookieEmail + ";expires=" + date.setHours(date.getHours() + 1) + ";path=/";
 	   		 	document.cookie = cEmail;
+	   		 	pmail = cookieEmail;
 	    	    // Change button value/href
 	    	    $("#btnLoginText").text(cookieEmail);
 	    	    $("#btnLogin").prop("href", "profile.jsp");
-	    	    $("#deletebtn").show();
 			}
 		});   
    
@@ -146,6 +147,11 @@
 		    
 		    $.getJSON("webapi/product/"+response, function (data){
 		    	console.log(data);
+		    	
+		    	if(data.author === pmail){
+	    	    	$("#deletebtn").show();
+	    	    }
+		    	
                 $("#prodName").text(data.name);
                 $("#prodPrice").text("€" + data.price);
                 $("#prodDescription").text(data.description);

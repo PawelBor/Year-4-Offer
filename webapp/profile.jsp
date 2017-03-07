@@ -96,7 +96,7 @@
 	   		 	$.getJSON("webapi/product/author/"+cookieEmail, function (data){
 	   		 		console.log(data);
 	   		 		for(i = 0; i<data.length; i++){
-	   		 		$("#advertisements").append('<hr><p style="font-size: 1.5em; color: black;">'+ data[i].name + '<a href="item.jsp?id=' + data[i].productId + '">' + '<span class="pull-right">More Info..</span>' + '</a></p>');
+	   		 			$("#advertisements").append('<hr><p style="font-size: 1.5em; color: black;">'+ data[i].name + '<button id="editbtn" class="btn btn-lg btn-warning pull-right">Edit</button>' +'<a href="item.jsp?id=' + data[i].productId + '" class="btn btn-lg btn-success pull-right">More Info..</a></p>');
 	   		 		}
 		       });
 	   		}else{
