@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.bson.types.ObjectId;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -14,7 +15,9 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.model.DBCollectionRemoveOptions;
+import com.mongodb.util.JSON;
 
+import ie.ioffer.web.service.Comment;
 import ie.ioffer.web.service.Product;
 
 @XmlRootElement
@@ -33,30 +36,41 @@ public class ProductService extends Product{
         {
             
         	// Get the first returned Product Object
-        	DBObject Dbproduct = cursor.next();
+        	DBObject product = cursor.next();
         
         	// Variable
-            String name = (String)Dbproduct.get("name");
-            double price = (Double) Dbproduct.get("price");
-            String description = (String)Dbproduct.get("description");
+            String name = (String)product.get("name");
+            double price = (Double) product.get("price");
+            String description = (String)product.get("description");
             
             // Image decoding here
-            String image = (String)Dbproduct.get("images");
+            String image = (String)product.get("images");
             
             // Get latitude and longitude from composed String
-            String location = (String)Dbproduct.get("location");
+            String location = (String)product.get("location");
             float lat = Float.parseFloat(location.split(",")[0]);
             float lon = Float.parseFloat(location.split(",")[1]);
-            String county = (String)Dbproduct.get("county");
-            String categories = (String)Dbproduct.get("category");
-            String author = (String)Dbproduct.get("author");
-            String productId = Dbproduct.get("_id").toString();
+            String county = (String)product.get("county");
+            String categories = (String)product.get("category");
+            String author = (String)product.get("author");
+            String productId = product.get("_id").toString();
+            String mobileNo = (String)product.get("mobileNo");
+            BasicDBList list = (BasicDBList) product.get("comments");
+            List<Comment> comments = new ArrayList<Comment>();
+            
+            if(list.size() > 0){
+            	BasicDBObject[] arr = list.toArray(new BasicDBObject[0]);
+                for(DBObject l : arr){
+                	comments.add(new Comment(l.get("comment").toString(), l.get("date").toString()));
+                }
+            }
+            
             
             // Construct a Product from MongoDb values
-            Product product = new Product(name, price, description, image, lat, lon, county, author, categories, productId);
+            Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId, mobileNo, comments);
             
             // Return the product
-            return product;
+            return p;
     
         }
         
@@ -74,6 +88,20 @@ public class ProductService extends Product{
         else{
         	return false;
         }
+        
+    }
+    
+    public boolean postComment(String id, String comment, String date){
+    	System.out.println(id + " " + comment + " " + date);
+        BasicDBObject document = new BasicDBObject();
+        DBObject obj = (DBObject) JSON.parse("{'comment': '"+comment+"', 'date':'"+date+"'}");
+        document.append("$push", new BasicDBObject().append("comments", obj));
+
+        BasicDBObject searchQuery = new BasicDBObject().append("_id", new ObjectId(id));
+
+        table.update(searchQuery, document);
+        
+        return true;
         
     }
     
@@ -106,8 +134,9 @@ public class ProductService extends Product{
 	        String categories = (String)product.get("category");
 	        String author = (String)product.get("author");
 	        String productId = product.get("_id").toString();
-	        
-	        Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId);
+	        String mobileNo = (String)product.get("mobileNo");
+            
+	        Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId, mobileNo);
 	        products.add(p);
         }
 		
@@ -143,8 +172,9 @@ public class ProductService extends Product{
 	        String categories = (String)product.get("category");
 	        String author = (String)product.get("author");
 	        String productId = product.get("_id").toString();
+	        String mobileNo = (String)product.get("mobileNo");
 	        
-	        Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId);
+	        Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId, mobileNo);
 	        products.add(p);
         }
 		
@@ -179,8 +209,9 @@ public class ProductService extends Product{
 	        String categories = (String)product.get("category");
 	        String author = (String)product.get("author");
 	        String productId = product.get("_id").toString();
+	        String mobileNo = (String)product.get("mobileNo");
 	        
-	        Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId);
+	        Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId, mobileNo);
 	        products.add(p);
         }
 		
@@ -213,8 +244,9 @@ public class ProductService extends Product{
             String categories = (String)product.get("category");
             String author = (String)product.get("author");
             String productId = product.get("_id").toString();
+            String mobileNo = (String)product.get("mobileNo");
             
-            Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId);
+            Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId, mobileNo);
             products.add(p); 
             
         }
@@ -233,6 +265,7 @@ public class ProductService extends Product{
         document.put("county", x.county);
         document.put("author", x.author);
         document.put("category", x.category);
+        document.put("comments", new BasicDBList());
         
         try{
             table.insert(document);

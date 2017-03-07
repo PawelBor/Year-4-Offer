@@ -79,14 +79,14 @@
                   </div>
                </div>
                <div class="well">
-                  <form action="postComment" method="post">
+                  <div class="form-group">
                      <label for="itemComment">Your Comment Here:</label>
                      <input class="form-control" id="itemComment" type="text">
                      <br>
                      <div class="text-right">
-                        <button class="btn btn-success" type="submit" name="send">Post Comment</button>
+                        <button class="btn btn-success" id="postComment">Post Comment</button>
                      </div>
-                  </form>
+                  </div>
                   <hr>
                   <div class="row">
                      <div class="col-md-12">
@@ -145,6 +145,7 @@
 		    response = data.id;
 		    
 		    $.getJSON("webapi/product/"+response, function (data){
+		    	console.log(data);
                 $("#prodName").text(data.name);
                 $("#prodPrice").text("€" + data.price);
                 $("#prodDescription").text(data.description);
@@ -178,6 +179,35 @@
 					console.log(response)
 					if (response) {
 						window.location.assign("profile.jsp");
+					} else {
+						// TELL USER THAT DETAILS ARE INCORRECT
+						console.log("Putting into db failed");
+					}
+				}
+			});
+		});
+	    
+	    $("#postComment").click(function (e) {
+	    	var comment = $("#itemComment").val();
+			var d = new Date();
+			//+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
+			var date = d.toString();
+			
+			var data = {
+				'id' : response,
+				'date' : date,
+				'comment' : comment
+			};
+			
+			$.ajax({
+				url: "webapi/product/comment",
+				type: "PUT",
+				data: JSON.stringify(data),
+				contentType: "application/json",
+				success: function (success) {
+					console.log(success)
+					if (success) {
+						window.location.assign("item.jsp?id=" + response);
 					} else {
 						// TELL USER THAT DETAILS ARE INCORRECT
 						console.log("Putting into db failed");

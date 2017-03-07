@@ -71,6 +71,10 @@
                      <textarea class="form-control" id="prodDescription" name="description" required="" rows="5"></textarea>
                   </div>
                   <div class="form-group">
+                     <label for="prodMobileNo">Mobile Number:</label>
+                     <input type="text" class="form-control" id="prodMobileNo" name="mobileNo" required="" >
+                  </div>
+                  <div class="form-group">
                      <label for="prodLocation">Location:</label>
                      <input class="form-control" id="prodLocation" name="location" required=""></input>
                   </div>
@@ -188,6 +192,7 @@
 			var location = $("#prodLocation").val();
 			var category = $("#prodCategory").val();
 			var county = $("#regCounty").val();
+			var mobileNo = $("#prodMobileNo").val();
 			
 			var data = new FormData();
 			data.append("name", name);
@@ -197,6 +202,7 @@
 			data.append("category", category);
 			data.append("county", county);
 			data.append("author", cookieEmail);
+			data.append("mobileNo", mobileNo);
 			
 			for(i = 0; i < document.getElementById("images").files.length; i++){
 				data.append("images", document.getElementById("images").files[i]);
@@ -220,12 +226,11 @@
 				}
 			});
 		});
-		var img;
+		
 		function handleFileSelect(evt) {
 			for (var i = 0, f; f = evt.target.files[i]; i++) {
 				var output = '<img width="150" "height="100" src="' + URL.createObjectURL(f) + '">';
 				document.getElementById('list').innerHTML += output;
-				//img.push(f);
 			}
 		}
 

@@ -2,6 +2,7 @@ package ie.ioffer.web.rest_api;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -14,7 +15,10 @@ import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
+import com.mongodb.BasicDBList;
+
 import ie.ioffer.web.service.Base64Encoder;
+import ie.ioffer.web.service.Comment;
 import ie.ioffer.web.service.Location;
 import ie.ioffer.web.service.Product;
 
@@ -28,7 +32,8 @@ public class postProduct {
 	public String getProduct(@FormDataParam("name") String name, @FormDataParam("author") String author,
 			@FormDataParam("category") String category, @FormDataParam("county") String county,
 			@FormDataParam("description") String description, @FormDataParam("location") String location,
-			@FormDataParam("price") String price, @FormDataParam("images") List<FormDataBodyPart> imgBodyParts) throws Exception {
+			@FormDataParam("price") String price, @FormDataParam("images") List<FormDataBodyPart> imgBodyParts,
+			@FormDataParam("mobileNo") String mobileNo) throws Exception {
 		
 		String images = "";
         Base64Encoder enc = new Base64Encoder();
@@ -79,6 +84,7 @@ public class postProduct {
 		x.location = new Location(Float.parseFloat(loc[0]), Float.parseFloat(loc[1]));
 		x.image = images;
 		x.price = Double.parseDouble(price);
+		x.mobileNo = mobileNo;
 		 
 		String id = productService.insertProduct(x);
 		

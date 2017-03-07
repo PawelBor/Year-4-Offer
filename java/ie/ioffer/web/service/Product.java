@@ -36,6 +36,8 @@ public class Product {
     public String author;
     public String category;
     public String productId;
+    public String mobileNo;
+    public List<Comment> comment;
 
     public String getName() {
         return name;
@@ -65,15 +67,19 @@ public class Product {
         return author;
     }
 
-    public String getCategory() {
-        return category;
+    public List<Comment> getComment() {
+        return comment;
+    }
+    
+    public String getMobileNo() {
+        return mobileNo;
     }
     
     public Product (){
         
     }
     
-    public Product (String name, Double price, String description, String image, float lat, float lon, String county, String author, String category, String productId){
+    public Product (String name, Double price, String description, String image, float lat, float lon, String county, String author, String category, String productId, String mobileNo, List<Comment> comment){
         this();
         this.productId = productId;
         this.name = name;
@@ -84,7 +90,24 @@ public class Product {
         this.county = county;
         this.author = author;
         this.category = category;
+        this.mobileNo = mobileNo;
+        this.comment = comment;
     }
+    
+    public Product (String name, Double price, String description, String image, float lat, float lon, String county, String author, String category, String productId, String mobileNo){
+        this();
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.image = image;
+        this.location = new Location(lat, lon);
+        this.county = county;
+        this.author = author;
+        this.category = category;
+        this.mobileNo = mobileNo;
+    }
+
 
     // Create a new product and add to database
     public boolean createProduct(){
@@ -97,6 +120,8 @@ public class Product {
         document.put("county", county);
         document.put("author", author);
         document.put("category", category);
+        document.put("mobileNo", mobileNo);
+        document.put("comment", comment);
         
         try{
             table.insert(document);
@@ -166,8 +191,10 @@ public class Product {
             String author = (String)product.get("author");
             String category = (String)product.get("category");
             String productId = (String)product.get("_id");
+            String mobileNo = (String)product.get("mobileNo");
+            //String comment = (String)product.get("comment");
             
-            Product p = new Product(name, price, description, image, lat, lon, county, author, category, productId);
+            Product p = new Product(name, price, description, image, lat, lon, county, author, category, productId, mobileNo, comment);
             products.add(p);
         }
         
