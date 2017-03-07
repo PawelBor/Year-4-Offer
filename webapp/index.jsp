@@ -6,8 +6,9 @@
       <meta name="description" content="iOffer.">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script type='text/javascript' src='js/jquery-3.1.1.min.js'></script>
       <link rel="stylesheet" href="css/homeStyles.css">
    </head>
    <body background="images/blurBCK.jpg">
@@ -59,22 +60,14 @@
                   </form>
                   <hr>
                </div>
-               <!--<div>
-                  <a href="*" class="btn btn-primary btn-xl floating-box">Electronics</a>
-                  <a href="*" class="btn btn-primary btn-xl floating-box">Entertainment</a>
-                  <a href="#" class="btn btn-primary btn-xl floating-box">Leisure</a>
-                  <a href="#" class="btn btn-primary btn-xl floating-box">Automotive</a>
-                  <a href="#" class="btn btn-primary btn-xl floating-box">Food</a>
-                  <a href="#" class="btn btn-primary btn-xl floating-box">Other</a>
-                  </div> -->
-               <!-- NEW BAR-->
+               <!-- Categories-->
                <div class="container" id="selFadeIn">
                   <div class="row"  id="rowSlideLeft">
                      <a href="javascript:category('electronics');">
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Electronics</h3>
-                              <p>Parapgraph.........to be done....</p>
+                              <p>Computers, Tablets, Mobile Phones & Communication...</p>
                            </div>
                         </div>
                      </a>
@@ -82,7 +75,7 @@
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Entertainment</h3>
-                              <p>Parapgraph.........to be done....</p>
+                              <p>Concert & Festival Tickets, Movies, Games & Musical Instruments...</p>
                            </div>
                         </div>
                      </a>
@@ -90,7 +83,7 @@
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Leisure</h3>
-                              <p>Parapgraph.........to be done....</p>
+                              <p>Sport Related Equipment & Any non-Compulsory Activities...</p>
                            </div>
                         </div>
                      </a>
@@ -100,7 +93,7 @@
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Automotive</h3>
-                              <p>Parapgraph.........to be done....</p>
+                              <p>Anything Related to or concerned with Motor Vehicles...</p>
                            </div>
                         </div>
                      </a>
@@ -108,7 +101,7 @@
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Food</h3>
-                              <p>Parapgraph.........to be done....</p>
+                              <p>Any possible deals that may be offered...</p>
                            </div>
                         </div>
                      </a>
@@ -116,7 +109,7 @@
                         <div class="col-sm-4">
                            <div class="tile category">
                               <h3 class="title">Other</h3>
-                              <p>Parapgraph.........to be done....e</p>
+                              <p>Anything that may derive from standard categories...</p>
                            </div>
                         </div>
                      </a>
