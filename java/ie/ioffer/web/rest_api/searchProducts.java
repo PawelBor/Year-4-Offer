@@ -12,14 +12,15 @@ import ie.ioffer.web.service.Product;
 import ie.ioffer.web.service.Query;
 
 
-@Path("products/{name}/{minPrice}/{maxPrice}/{category}")
+@Path("products/{name}/{minPrice}/{maxPrice}/{category}/{county}")
 public class searchProducts {
 	ProductService productSerice = new ProductService();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Product> getJSON(@PathParam("name") String name, @PathParam("minPrice") String minPrice, @PathParam("maxPrice") String maxPrice, @PathParam("category") String category) {
-		Query q = new Query(name, category, minPrice, maxPrice);
+	public List<Product> getJSON(@PathParam("name") String name, @PathParam("minPrice") String minPrice, @PathParam("maxPrice") String maxPrice,
+				@PathParam("category") String category, @PathParam("county") String county){
+		Query q = new Query(name, category, minPrice, maxPrice, county);
 		
 		return productSerice.search(q);
 	}

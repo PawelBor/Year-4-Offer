@@ -162,7 +162,7 @@
 	  			data: {email: email, password: encryptedPass, name: name},
 	  			success: function(response){
 	  				console.log("server returned: " + response);
-	  				if(response){
+	  				if(response === "true"){
 	  		        	// GO TO HOMEPAGE & SAVE COOKIES
 	  					var date = new Date();
 	  		        	var cEmail;
@@ -178,7 +178,7 @@
 	  					console.log("Register success");
 	  		        }else{
 	  		        	// TELL USER THAT DETAILS ARE INCORRECT
-	  		        	console.log("Register failure");
+	  		        	alert("Register failure, email already exists");
 	  		        }
 	  		    }
 	  		});

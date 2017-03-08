@@ -71,18 +71,21 @@
 	                  </div>
 	               </div>
                   <div class="caption-full">
-					 <button id="editbtn" class="btn btn-warning btn-block">Edit</button>
+					 <button id="editbtn" class="btn btn-warning btn-block" style="display: none;">Edit</button>
 					 <p style="color: red;" hidden="true" id="pDetail">Please enter new details.</p>
                      <h4 class="pull-right" contenteditable="false" id="prodPrice"></h4>
-                     <h4 contenteditable="false" style="width: 50%;" id="prodName">
-                     </h4>
-                     <p contenteditable="false" style="margin-top: 15px;" id="prodDescription"></p>
+                     <h4 contenteditable="false" style="width: 50%;" id="prodName"></h4>
+                     <h4 class="pull-right" contenteditable="false" id="prodCounty"></h4>
+                     <h4 contenteditable="false" style="width: 50%;" id="prodMobileNo"></h4>
+                     <h4 contenteditable="false" style="width: 50%;" id="prodAuthor"></h4>
+                     <h4 contenteditable="false" style="width: 50%;" id="prodCategory"></h4>
+                     <br><p contenteditable="false" style="margin-top: 15px;" id="prodDescription"></p>
+                     
                      <button id="deletebtn" class="btn btn-danger btn-block" style="display: none;">Delete</button>
                   </div>
                </div>
 			   
                <div class="well">
-			   
                   <div class="form-group">
                      <label style="color: black" for="itemComment">Your Comment Here:</label>
                      <input class="form-control" id="itemComment" type="text">
@@ -93,11 +96,7 @@
                   </div>
                   <hr>
                   <div class="row">
-                     <div class="col-md-12">
-                        <b style="color: black">TestUserName</b>
-                        <span style="color: black" class="pull-right">PostDateHere</span>
-                        <p style="color: black">Test User Comment</p>
-                     </div>
+                     <div id="productcomments" class="col-md-12"></div>
                   </div>
                   <hr>
                </div>
@@ -137,7 +136,7 @@
 		});   
    
    		var response = "";
-   		
+
 	    window.onload = function () {
 		    var url = document.location.href,
 		        params = url.split('?')[1].split('&'),
@@ -153,12 +152,17 @@
 		    	console.log(data);
 		    	
 		    	if(data.author === pmail){
+		    		$("#editbtn").show();
 	    	    	$("#deletebtn").show();
 	    	    }
 		    	
                 $("#prodName").text(data.name);
                 $("#prodPrice").text("€" + data.price);
                 $("#prodDescription").text(data.description);
+                $("#prodCounty").text(data.county);
+                $("#prodMobileNo").text(data.mobileNo);
+                $("#prodAuthor").text(data.author);
+                $("#prodCategory").text(data.category);
                 var images = data.image.split(",");
                 for(i = 0; i<images.length; i++){
                 	if(i == 0){
@@ -174,6 +178,11 @@
                 		$("#images").append(tab);
                 	}
                 }
+                
+               for(i = 0; i<data.comment.length; i++){
+            	   $("#productcomments").append('<p style="color: black" class="pull-right">'+ data.comment[i].date +'</p>' +
+            			   '<p style="color: black">'+ 'Author: ' + data.comment[i].author + '<br> ' + data.comment[i].comment +'</p>');
+               }
             });
 		}
 	    
@@ -200,25 +209,28 @@
 		$("#editbtn").click(function (e) {
 			$("#prodName").attr('contenteditable', true).css({ "border": "1px dashed red"}); 
 			$("#prodPrice").attr('contenteditable', true).css({ "border": "1px dashed red"}); 
-			$("#prodDescription").attr('contenteditable', true).css({ "border": "1px dashed red"});   
+			$("#prodDescription").attr('contenteditable', true).css({ "border": "1px dashed red"});
+			$("#prodCounty").attr('contenteditable', true).css({ "border": "1px dashed red"});
+			$("#prodMobileNo").attr('contenteditable', true).css({ "border": "1px dashed red"});
 
 			$("#pDetail").attr('hidden', false);
 		});
 		
-		$("#prodName, #prodPrice, #prodDescription").focusout(function(){
+		$("#prodName, #prodPrice, #prodDescription, #prodCounty, prodMobileNo").focusout(function(){
 				$(this).css({ "border": "hidden"});   
 			});
 	    
 	    $("#postComment").click(function (e) {
 	    	var comment = $("#itemComment").val();
 			var d = new Date();
-			//+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
-			var date = d.toString();
+			var date = new Date(Date.now()).toLocaleString();
+			var author = pmail;
 			
 			var data = {
 				'id' : response,
 				'date' : date,
-				'comment' : comment
+				'comment' : comment,
+				'author' : author
 			};
 			
 			$.ajax({

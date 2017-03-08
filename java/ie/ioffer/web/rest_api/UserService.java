@@ -2,6 +2,8 @@ package ie.ioffer.web.rest_api;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.bson.Document;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -41,17 +43,26 @@ public class UserService extends User{
     
     public boolean insertUser(String email, String password, String name){
     	 BasicDBObject document = new BasicDBObject();
-         document.put("email", email);
-         document.put("password", password);
-         document.put("name", name);
          
-         try{
-             table.insert(document);
-         } catch(MongoException e){
-             return false;
+         long count =  mongo.getDatabase("ioffer")               
+                 .getCollection("users")
+                 .count(new Document("email", email));
+         
+         if(count > 0)
+         {
+        	 return false;
          }
-         
-         return true;
+         else{
+        	 document.put("email", email);
+             document.put("password", password);
+             document.put("name", name);
+             
+             try{
+                 table.insert(document);
+                 return true;
+             } catch(MongoException e){
+                 return false;
+             }
+         }
     }
-
 }

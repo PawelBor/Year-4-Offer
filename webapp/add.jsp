@@ -80,18 +80,18 @@
                   </div>
                   <div class="form-group">
                      <div>
+                        <label for="locationbtn">Location:</label>
+                     </div>
+                     <button class="btn btn-lg btn-warning" name="location" id="locationbtn">Get location</button>
+                  </div>
+                  <div class="form-group">
+                     <div>
                         <label for="productImages">Image Select:</label>
                      </div>
                      <label class="btn btn-lg btn-warning" for="images">
                      Select File<input type="file" accept=".jpg,.jpeg,.png" id="images" style="display:none;" name="images" multiple />
                      </label>
                      <output id="list"></output>
-                  </div>
-                  <div class="form-group">
-                     <div>
-                        <label for="locationbtn">Location:</label>
-                     </div>
-                     <button class="btn btn-lg btn-warning" name="location" id="locationbtn">Get location</button>
                   </div>
                   <div class="form-group">
                   	<select class="form-control"  id="regCounty" name="county" placeholder="County" required="">

@@ -59,7 +59,7 @@ public class ProductService extends Product{
             if(list.size() > 0){
             	BasicDBObject[] arr = list.toArray(new BasicDBObject[0]);
                 for(DBObject l : arr){
-                	comments.add(new Comment(l.get("comment").toString(), l.get("date").toString()));
+                	comments.add(new Comment(l.get("comment").toString(), l.get("date").toString(), l.get("author").toString()));
                 }
             }
             
@@ -89,10 +89,9 @@ public class ProductService extends Product{
         
     }
     
-    public boolean putComment(String id, String comment, String date){
-    	System.out.println(id + " " + comment + " " + date);
+    public boolean putComment(String id, String comment, String date, String author){
         BasicDBObject document = new BasicDBObject();
-        DBObject obj = (DBObject) JSON.parse("{'comment': '"+comment+"', 'date':'"+date+"'}");
+        DBObject obj = (DBObject) JSON.parse("{'comment': '"+comment+"', 'date':'"+date+"', 'author':'"+author+"'}");
         document.append("$push", new BasicDBObject().append("comments", obj));
 
         BasicDBObject searchQuery = new BasicDBObject().append("_id", new ObjectId(id));
@@ -284,6 +283,11 @@ public class ProductService extends Product{
             obj.add(new BasicDBObject("price", new BasicDBObject("$gte", Double.parseDouble(query.getMinPrice())).append("$lte", Double.parseDouble(query.getMaxPrice()))));
         }
         
+        if(!(query.getCounty().equals("undefined"))){
+            empty = true;
+            obj.add(new BasicDBObject("county", query.getCounty()));
+        }
+        
         DBCursor cursor;
         
         if(empty == true){
@@ -302,7 +306,7 @@ public class ProductService extends Product{
             double price = (Double) product.get("price");
             String description = (String)product.get("description");
             // Image decoding here
-            String image = (String)product.get("image");
+            String image = (String)product.get("images");
             // Get latitude and longitude from composed String
             String location = (String)product.get("location");
             float lat = Float.parseFloat(location.split(",")[0]);
@@ -331,6 +335,7 @@ public class ProductService extends Product{
         document.put("county", x.county);
         document.put("author", x.author);
         document.put("category", x.category);
+        document.put("mobileNo", x.mobileNo);
         document.put("comments", new BasicDBList());
         
         try{

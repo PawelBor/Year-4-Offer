@@ -7,20 +7,23 @@ public class Comment {
 	public String id;
 	public String comment;
 	public String date;
+	public String author;
 	
 	public Comment(){
 		
 	}
 	
-	public Comment(String id, String comment, String date){
+	public Comment(String id, String comment, String date, String author){
 		this.id = id;
 		this.comment = comment;
 		this.date = date;
+		this.author = author;
 	}
 	
-	public Comment(String comment, String date){
+	public Comment(String comment, String date, String author){
 		this.comment = comment;
 		this.date = date;
+		this.author = author;
 	}
 	
 	public String getId() {
@@ -40,5 +43,8 @@ public class Comment {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public String getAuthor() {
+		return author;
 	}
 }

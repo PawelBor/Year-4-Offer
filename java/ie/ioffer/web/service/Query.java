@@ -10,17 +10,19 @@ public class Query {
     private String category;
     private String minPrice;
     private String maxPrice;
+    private String county;
     
     public Query(){
         super();
     }
     
-    public Query(String name, String category, String minPrice, String maxPrice){
+    public Query(String name, String category, String minPrice, String maxPrice, String county){
         this();
         this.name = name;
         this.category = category;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
+        this.county = county;
     }
 
     public String getName() {
@@ -37,5 +39,9 @@ public class Query {
 
     public String getMaxPrice() {
         return maxPrice;
-    } 
+    }
+    
+    public String getCounty() {
+        return county;
+    }
 }

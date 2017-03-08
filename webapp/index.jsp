@@ -142,8 +142,8 @@
 			  $("#rowSlideRight").animate({right: '0'}, "slow");
             });
 
-         function category(x){
-               window.location.href = 'search.jsp?category='+x;
+         	function category(category){
+               window.location.href = 'search.jsp?category='+category;
             }
 			
             

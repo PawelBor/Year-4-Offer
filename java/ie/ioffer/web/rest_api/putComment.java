@@ -21,7 +21,7 @@ public class putComment {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public boolean getJSON(Comment comment) {
-		boolean postComment = productService.putComment(comment.getId(), comment.getComment(), comment.getDate());
+		boolean postComment = productService.putComment(comment.getId(), comment.getComment(), comment.getDate(), comment.getAuthor());
 		
 		return postComment;
 	}

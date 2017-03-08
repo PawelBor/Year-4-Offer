@@ -52,7 +52,7 @@
             <div class="col-md-3">
                <p class="lead">iOffer</p>
                <hr>
-               <form action="searchProduct" method="post">
+               <div>
                   <div class="form-group">
                      <label for="productName">Product Name:</label>
                      <input class="form-control" id="productName" type="text">
@@ -70,11 +70,47 @@
                         <option value="food">Food</option>
                         <option value="other">Other</option>
                      </select>
+                     <label for="countySelect">County:</label></br>
+                     <select class="form-control"  id="regCounty" name="county" placeholder="County" required="">
+								<option value="" disabled selected hidden>Please Choose County...</option>
+								<option value="antrim">Antrim</option>
+								<option value="armagh">Armagh</option>
+								<option value="carlow">Carlow</option>
+								<option value="cavan">Cavan</option>
+								<option value="clare">Clare</option>
+								<option value="cork">Cork</option>
+								<option value="derry">Derry</option>
+								<option value="donegal">Donegal</option>
+								<option value="down">Down</option>
+								<option value="dublin">Dublin</option>
+								<option value="fermanagh">Fermanagh</option>
+								<option value="galway">Galway</option>
+								<option value="kerry">Kerry</option>
+								<option value="kildare">Kildare</option>
+								<option value="kilkenny">Kilkenny</option>
+								<option value="laois">Laois</option>
+								<option value="leitrim">Leitrim</option>
+								<option value="limerick">Limerick</option>
+								<option value="longford">Longford</option>
+								<option value="louth">Louth</option>
+								<option value="mayo">Mayo</option>
+								<option value="meath">Meath</option>
+								<option value="monaghan">Monaghan</option>
+								<option value="offaly">Offaly</option>
+								<option value="roscommon">Roscommon</option>
+								<option value="sligo">Sligo</option>
+								<option value="tipperary">Tipperary</option>
+								<option value="tyrone">Tyrone</option>
+								<option value="waterford">Waterford</option>
+								<option value="westmeath">Westmeath</option>
+								<option value="wexford">Wexford</option>
+								<option value="wicklow">Wicklow</option>
+					</select>
                      <hr>
-                     <button type="submit" name="send" class="btn btn-primary btn-xl">Submit</button>
+                     <button id="searchbtn" class="btn btn-primary btn-xl">Submit</button>
                   </div>
                   <!--<button type="submit" value="Submit" name="send">-->
-               </form>
+               </div>
             </div>
             <div class="col-md-9">
                <div class="row" id="products">
@@ -114,49 +150,76 @@
 	   	});
       
         	$(window).on("load", function() {
-	            var QueryString = function () {
-	                // This function is anonymous, is executed immediately and 
-	                // the return value is assigned to QueryString.
-	                var query_string = {};
-	                var query = window.location.search.substring(1);
-	                var vars = query.split("&");
-	                for (var i=0;i<vars.length;i++) {
-	                  var pair = vars[i].split("=");
-	                      // If first entry with this name
-	                  if (typeof query_string[pair[0]] === "undefined") {
-	                    query_string[pair[0]] = decodeURIComponent(pair[1]);
-	                      // If second entry with this name
-	                  } else if (typeof query_string[pair[0]] === "string") {
-	                    var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
-	                    query_string[pair[0]] = arr;
-	                      // If third or later entry with this name
-	                  } else {
-	                    query_string[pair[0]].push(decodeURIComponent(pair[1]));
-	                  }
-	                } 
-	                return query_string;
-	            };
+	            var category = "";
 	            
-	            var category = QueryString.category;
-	            console.log(category);
-	            if(category != null)
+	            var queryString = window.location.search;
+	            if(queryString != ""){
+		            var url = document.location.href,
+			        params = url.split('?')[1].split('&'),
+			        data = {}, tmp;
+				    for (var i = 0, l = params.length; i < l; i++) {
+				         tmp = params[i].split('=');
+				         data[tmp[0]] = tmp[1];
+				    }
+				    category = data.category;
+        		}
+	            
+	            
+	            if(category != "")
 	            {
 	              $.getJSON("webapi/product/category/"+category, function (data){
 	                  for (var i=0;i < data.length ;i++) {
 	                    var tab = createTab(data[i])
-	                    $('#getCategory').append(tab);
+	                    $('#products').append(tab);
 	                  }
 	                });
 	            }else // No category selected
-	          {
+	            {
 	              $.getJSON("webapi/products", function (data){
 	                  for (var i=0;i < data.length ;i++) {
 	                    var tab = createTab(data[i])
 	                    $('#products').append(tab);
-	                        }
+	                    }
 	                }); 
-	          }
+	            }
           });
+        	
+        	$("#searchbtn").click(function (e) {
+        		var name = $("#productName").val();
+        		var min = $("#minPrice").val();
+        		var max = $("#maxPrice").val();
+        		var category = $("#categorySelect").val();
+        		var county = $("#regCounty").val();
+        		
+        		if(name === ""){
+        			name = "undefined";
+        		}
+        		
+        		if(min === ""){
+        			min = "undefined";
+        		}
+        		
+        		if(max === ""){
+        			max = "undefined";
+        		}
+        		
+        		if(category === null){
+        			category = "undefined";
+        		}
+        		
+        		if(county === null){
+        			county = "undefined";
+        		}
+        		
+        		$.getJSON("webapi/products/"+name+"/"+min+"/"+max+"/"+category+"/"+county, function (data){
+	   		 		console.log(data);
+	   		 		$("#products").empty();
+	   		 		for(i = 0; i<data.length; i++){
+	   		 			var tab = createTab(data[i])
+                    	$('#products').append(tab);
+	   		 		}
+		        });
+    		 });
         	
         	// A function to create a template for each item returned from the search
         	function createTab(data){
