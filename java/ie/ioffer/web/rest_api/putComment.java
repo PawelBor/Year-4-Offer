@@ -9,8 +9,8 @@ import javax.ws.rs.core.MediaType;
 import ie.ioffer.web.service.Comment;
 
 /*
- * This class uses the GET HTTP method
- * to retrieve a particular product {id}/{comment}/{date}
+ * This class uses the PUT HTTP method
+ * to add a comment to a particular product
  */
 @Path("product/comment")
 public class putComment {
@@ -21,7 +21,7 @@ public class putComment {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public boolean getJSON(Comment comment) {
-		boolean postComment = productService.postComment(comment.getId(), comment.getComment(), comment.getDate());
+		boolean postComment = productService.putComment(comment.getId(), comment.getComment(), comment.getDate());
 		
 		return postComment;
 	}

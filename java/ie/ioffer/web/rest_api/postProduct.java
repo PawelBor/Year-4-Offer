@@ -2,7 +2,6 @@ package ie.ioffer.web.rest_api;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -15,10 +14,7 @@ import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
-import com.mongodb.BasicDBList;
-
 import ie.ioffer.web.service.Base64Encoder;
-import ie.ioffer.web.service.Comment;
 import ie.ioffer.web.service.Location;
 import ie.ioffer.web.service.Product;
 
