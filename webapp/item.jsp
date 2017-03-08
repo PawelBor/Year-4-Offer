@@ -71,16 +71,20 @@
 	                  </div>
 	               </div>
                   <div class="caption-full">
-                     <h4 class="pull-right" id="prodPrice"></h4>
-                     <h4 id="prodName">
+					 <button id="editbtn" class="btn btn-warning btn-block">Edit</button>
+					 <p style="color: red;" hidden="true" id="pDetail">Please enter new details.</p>
+                     <h4 class="pull-right" contenteditable="false" id="prodPrice"></h4>
+                     <h4 contenteditable="false" style="width: 50%;" id="prodName">
                      </h4>
-                     <p id="prodDescription"></p>
+                     <p contenteditable="false" style="margin-top: 15px;" id="prodDescription"></p>
                      <button id="deletebtn" class="btn btn-danger btn-block" style="display: none;">Delete</button>
                   </div>
                </div>
+			   
                <div class="well">
+			   
                   <div class="form-group">
-                     <label for="itemComment">Your Comment Here:</label>
+                     <label style="color: black" for="itemComment">Your Comment Here:</label>
                      <input class="form-control" id="itemComment" type="text">
                      <br>
                      <div class="text-right">
@@ -90,9 +94,9 @@
                   <hr>
                   <div class="row">
                      <div class="col-md-12">
-                        <b>TestUserName</b>
-                        <span class="pull-right">PostDateHere</span>
-                        <p>Test User Comment</p>
+                        <b style="color: black">TestUserName</b>
+                        <span style="color: black" class="pull-right">PostDateHere</span>
+                        <p style="color: black">Test User Comment</p>
                      </div>
                   </div>
                   <hr>
@@ -192,6 +196,18 @@
 				}
 			});
 		});
+		
+		$("#editbtn").click(function (e) {
+			$("#prodName").attr('contenteditable', true).css({ "border": "1px dashed red"}); 
+			$("#prodPrice").attr('contenteditable', true).css({ "border": "1px dashed red"}); 
+			$("#prodDescription").attr('contenteditable', true).css({ "border": "1px dashed red"});   
+
+			$("#pDetail").attr('hidden', false);
+		});
+		
+		$("#prodName, #prodPrice, #prodDescription").focusout(function(){
+				$(this).css({ "border": "hidden"});   
+			});
 	    
 	    $("#postComment").click(function (e) {
 	    	var comment = $("#itemComment").val();
@@ -221,7 +237,5 @@
 				}
 			});
 		});
-   
-   		
    </script>
 </html>
