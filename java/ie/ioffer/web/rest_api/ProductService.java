@@ -9,12 +9,9 @@ import org.bson.types.ObjectId;
 
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoException;
-import com.mongodb.client.model.DBCollectionRemoveOptions;
 import com.mongodb.util.JSON;
 
 import ie.ioffer.web.service.Comment;
@@ -92,7 +89,7 @@ public class ProductService extends Product{
         
     }
     
-    public boolean postComment(String id, String comment, String date){
+    public boolean putComment(String id, String comment, String date){
     	System.out.println(id + " " + comment + " " + date);
         BasicDBObject document = new BasicDBObject();
         DBObject obj = (DBObject) JSON.parse("{'comment': '"+comment+"', 'date':'"+date+"'}");
@@ -343,6 +340,25 @@ public class ProductService extends Product{
         } catch(MongoException e){
         	return null;
         }
+    }
+    
+    public boolean putProduct(Product prod){
+        BasicDBObject document = new BasicDBObject();
+        BasicDBObject searchQuery = new BasicDBObject().append("_id", new ObjectId(prod.getProductId()));
+        
+        document.append("$set", new BasicDBObject().append("name", prod.getName()));
+        document.append("$set", new BasicDBObject().append("description", prod.getDescription()));
+        document.append("$set", new BasicDBObject().append("price", prod.getPrice()));
+        document.append("$set", new BasicDBObject().append("category", prod.getCategory()));
+        document.append("$set", new BasicDBObject().append("county", prod.getCounty()));
+        document.append("$set", new BasicDBObject().append("mobileNo", prod.getMobileNo()));
+        
+        try{
+        	table.update(searchQuery, document);
+        } catch(MongoException e){
+        	return false;
+        }
+        return true;
     }
    
 }

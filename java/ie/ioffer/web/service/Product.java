@@ -75,10 +75,19 @@ public class Product {
         return mobileNo;
     }
     
-    public Product (){
+    public String getCategory() {
+		return category;
+	}
+
+	public String getProductId() {
+		return productId;
+	}
+
+	public Product (){
         
     }
     
+    // Constructor for GET (additional comments displayed on item.jsp)
     public Product (String name, Double price, String description, String image, float lat, float lon, String county, String author, String category, String productId, String mobileNo, List<Comment> comment){
         this();
         this.productId = productId;
@@ -94,6 +103,7 @@ public class Product {
         this.comment = comment;
     }
     
+    // Constructor for POST (an empty comment field is added later when item is being added to db)
     public Product (String name, Double price, String description, String image, float lat, float lon, String county, String author, String category, String productId, String mobileNo){
         this();
         this.productId = productId;
@@ -108,6 +118,16 @@ public class Product {
         this.mobileNo = mobileNo;
     }
 
+    // Constructor for PUTting new data over the old for a product. (Can't update image/location/author/comments)
+    public Product(String name, String description, Double price, String county, String category, String id, String mobile){
+    	this.name = name;
+    	this.description = description;
+    	this.price = price;
+    	this.county = county;
+    	this.category = category;
+    	this.productId = id;
+    	this.mobileNo = mobile;
+    }
 
     // Create a new product and add to database
     public boolean createProduct(){
