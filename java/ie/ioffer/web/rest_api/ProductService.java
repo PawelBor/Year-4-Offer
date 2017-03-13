@@ -349,14 +349,14 @@ public class ProductService extends Product{
     
     public boolean putProduct(Product prod){
         BasicDBObject document = new BasicDBObject();
-        BasicDBObject searchQuery = new BasicDBObject().append("_id", new ObjectId(prod.getProductId()));
+
+        document.append("$set", new BasicDBObject().append("name", prod.getName()).append("description", prod.getDescription())
+        		.append("price", prod.getPrice()).append("mobileNo", prod.getMobileNo()));
+        /*document.append("$set", new BasicDBObject().append());
+        document.append("$set", new BasicDBObject().append());
+        document.append("$set", new BasicDBObject().append());*/
         
-        document.append("$set", new BasicDBObject().append("name", prod.getName()));
-        document.append("$set", new BasicDBObject().append("description", prod.getDescription()));
-        document.append("$set", new BasicDBObject().append("price", prod.getPrice()));
-        document.append("$set", new BasicDBObject().append("category", prod.getCategory()));
-        document.append("$set", new BasicDBObject().append("county", prod.getCounty()));
-        document.append("$set", new BasicDBObject().append("mobileNo", prod.getMobileNo()));
+        BasicDBObject searchQuery = new BasicDBObject().append("_id", new ObjectId(prod.getProductId()));
         
         try{
         	table.update(searchQuery, document);

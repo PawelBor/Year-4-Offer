@@ -119,12 +119,10 @@ public class Product {
     }
 
     // Constructor for PUTting new data over the old for a product. (Can't update image/location/author/comments)
-    public Product(String name, String description, Double price, String county, String category, String id, String mobile){
+    public Product(String name, String description, String price, String id, String mobile){
     	this.name = name;
     	this.description = description;
-    	this.price = price;
-    	this.county = county;
-    	this.category = category;
+    	this.price = Double.parseDouble(price);
     	this.productId = id;
     	this.mobileNo = mobile;
     }

@@ -157,7 +157,8 @@
 	    	    }
 		    	
                 $("#prodName").text(data.name);
-                $("#prodPrice").text("€" + data.price);
+                //$("#prodPrice").text("€" + data.price);
+                $("#prodPrice").text(data.price);
                 $("#prodDescription").text(data.description);
                 $("#prodCounty").text(data.county);
                 $("#prodMobileNo").text(data.mobileNo);
@@ -207,18 +208,45 @@
 		});
 		
 		$("#editbtn").click(function (e) {
-			$("#prodName").attr('contenteditable', true).css({ "border": "1px dashed red"}); 
-			$("#prodPrice").attr('contenteditable', true).css({ "border": "1px dashed red"}); 
-			$("#prodDescription").attr('contenteditable', true).css({ "border": "1px dashed red"});
-			$("#prodCounty").attr('contenteditable', true).css({ "border": "1px dashed red"});
-			$("#prodMobileNo").attr('contenteditable', true).css({ "border": "1px dashed red"});
+			if($("#editbtn").text() === "Edit"){
+				$("#editbtn").text("Save");
+				
+				$("#prodName").attr('contenteditable', true).css({ "border": "1px dashed red"}); 
+				$("#prodPrice").attr('contenteditable', true).css({ "border": "1px dashed red"}); 
+				$("#prodDescription").attr('contenteditable', true).css({ "border": "1px dashed red"});
+				$("#prodMobileNo").attr('contenteditable', true).css({ "border": "1px dashed red"});
 
-			$("#pDetail").attr('hidden', false);
+				$("#pDetail").attr('hidden', false);
+			}else{
+				$("#prodName, #prodPrice, #prodDescription, #prodMobileNo").attr('contenteditable', false).css({"border" : "hidden"});
+				$("#editbtn").text("Edit");
+				
+				var data = {
+						'productId' : response,
+						'name' : $("#prodName").text(),
+						'description' : $("#prodDescription").text(),
+						'price' : $("#prodPrice").text(),
+						'mobileNo' : $("#prodMobileNo").text()
+				};
+				
+				console.log(data);
+				$.ajax({
+					url: "webapi/product",
+					type: "PUT",
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					success: function (success) {
+						console.log(success)
+						if (success) {
+							window.location.assign("item.jsp?id=" + response);
+						} else {
+							// TELL USER THAT DETAILS ARE INCORRECT
+							console.log("Putting into db failed");
+						}
+					}
+				});
+			}
 		});
-		
-		$("#prodName, #prodPrice, #prodDescription, #prodCounty, prodMobileNo").focusout(function(){
-				$(this).css({ "border": "hidden"});   
-			});
 	    
 	    $("#postComment").click(function (e) {
 	    	var comment = $("#itemComment").val();

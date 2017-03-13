@@ -16,6 +16,7 @@ ProductService productService = new ProductService();
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public boolean putJSON(Product product) {
+		System.out.println(product.getProductId());
 		boolean putProduct = productService.putProduct(product);
 		return putProduct;
 	}
