@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>Shop Homepage</title>
+      <title>Item Result</title>
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -72,6 +72,7 @@
 	               </div>
                   <div class="caption-full">
 					 <button id="editbtn" class="btn btn-warning btn-block" style="display: none;">Edit</button>
+					 <button class="btn btn-info btn-block" id="shbtn">Share</button>
 					 <p style="color: red;" hidden="true" id="pDetail">Please enter new details.</p>
                      <h4 class="pull-right" contenteditable="false" id="prodPrice"></h4>
                      <h4 contenteditable="false" style="width: 50%;" id="prodName"></h4>
@@ -136,6 +137,43 @@
 		});   
    
    		var response = "";
+		
+		//Facebook Integration: Share FEED
+		var shareTitle = "";
+		var shareDescription = "";
+		
+		window.fbAsyncInit = function() {
+
+		  FB.init({
+			appId      : '624445491096000',
+			status     : true,
+			xfbml      : true
+		  });
+		};
+
+		(function(d, s, id){
+		   var js, fjs = d.getElementsByTagName(s)[0];
+		   if (d.getElementById(id)) {return;}
+		   js = d.createElement(s); js.id = id;
+		   js.src = "https://connect.facebook.net/en_US/all.js";
+		   fjs.parentNode.insertBefore(js, fjs);
+		 }(document, 'script', 'facebook-jssdk'));
+
+		var url = window.location.href; 
+		//console.log(url);
+			
+			$('#shbtn').click(function() {
+			FB.ui({
+				  method: 'feed',
+				  link: url, 
+				  name: shareTitle,
+				  picture: 'http://i65.tinypic.com/2dtcb4i_th.png',
+				  description: shareDescription
+				}, function(response){
+					console.log(response);
+				}
+			);
+		});
 
 	    window.onload = function () {
 		    var url = document.location.href,

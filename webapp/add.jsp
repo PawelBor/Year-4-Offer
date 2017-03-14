@@ -76,7 +76,7 @@
                   </div>
                   <div class="form-group">
                      <label for="prodLocation">Location:</label>
-                     <input class="form-control" id="prodLocation" name="location" required=""></input>
+                     <input class="form-control" id="prodLocation" name="location" required="" readonly></input>
                   </div>
                   <div class="form-group">
                      <div>
