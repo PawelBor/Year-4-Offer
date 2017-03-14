@@ -48,7 +48,7 @@
                <div class="inner">
                   <h1 class="L4G-Big-Text"><span class="highlight"><span class="iHighlight">i</span>OFFER</span></h1>
                   <h4>Anything can be found.</h4>
-                  <form action="searchByName" method="post">
+                  <div>
                      <div class="input-group">
                         <div class="input-group-addon">
                            <span class="glyphicon glyphicon-search"></span> 
@@ -56,8 +56,8 @@
                         <input class="form-control" id="searchText" name="searchText" type="text" required/>
                      </div>
                      <hr>
-                     <button type="submit" name="send" class="btn btn-warning btn-xl" style="width: 25%; background-color: #FFA500;">Search</button>
-                  </form>
+                     <button id="searchbtn" class="btn btn-warning btn-xl" style="width: 25%; background-color: #FFA500;">Search</button>
+                  </div>
                   <hr>
                </div>
                <!-- Categories-->
@@ -143,10 +143,12 @@
             });
 
          	function category(category){
-               window.location.href = 'search.jsp?category='+category;
+               window.location.href = 'search.jsp?param='+category;
             }
-			
-            
+         	
+         	$("#searchbtn").click(function (e) {
+         		window.location.href = 'search.jsp?param='+ $("#searchText").val();
+         	});
          </script>
    </body>
 </html>

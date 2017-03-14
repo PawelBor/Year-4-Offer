@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <title>iOffer</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Profile</title>
+      <title>iOffer</title>
 	  <link rel="stylesheet" href="css/userStyles.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -96,7 +96,7 @@
 	   		 	$.getJSON("webapi/product/author/"+cookieEmail, function (data){
 	   		 		console.log(data);
 	   		 		for(i = 0; i<data.length; i++){
-	   		 			$("#advertisements").append('<hr><p style="font-size: 1.5em; color: black;">'+ data[i].name + '<button id="editbtn" class="btn btn-lg btn-warning pull-right">Edit</button>' +'<a href="item.jsp?id=' + data[i].productId + '" class="btn btn-lg btn-success pull-right">More Info..</a></p>');
+	   		 			$("#advertisements").append('<hr><p style="font-size: 1.5em; color: black;">'+ data[i].name +'<a href="item.jsp?id=' + data[i].productId + '" class="btn btn-lg btn-success pull-right">More Info..</a></p>');
 	   		 		}
 		        });
 	   		}else{

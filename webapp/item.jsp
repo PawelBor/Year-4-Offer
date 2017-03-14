@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>Item Result</title>
+      <title>iOffer</title>
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -54,11 +54,7 @@
                   <div class="row carousel-holder">
 	                  <div class="col-md-12">
 	                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-	                        <ol class="carousel-indicators">
-	                           <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-	                           <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-	                           <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-	                        </ol>
+	                     
 	                        <div class="carousel-inner" id="images">
 	                        </div>
 	                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">

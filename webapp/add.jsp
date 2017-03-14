@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>Shop Homepage</title>
+      <title>iOffer</title>
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -64,7 +64,7 @@
                   </div>
                   <div class="form-group">
                      <label for="prodPrice">Price:</label>
-                     <input class="form-control" id="prodPrice" name="price" required=""></input>
+                     <input class="form-control" id="prodPrice" name="price" type="number" required=""></input>
                   </div>
                   <div class="form-group">
                      <label for="prodDescription">Description:</label>
@@ -72,11 +72,11 @@
                   </div>
                   <div class="form-group">
                      <label for="prodMobileNo">Mobile Number:</label>
-                     <input type="text" class="form-control" id="prodMobileNo" name="mobileNo" required="" >
+                     <input class="form-control" id="prodMobileNo" name="mobileNo" type="number" required="" >
                   </div>
                   <div class="form-group">
                      <label for="prodLocation">Location:</label>
-                     <input class="form-control" id="prodLocation" name="location" required="" readonly></input>
+                     <input class="form-control" style="background-color: #36333d; color:grey;" id="prodLocation" name="location" required="" readonly></input>
                   </div>
                   <div class="form-group">
                      <div>

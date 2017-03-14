@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>Shop Homepage</title>
+      <title>iOffer</title>
       <!-- Custom CSS -->
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -150,7 +150,7 @@
 	   	});
       
         	$(window).on("load", function() {
-	            var category = "";
+	            var param = "";
 	            
 	            var queryString = window.location.search;
 	            if(queryString != ""){
@@ -161,19 +161,31 @@
 				         tmp = params[i].split('=');
 				         data[tmp[0]] = tmp[1];
 				    }
-				    category = data.category;
+				    param = data.param;
+				    console.log(param);
         		}
 	            
 	            
-	            if(category != "")
+	            if(param === "entertainment" || param === "electronics" || param === "leisure" || param === "automotive" || param === "food" || param === "other")
 	            {
-	              $.getJSON("webapi/product/category/"+category, function (data){
+	              $.getJSON("webapi/product/category/"+param, function (data){
 	                  for (var i=0;i < data.length ;i++) {
 	                    var tab = createTab(data[i])
 	                    $('#products').append(tab);
 	                  }
 	                });
-	            }else // No category selected
+	            }
+	            else if(param != "")
+	            {
+	              $.getJSON("webapi/products/"+param+"/undefined/undefined/undefined/undefined", function (data){
+		   		 	  console.log(data);
+	                  for (var i=0;i < data.length ;i++) {
+	                    var tab = createTab(data[i])
+	                    $('#products').append(tab);
+	                  }
+	                });
+	            }
+	            else if(param === "") // No category selected
 	            {
 	              $.getJSON("webapi/products", function (data){
 	                  for (var i=0;i < data.length ;i++) {
@@ -223,6 +235,11 @@
         	
         	// A function to create a template for each item returned from the search
         	function createTab(data){
+        		if (data.image.indexOf(',') > -1) {
+        				var x = data.image.split(',');
+        				data.image = x[0];
+        		}
+        		
         		var tab = '<div class="col-sm-4 col-lg-4 col-md-4">';
         		tab += '<div class="thumbnail">';
         		tab += '<img style="width:320px;height:150px;" src="data:image/png;base64,' + data.image + '">';
