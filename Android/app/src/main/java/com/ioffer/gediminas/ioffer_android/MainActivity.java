@@ -38,6 +38,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
@@ -45,18 +46,21 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView list;
-    String[] web = {} ;
-    Integer[] imageId = {};
+    Integer[] imageId = null;
+    String[] web = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Allow for the use of the GUI thread in requests.
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
+        populate_product_lists();
 
         CustomList adapter = new
                 CustomList(MainActivity.this, web, imageId);
@@ -96,9 +100,29 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        //String json = requestContent(URL);
+    }
+
+    private void populate_product_lists() {
+
+        // Creating a service object for getting and parsing the api data.
         IOfferRequestService requestService = new IOfferRequestService();
-        requestService.getAllProducts();
+
+        try {
+            // Getting a list of all product objects from the web api.
+            List<Product> products =  requestService.getAllProducts();
+
+            // Setting up lists size of the returned product list for the scroll item data.
+            web = new String[products.size()];
+            imageId = new Integer[products.size()];
+
+            // Iterating through all the products and adding their description
+            // to the web list to be displayed on the main activity.
+            for (int i = 0; i < products.size(); i++) {
+                web[i] = products.get(i).getName();
+                imageId[i] = R.drawable.clio; // Place holder image
+            }
+        }
+        catch (JSONException e) {e.printStackTrace();}
     }
 
     @Override

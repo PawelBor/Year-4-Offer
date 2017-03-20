@@ -87,6 +87,12 @@ public class Product {
         this.location = location;
     }
 
+    public void setLocation(float lat, float lng){
+        Location location = new Location("");
+        location.setLatitude(lat);
+        location.setLongitude(lng);
+    }
+
     public String getCounty() {
         return county;
     }
