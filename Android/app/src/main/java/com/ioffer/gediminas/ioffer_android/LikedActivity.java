@@ -2,6 +2,7 @@ package com.ioffer.gediminas.ioffer_android;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,14 +21,8 @@ public class LikedActivity extends Activity{
             "IPhone 4, decent condition. Price: $$$",
     } ;
 
-    Integer[] imageId = {
-            R.drawable.clutch,
-            R.drawable.clio,
-            R.drawable.iphone,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera
+    Bitmap[] imageId = {
+
 
     };
 

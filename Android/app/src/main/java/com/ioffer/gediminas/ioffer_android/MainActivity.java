@@ -3,11 +3,14 @@ package com.ioffer.gediminas.ioffer_android;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView list;
-    Integer[] imageId = null;
+    Bitmap[] imageId = null;
     String[] web = null;
 
     @Override
@@ -113,16 +116,23 @@ public class MainActivity extends AppCompatActivity
 
             // Setting up lists size of the returned product list for the scroll item data.
             web = new String[products.size()];
-            imageId = new Integer[products.size()];
+            imageId = new Bitmap[products.size()];
 
-            // Iterating through all the products and adding their description
-            // to the web list to be displayed on the main activity.
+            // Iterating through all the products and adding their description & bitmap
+            // to the relative arrays to be displayed on the main activity.
             for (int i = 0; i < products.size(); i++) {
                 web[i] = products.get(i).getName();
-                imageId[i] = R.drawable.clio; // Place holder image
+                imageId[i] = decodeBase64(products.get(i).getImage());
             }
         }
         catch (JSONException e) {e.printStackTrace();}
+    }
+
+    // Decode the returned Base64 encoded string back to a Bitmap
+    public static Bitmap decodeBase64(String input)
+    {
+        byte[] decodedBytes = Base64.decode(input, 0);
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 
     @Override

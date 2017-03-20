@@ -1,6 +1,7 @@
 package com.ioffer.gediminas.ioffer_android;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +17,14 @@ public class CustomList extends ArrayAdapter<String>{
 
     private final Activity context;
     private final String[] web;
-    private final Integer[] imageId;
+    private final Bitmap[] list_image;
+
     public CustomList(Activity context,
-                      String[] web, Integer[] imageId) {
+                      String[] web, Bitmap[] list_image) {
         super(context, R.layout.mylist, web);
         this.context = context;
         this.web = web;
-        this.imageId = imageId;
+        this.list_image = list_image;
 
     }
     @Override
@@ -34,7 +36,9 @@ public class CustomList extends ArrayAdapter<String>{
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
         txtTitle.setText(web[position]);
 
-        imageView.setImageResource(imageId[position]);
+        // Setting the current image from the Bitmap array
+        imageView.setImageBitmap(list_image[position]);
+
         return rowView;
     }
 }
