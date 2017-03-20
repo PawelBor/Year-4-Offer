@@ -15,15 +15,15 @@
     >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/product_name"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@color/cast_expanded_controller_progress_text_color"
         android:paddingLeft="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="160dp"
-        android:hint="Username"
+        android:layout_marginTop="20dp"
+        android:hint="Product Title"
         android:textColor="#000000"
         android:textColorHint="#444444"
         android:textSize="15dp"
@@ -32,6 +32,24 @@
     </EditText>
 
     <EditText
+        android:id="@+id/editText1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/cast_expanded_controller_progress_text_color"
+        android:paddingLeft="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="80dp"
+        android:hint="Price"
+        android:textColor="#000000"
+        android:textColorHint="#444444"
+        android:textSize="15dp"
+        android:singleLine="true">
+
+    </EditText>
+
+    //
+    <EditText
         android:id="@+id/editText2"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -39,8 +57,8 @@
         android:paddingLeft="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="220dp"
-        android:hint="Password"
+        android:layout_marginTop="140dp"
+        android:hint="Description"
         android:textColor="#ffffff"
         android:textColorHint="#444444"
         android:textSize="15dp"
@@ -48,28 +66,67 @@
 
     </EditText>
 
+    <EditText
+        android:id="@+id/mobile"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/cast_expanded_controller_progress_text_color"
+        android:paddingLeft="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="200dp"
+        android:hint="Mobile Number"
+        android:textColor="#ffffff"
+        android:textColorHint="#444444"
+        android:textSize="15dp"
+        android:singleLine="true">
+
+    </EditText>
+
+    //mobile number , location, image, county, catagory
+
     <Button
         android:id="@+id/button_send"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:text="Login"
+        android:text="Create"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="390dp"
         android:onClick="sendMessage"
         android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
         android:textColor="#ffffff"
         />
 
+    <Spinner
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="260dp"
+        android:id="@+id/spinner1"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <Spinner
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="320dp"
+        android:id="@+id/spinner2"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
     <Button
         android:id="@+id/button_register"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:text="Register"
+        android:text="Clear"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="340dp"
-        android:onClick="redirect"
+        android:layout_marginTop="450dp"
+        android:onClick="cancel"
         android:background="@color/colorAccent"
         android:textColor="#ffffff"
         />

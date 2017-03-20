@@ -15,6 +15,22 @@
     >
 
     <EditText
+        android:id="@+id/editText"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/cast_expanded_controller_progress_text_color"
+        android:paddingLeft="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="100dp"
+        android:hint="Full Name"
+        android:textColor="#000000"
+        android:textColorHint="#444444"
+        android:textSize="15dp"
+        android:singleLine="true">
+
+    </EditText>
+    <EditText
         android:id="@+id/editText1"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -23,7 +39,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="160dp"
-        android:hint="Username"
+        android:hint="Email"
         android:textColor="#000000"
         android:textColorHint="#444444"
         android:textSize="15dp"
@@ -52,25 +68,12 @@
         android:id="@+id/button_send"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:text="Login"
+        android:text="Regirster"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="280dp"
-        android:onClick="sendMessage"
+        android:onClick="register_click"
         android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
-        android:textColor="#ffffff"
-        />
-
-    <Button
-        android:id="@+id/button_register"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:text="Register"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="340dp"
-        android:onClick="redirect"
-        android:background="@color/colorAccent"
         android:textColor="#ffffff"
         />
 
