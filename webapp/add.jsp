@@ -60,7 +60,7 @@
                <div>
                   <div class="form-group">
                      <label for="prodName">Name:</label>
-                     <input type="text" class="form-control" id="prodName" name="name" required="" >
+                     <input type="text" maxlength="15" class="form-control" id="prodName" name="name" required="" >
                   </div>
                   <div class="form-group">
                      <label for="prodPrice">Price:</label>

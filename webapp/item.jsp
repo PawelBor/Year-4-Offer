@@ -88,7 +88,7 @@
                      <input class="form-control" id="itemComment" type="text">
                      <br>
                      <div class="text-right">
-                        <button class="btn btn-success" id="postComment">Post Comment</button>
+                        <button class="btn btn-success" id="postComment" style="display: none;">Post Comment</button>
                      </div>
                   </div>
                   <hr>
@@ -189,6 +189,10 @@
 		    		$("#editbtn").show();
 	    	    	$("#deletebtn").show();
 	    	    }
+		    	
+		    	if(pmail != ""){
+		    		$("#postComment").show();
+		    	}
 		    	
                 $("#prodName").text(data.name);
                 //$("#prodPrice").text("€" + data.price);
