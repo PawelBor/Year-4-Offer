@@ -1,15 +1,10 @@
 package com.ioffer.gediminas.ioffer_android;
 
-import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -26,30 +21,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static ListView list;
-    public static Bitmap[] imageId = null;
+    public static List<Bitmap> imageId = new ArrayList<>();
     public static String[] web = null;
     public static String[] contact = null;
     public static String[] description = null;
@@ -71,8 +52,7 @@ public class MainActivity extends AppCompatActivity
 
         populate_product_lists();
 
-        CustomList adapter = new
-                CustomList(MainActivity.this, web, description, county, imageId);
+        CustomList adapter = new CustomList(MainActivity.this, web, description, county, imageId);
         list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -117,7 +97,7 @@ public class MainActivity extends AppCompatActivity
     private void populate_product_lists() {
 
         // Creating a service object for getting and parsing the api data.
-        IOfferRequestService requestService = new IOfferRequestService();
+        RequestService requestService = new RequestService();
 
         try {
             // Getting a list of all product objects from the web api.
@@ -125,7 +105,6 @@ public class MainActivity extends AppCompatActivity
 
             // Setting up lists size of the returned product list for the scroll item data.
             web = new String[products.size()];
-            imageId = new Bitmap[products.size()];
             description = new String[products.size()];
             county = new String[products.size()];
             real_description = new String[products.size()];
@@ -136,13 +115,22 @@ public class MainActivity extends AppCompatActivity
             for (int i = 0; i < products.size(); i++) {
                 web[i] = products.get(i).getName();
                 description[i] = Double.toString(products.get(i).getPrice());
-                imageId[i] = decodeBase64(products.get(i).getImage());
+
+                // All images for the current product
+                List<String> image_list = products.get(i).getImage();
+
+                // Loop returned list of image strings, decode them and add them to the Bitmap list.
+                for (String image : image_list) {
+                    Bitmap decoded_img = decodeBase64(image);
+                    imageId.add(decoded_img);
+                }
+
                 county[i] = products.get(i).getCounty();
                 real_description[i] = products.get(i).getDescription();
                 contact[i] = products.get(i).getMobileNo();
             }
         }
-        catch (JSONException e) {e.printStackTrace();}
+        catch (JSONException e) {Log.i("error",e.toString());e.printStackTrace();}
     }
 
     // Decode the returned Base64 encoded string back to a Bitmap

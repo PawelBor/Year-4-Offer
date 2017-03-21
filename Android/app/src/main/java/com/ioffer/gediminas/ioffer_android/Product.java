@@ -16,7 +16,7 @@ public class Product {
     private String name;
     private double price;
     private String description;
-    private String image;
+    private List<String> image;
     private Location location;
     private String county;
     private String author;
@@ -28,7 +28,7 @@ public class Product {
     public Product(){
     }
 
-    public Product (String name, Double price, String description, String image, Location loc,
+    public Product (String name, Double price, String description, List<String> image, Location loc,
                     String county, String author, String category, String productId,
                     String mobileNo, List<Comment> comment){
         this();
@@ -71,11 +71,12 @@ public class Product {
         this.description = description;
     }
 
-    public String getImage() {
+    public List<String> getImage() {
+
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(List<String> image) {
         this.image = image;
     }
 

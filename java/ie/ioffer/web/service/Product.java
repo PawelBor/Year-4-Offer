@@ -31,6 +31,7 @@ public class Product {
     public double price;
     public String description;
     public String image;
+    public List<String> images;
     public Location location;
     public String county;
     public String author;
@@ -53,6 +54,10 @@ public class Product {
 
     public String getImage() {
         return image;
+    }
+    
+    public List<String> getImages() {
+        return images;
     }
 
     public Location getLocation() {
@@ -111,6 +116,21 @@ public class Product {
         this.price = price;
         this.description = description;
         this.image = image;
+        this.location = new Location(lat, lon);
+        this.county = county;
+        this.author = author;
+        this.category = category;
+        this.mobileNo = mobileNo;
+    }
+    
+    // Constructor for the read all android
+    public Product (String name, Double price, String description, List<String> images, float lat, float lon, String county, String author, String category, String productId, String mobileNo){
+        this();
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.images = images;
         this.location = new Location(lat, lon);
         this.county = county;
         this.author = author;

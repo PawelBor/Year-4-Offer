@@ -2,6 +2,7 @@ package com.ioffer.gediminas.ioffer_android;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -61,10 +62,9 @@ public class ItemActivity extends Activity{
 
             ImageView imageView = (ImageView)findViewById(R.id.myImageView);
             // Setting the current image from the Bitmap array
-            imageView.setImageBitmap(MainActivity.imageId[MainActivity.pos]);
+            imageView.setImageBitmap(MainActivity.imageId.get(MainActivity.pos));
 
         }catch(Exception x){return false;}
-
 
         return true;
     }

@@ -9,13 +9,15 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class LikedActivity extends Activity{
 
     ListView list;
     String[] web = {} ;
     String[] description = {} ;
     String[] county = {} ;
-    Bitmap[] imageId = {};
+    public static List<Bitmap> imageId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

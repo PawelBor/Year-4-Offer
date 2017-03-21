@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.List;
 
 // Altered from:
 // https://www.learn2crack.com/2013/10/android-custom-listview-images-text-example.html
@@ -21,10 +22,10 @@ public class CustomList extends ArrayAdapter<String>{
     private final String[] web;
     private final String[] desc;
     private final String[] county;
-    private final Bitmap[] list_image;
+    private final List<Bitmap> list_image;
 
     public CustomList(Activity context,
-                      String[] web,String[] desc,String[] county, Bitmap[] list_image) {
+                      String[] web,String[] desc,String[] county, List<Bitmap> list_image) {
         super(context, R.layout.mylist, web);
         this.context = context;
         this.web = web;
@@ -37,11 +38,10 @@ public class CustomList extends ArrayAdapter<String>{
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView= inflater.inflate(R.layout.mylist, null, true);
+
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
 
         // Limit the size of the title
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
-
         if(web[position].length() > 21)
             txtTitle.setText( web[position].substring(0,21));
         else
@@ -60,8 +60,17 @@ public class CustomList extends ArrayAdapter<String>{
         TextView county_view = (TextView) rowView.findViewById(R.id.county);
         county_view.setText(county[position]);
 
+
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
+
+
         // Setting the current image from the Bitmap array
-        imageView.setImageBitmap(list_image[position]);
+        // Setting it as the first one in the list
+        if(list_image.size() > 0)
+        {
+            Bitmap lastbitmap = list_image.get(position);
+            imageView.setImageBitmap(lastbitmap);
+        }
 
         return rowView;
     }

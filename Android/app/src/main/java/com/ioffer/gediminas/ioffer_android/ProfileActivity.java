@@ -17,13 +17,15 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class ProfileActivity extends Activity{
 
 
     ListView list;
     String[] web = {} ;
     String[] description = {} ;
-    Bitmap[] imageId = {};
+    public static List<Bitmap> imageId = null;
     String[] county = {} ;
 
     @Override

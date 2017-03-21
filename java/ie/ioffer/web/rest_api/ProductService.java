@@ -1,6 +1,7 @@
 package ie.ioffer.web.rest_api;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -245,7 +246,45 @@ public class ProductService extends Product{
             
             Product p = new Product(name, price, description, image, lat, lon, county, author, categories, productId, mobileNo);
             products.add(p); 
+        }
+        
+        return products;
+    }
+    
+    // Get all products from MongoDb with an array of images
+    // Instead of using non unique image keys in the JSON object.
+    public List<Product> readAllProductsAndroid(){
+    	
+        List<Product> products = new ArrayList<Product>();
+        
+        DBCursor cursor = table.find();
+        
+        while(cursor.hasNext()){
+        	
+            DBObject product = cursor.next();
             
+            String name = (String)product.get("name");
+
+            double price = (Double) product.get("price");
+            String description = (String)product.get("description");
+      
+            // Parse the returned CSV images to a list of images.
+			String imageCSV = (String)product.get("images");
+            List<String> images = Arrays.asList(imageCSV.split("\\s*,\\s*"));
+            
+            // Get latitude and longitude from composed String
+            String location = (String)product.get("location");
+            float lat = Float.parseFloat(location.split(",")[0]);
+            float lon = Float.parseFloat(location.split(",")[1]);
+            
+            String county = (String)product.get("county");
+            String categories = (String)product.get("category");
+            String author = (String)product.get("author");
+            String productId = product.get("_id").toString();
+            String mobileNo = (String)product.get("mobileNo");
+            
+            Product p = new Product(name, price, description, images, lat, lon, county, author, categories, productId, mobileNo);
+            products.add(p); 
         }
         
         return products;
