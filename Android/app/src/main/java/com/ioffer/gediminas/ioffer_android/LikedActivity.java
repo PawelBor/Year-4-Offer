@@ -12,19 +12,10 @@ import android.widget.Toast;
 public class LikedActivity extends Activity{
 
     ListView list;
-    String[] web = {
-            "Clutch, in brand new condition Price: $$$.",
-            "Renault Clio, low mileage, pure clean diesel. Must go! Price: $$$",
-            "IPhone 4, decent condition. Price: $$$",
-            "Clutch, in brand new condition Price: $$$.",
-            "Renault Clio, low mileage, pure clean diesel. Must go! Price: $$$",
-            "IPhone 4, decent condition. Price: $$$",
-    } ;
-
-    Bitmap[] imageId = {
-
-
-    };
+    String[] web = {} ;
+    String[] description = {} ;
+    String[] county = {} ;
+    Bitmap[] imageId = {};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +23,7 @@ public class LikedActivity extends Activity{
         setContentView(R.layout.activity_liked);
 
         CustomList adapter = new
-                CustomList(LikedActivity.this, web, imageId);
+                CustomList(LikedActivity.this, web,description, county, imageId);
         list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

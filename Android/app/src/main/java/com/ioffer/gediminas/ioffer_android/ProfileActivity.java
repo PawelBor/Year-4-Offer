@@ -21,15 +21,10 @@ public class ProfileActivity extends Activity{
 
 
     ListView list;
-    String[] web = {
-            "Clutch, in brand new condition Price: $$$.",
-            "Renault Clio, low mileage, pure clean diesel. Must go! Price: $$$",
-            "IPhone 4, decent condition. Price: $$$",
-            "Clutch, in brand new condition Price: $$$.",
-            "Renault Clio, low mileage, pure clean diesel. Must go! Price: $$$",
-            "IPhone 4, decent condition. Price: $$$",
-    } ;
+    String[] web = {} ;
+    String[] description = {} ;
     Bitmap[] imageId = {};
+    String[] county = {} ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +32,7 @@ public class ProfileActivity extends Activity{
         setContentView(R.layout.activity_profile);
 
         CustomList adapter = new
-                CustomList(ProfileActivity.this, web, imageId);
+                CustomList(ProfileActivity.this, web, description, county, imageId);
         list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
