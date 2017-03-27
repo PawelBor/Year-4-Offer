@@ -10,7 +10,7 @@
 **Supervisor:** Dr.Brian McGinley </br>
 
 
-#Introduction
+# Introduction
 
 This is our 4th year Software Development project. </br>
 The project will be a web / android based application created using technologies such as:
@@ -24,7 +24,7 @@ The project will be a web / android based application created using technologies
 * Agile
 
 
-#Functionality</br>
+# Functionality</br>
 
 The purpose of the application is to deliver information to the user about current offers from businesses or private people willing to sell their items.
 </br>
@@ -37,9 +37,9 @@ The shopper is not actually buying anything on the web but is accessing the adve
 
 Advertisements will be displayed on the map with the location set by the seller using a marker icon.
 
-#Technologies
+# Technologies
 
-##Front-End
+## Front-End
 
 We’ve decided to create this application using HTML, CSS and JavaScript for the client side simply because it can be accessed by any device. For the design we’re going to use Bootstrap.
 Bootstrap comes with jQuery which we can then use for ease of Http Requests.
@@ -48,7 +48,7 @@ We have also decided to create a native android application along side the web-b
 The main development language will be java with all necessary Google Api's and data-interchange formats.
 For a large portion of the development cycle the Android studio IDE will be utilized.
 
-###***The Trio:*** HTML, CSS, JavaScript
+### ***The Trio:*** HTML, CSS, JavaScript
 
 **HTML** stands for *HyperText Markup Language* and is a standard language used for creation of web pages and web aplications.</br>
 It describes the structure/architecture and overall appearance of the information on the Internet. Keywords and tags are used to format and demonstrate the content of Web Page.</br>
@@ -88,7 +88,7 @@ h1 {
 }
 ```
 
-##Server - J2EE
+## Server - J2EE
 
 J2EE is a platform-independent, Java-centric environment from Sun for developing, building and deploying Web-based enterprise applications online. The J2EE platform consists of a set of services, APIs, and protocols that provide the functionality for developing multitiered, Web-based applications.
 It comes makes back end functionality development much easier to work with.
@@ -116,8 +116,8 @@ Public class example{
 
 This example code returns the value of the id variable, which is typed in by the user in the URL. Eg. ***Website.com/example/123***, would return to the web page 123, which is the **/(“{id}”)** part of the URL route.
 
-##Database
-###MongoDB
+## Database
+### MongoDB
 
 ####Prerequisites
 To get MongoDB up and running , download the mongodb installer from their [Website](https://www.mongodb.com/)
@@ -125,16 +125,16 @@ To get MongoDB up and running , download the mongodb installer from their [Websi
 Once finished installing make a folder on your computer eg. ```C:\data\db``` , to store the data from the Mongo database.</br>
 You can also set up to use MongoDB in text editor eg. Intellij to interact with MongoDB.
 
-####MongoDB
+#### MongoDB
 MongoDB is a cross platform document oriented database.</br> 
 There are no structured tables like in relational databases. Mongo uses dynamic schemas and similar to JSON-like documents to store data. Documents are stored in collections and the documents are indexed by MongoDB to keep track of the order of the documents inserted.</br>
 Mongo is used to handle diverse data types, fast queries and for ease of scalling the data.
 
-###Why MongoDB
+### Why MongoDB
 We decided to use Mongo for our project as we will not be dealing with complex transactions with the database.
 Another reason why we chose MongoDB is to learn a new technology and learn about using NoSQL databases.
 
-###Images with MongoDB
+### Images with MongoDB
 We decided to store images that are stored on our MongoDB database by creating a product on the web site. 
 
 A common library is available with MongoDB called Gridfs, however we will not use it as we will not be storing images or files that are over 16 megabytes in size.
@@ -143,9 +143,10 @@ Instead we decided to use something we have done in class one time, which is the
 
 To retrieve the images, we carry out the opposite of what we do to store them. We pass down the Base64 strings to javascript on the front end and it decodes the strings back to image format for display on the web site.
 
-##Collections within the database
+## Collections within the database
 *	User collection for log in details. Eg. UserName/Password
 *	Offer/Ad collection which contains users posts. Based on Category.
+
 ```
 {
 	"userName":John,
@@ -159,13 +160,13 @@ To retrieve the images, we carry out the opposite of what we do to store them. W
 ```
 
 
-##DATA
-###Login
+## DATA
+### Login
 For Login functionality the user will be asked to provide user information such as:
 * E-Mail
 * Password (SHA-265)
 
-###Registration
+### Registration
 For Registration the user will be asked to provide:
 * E-Mail - which will be used for logging in
 * Password (SHA-265 Encrypted)
@@ -173,7 +174,7 @@ For Registration the user will be asked to provide:
 * County - Possibly display posts by county.
 * Phone Number - Make sure that the seller will be accessible if no other information is provided.
 
-##Advertisement Posting
+## Advertisement Posting
 These are the following requirements to post an advertisement:
 * Advertisement Image (Optional)
 * Advertisement Name
@@ -185,7 +186,7 @@ These are the following requirements to post an advertisement:
 * Advertisement Price
 
 
-#Architecture
+# Architecture
 
 ![ScreenShot](http://i63.tinypic.com/11hbhja.jpg)
 
@@ -202,7 +203,7 @@ This involves a front end (the client), back end (server) and a database to stor
 
 
 
-#Work Plan
+# Work Plan
 * *Week 1 - 2*	Brainstorm ideas
 * *Week 3* 	Confirmed our idea with the supervisor
 * *Week 4* 	Begin research on the various technologies we'll use
