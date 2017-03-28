@@ -78,6 +78,7 @@
                     android:text="Electronics"
                     android:layout_marginRight="4dp"
                     android:textSize="14dp"
+                    android:onClick="electronics"
                     />
                 <Button
                     android:layout_width="fill_parent"
@@ -88,6 +89,7 @@
                     android:text="Leisure"
                     android:layout_marginRight="4dp"
                     android:textSize="14dp"
+                    android:onClick="leisure"
                     />
                 <Button
                     android:layout_width="fill_parent"
@@ -97,6 +99,7 @@
                     android:background="@color/colorPrimaryDark"
                     android:text="Food"
                     android:textSize="14dp"
+                    android:onClick="food"
                     />
 
             </LinearLayout>
@@ -114,6 +117,7 @@
                     android:text="Automotive"
                     android:layout_marginRight="4dp"
                     android:textSize="14dp"
+                    android:onClick="automotive"
                     />
                 <Button
                     android:layout_width="fill_parent"
@@ -124,6 +128,7 @@
                     android:text="Entertainment"
                     android:layout_marginRight="4dp"
                     android:textSize="13dp"
+                    android:onClick="entertainment"
                     />
                 <Button
                     android:layout_width="fill_parent"
@@ -133,6 +138,7 @@
                     android:background="@color/colorPrimaryDark"
                     android:text="Other"
                     android:textSize="14dp"
+                    android:onClick="other"
                     />
 
             </LinearLayout>

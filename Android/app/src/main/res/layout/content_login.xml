@@ -15,7 +15,7 @@
     >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/username_text"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@color/cast_expanded_controller_progress_text_color"
@@ -32,7 +32,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/password_text"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@color/cast_expanded_controller_progress_text_color"
@@ -41,7 +41,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="220dp"
         android:hint="Password"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textColorHint="#444444"
         android:textSize="15dp"
         android:singleLine="true">
@@ -56,9 +56,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="280dp"
-        android:onClick="sendMessage"
+        android:onClick="login"
         android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
         android:textColor="#ffffff"
+
         />
 
     <Button
@@ -69,9 +70,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="340dp"
-        android:onClick="redirect"
+        android:onClick="register"
         android:background="@color/colorAccent"
         android:textColor="#ffffff"
+
         />
 
 

@@ -81,16 +81,21 @@
                 android:text="County: "
                 android:id="@+id/county" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="165dp"
-                android:layout_marginLeft="15dp"
-                android:textSize="20dp"
-                android:text="Posts "
-                android:id="@+id/posts" />
+            <Button
+                android:id="@+id/button_register"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="Logout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="140dp"
+                android:onClick="logout"
+                android:background="@color/colorAccent"
+                android:textColor="#ffffff"
+
+                />
+
+
 
         </RelativeLayout>
 

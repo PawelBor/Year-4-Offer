@@ -57,7 +57,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="220dp"
         android:hint="Password"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textColorHint="#444444"
         android:textSize="15dp"
         android:singleLine="true">
@@ -68,11 +68,10 @@
         android:id="@+id/button_send"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:text="Regirster"
+        android:text="Register"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="280dp"
-        android:onClick="register_click"
         android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
         android:textColor="#ffffff"
         />
