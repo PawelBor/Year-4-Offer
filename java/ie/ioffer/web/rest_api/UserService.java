@@ -3,6 +3,7 @@ package ie.ioffer.web.rest_api;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
@@ -65,4 +66,29 @@ public class UserService extends User{
              }
          }
     }
+    
+    public boolean putPassword(String email, String oldPass, String newPass){
+   	 BasicDBObject document = new BasicDBObject();
+        
+        long count =  mongo.getDatabase("ioffer")               
+                .getCollection("users")
+                .count(new Document("password", oldPass));
+        
+        if(count > 0)
+        {
+        	document.append("$set", new BasicDBObject().append("password", newPass));
+        	
+        	BasicDBObject searchQuery = new BasicDBObject().append("email", email);
+            
+            try{
+            	table.update(searchQuery, document);
+            } catch(MongoException e){
+            	return false;
+            }
+            return true;
+        }
+        else{
+            return false;
+        }
+   }
 }

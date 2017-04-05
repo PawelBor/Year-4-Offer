@@ -299,7 +299,7 @@ public class ProductService extends Product{
         
         if(!(query.getName().equals("undefined"))){
             empty = true;
-            obj.add(new BasicDBObject("name", java.util.regex.Pattern.compile(query.getName())));
+            obj.add(new BasicDBObject("name", java.util.regex.Pattern.compile(query.getName(), java.util.regex.Pattern.CASE_INSENSITIVE)));
         }
         
         if(!(query.getCategory().equals("undefined"))){

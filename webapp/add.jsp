@@ -156,7 +156,10 @@
          <footer>
             <div class="row">
                <div class="col-lg-12">
-                  <p>Copyright &copy; iOffer 2017</p>
+                  <p style="float: left;">Copyright &copy; iOffer 2017</p>
+               </div>
+               <div class="contact">
+                  <a href="http://www.github.com/PawelBor/Year-4-Offer"><img src="./images/git.png" height="50" width="50">   Contact us</a>
                </div>
             </div>
          </footer>

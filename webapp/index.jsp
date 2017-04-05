@@ -117,6 +117,20 @@
                </div>
             </div>
          </header>
+         <div class="container">
+         <hr>
+         <!-- Footer -->
+         <footer>
+            <div class="row">
+               <div class="col-lg-12">
+                  <p style="float: left;">Copyright &copy; iOffer 2017</p>
+               </div>
+               <div class="contact">
+                  <a href="http://www.github.com/PawelBor/Year-4-Offer"><img src="./images/git.png" height="50" width="50">   Contact us</a>
+               </div>
+            </div>
+         </footer>
+      </div>
          <script>
 	        $(document).ready(function() {
 	     		// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
@@ -133,6 +147,14 @@
 		     	    $("#btnLogin").prop("href", "profile.jsp");
 	     		}
 	     	});
+	        
+	        document.onkeydown = function(e){
+	        	if (e.keyCode == '13') {
+	        		if($("#searchText").val().length > 0){
+	        			$("#searchbtn").click();
+	        		}
+	        	}
+	        };
          
             $(function(){  // $(document).ready shorthand
               $('#selFadeIn').hide().fadeIn('slow');

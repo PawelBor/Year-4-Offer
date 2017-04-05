@@ -394,5 +394,15 @@ footer {
   color: black;
 }
 
+.contact{
+	text-align: center;
 }
+
+.contact a{
+	text-decoration: none; 
+	color: white; 
+	font-size: 20px;
+}
+
+
 

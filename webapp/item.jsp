@@ -107,7 +107,10 @@
          <footer>
             <div class="row">
                <div class="col-lg-12">
-                  <p>Copyright &copy; iOffer 2017</p>
+                  <p style="float: left;">Copyright &copy; iOffer 2017</p>
+               </div>
+               <div class="contact">
+                  <a href="http://www.github.com/PawelBor/Year-4-Offer"><img src="./images/git.png" height="50" width="50">   Contact us</a>
                </div>
             </div>
          </footer>
@@ -292,28 +295,30 @@
 			var date = new Date(Date.now()).toLocaleString();
 			var author = pmail;
 			
-			var data = {
-				'id' : response,
-				'date' : date,
-				'comment' : comment,
-				'author' : author
-			};
-			
-			$.ajax({
-				url: "webapi/product/comment",
-				type: "PUT",
-				data: JSON.stringify(data),
-				contentType: "application/json",
-				success: function (success) {
-					console.log(success)
-					if (success) {
-						window.location.assign("item.jsp?id=" + response);
-					} else {
-						// TELL USER THAT DETAILS ARE INCORRECT
-						console.log("Putting into db failed");
-					}
-				}
-			});
+			if(comment.length > 0){
+				var data = {
+						'id' : response,
+						'date' : date,
+						'comment' : comment,
+						'author' : author
+					};
+					
+					$.ajax({
+						url: "webapi/product/comment",
+						type: "PUT",
+						data: JSON.stringify(data),
+						contentType: "application/json",
+						success: function (success) {
+							console.log(success)
+							if (success) {
+								window.location.assign("item.jsp?id=" + response);
+							} else {
+								// TELL USER THAT DETAILS ARE INCORRECT
+								console.log("Putting into db failed");
+							}
+						}
+					});
+			}
 		});
    </script>
 </html>
