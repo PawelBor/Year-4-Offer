@@ -10,28 +10,12 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.ioffer.gediminas.ioffer_android.RegisterActivity"
+    tools:context="com.ioffer.gediminas.ioffer_android.MainActivity"
     android:background="@drawable/blurred_mountain"
     >
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:background="@color/cast_expanded_controller_progress_text_color"
-        android:paddingLeft="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="100dp"
-        android:hint="Full Name"
-        android:textColor="#000000"
-        android:textColorHint="#444444"
-        android:textSize="15dp"
-        android:singleLine="true">
-
-    </EditText>
-    <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/username_text"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@color/cast_expanded_controller_progress_text_color"
@@ -39,7 +23,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="160dp"
-        android:hint="Email"
+        android:hint="Username"
         android:textColor="#000000"
         android:textColorHint="#444444"
         android:textSize="15dp"
@@ -48,7 +32,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/password_text"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@color/cast_expanded_controller_progress_text_color"
@@ -68,12 +52,28 @@
         android:id="@+id/button_send"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:text="Register"
+        android:text="Login"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="280dp"
+        android:onClick="login"
         android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
         android:textColor="#ffffff"
+
+        />
+
+    <Button
+        android:id="@+id/button_register"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="Register"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="340dp"
+        android:onClick="register"
+        android:background="@color/colorAccent"
+        android:textColor="#ffffff"
+
         />
 
 

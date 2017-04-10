@@ -20,13 +20,13 @@ import java.util.List;
 public class RequestService {
 
     private static final String ALL_PRODUCTS_URL =
-            "http://54.244.40.167:8080/service/webapi/products_android";
+            "http://34.209.10.185:8080/service/webapi/products_android";
 
     private static final String CLIENT_LOGIN_URL =
-            "http://54.244.40.167:8080/service/webapi/user/";
+            "http://34.209.10.185:8080/service/webapi/user/";
 
     private static final String PRODUCT_BY_CATAEGORY =
-            "http://54.244.40.167:8080/service/webapi/product/category/";
+            "http://34.209.10.185:8080/service/webapi/product/category/";
 
 
 
@@ -43,10 +43,10 @@ public class RequestService {
         return all_products;
     }
 
-    public List<Product> getProductsByCat() throws JSONException {
+    public List<Product> getProductsByCat(String category) throws JSONException {
 
         // Request all the products as json.
-        String json_products = request_content(PRODUCT_BY_CATAEGORY);
+        String json_products = request_content(PRODUCT_BY_CATAEGORY+ category);
 
         JsonParser json_parser = new JsonParser();
 

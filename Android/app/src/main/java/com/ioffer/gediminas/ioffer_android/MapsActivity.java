@@ -28,6 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+
         // Example markers
         LatLng item = new LatLng(12, -80);
         mMap.addMarker(new MarkerOptions().position(item).title("Cool Item title"));

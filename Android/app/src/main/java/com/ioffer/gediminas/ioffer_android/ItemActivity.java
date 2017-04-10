@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemActivity extends Activity{
 
@@ -62,7 +64,9 @@ public class ItemActivity extends Activity{
 
             ImageView imageView = (ImageView)findViewById(R.id.myImageView);
             // Setting the current image from the Bitmap array
-            imageView.setImageBitmap(MainActivity.imageId.get(MainActivity.pos));
+            List<Bitmap> x = new ArrayList<>();
+            x = MainActivity.imageId.get(MainActivity.pos);
+            imageView.setImageBitmap(x.get(0));
 
         }catch(Exception x){return false;}
 

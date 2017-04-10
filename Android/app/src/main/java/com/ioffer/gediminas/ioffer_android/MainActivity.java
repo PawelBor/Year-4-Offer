@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static ListView list;
-    public static List<Bitmap> imageId = new ArrayList<>();
+    public static List<List<Bitmap>> imageId = new ArrayList<List<Bitmap>>();
     public static String[] web = null;
     public static String[] contact = null;
     public static String[] description = null;
@@ -94,6 +94,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public void automotive(View view) throws JSONException {
+        RequestService rs = new RequestService();
+        List<Product> catProducts = rs.getProductsByCat("automotive");
+
+    }
+
+
     private void populate_product_lists() {
 
         // Creating a service object for getting and parsing the api data.
@@ -119,12 +126,16 @@ public class MainActivity extends AppCompatActivity
                 // All images for the current product
                 List<String> image_list = products.get(i).getImage();
 
+                // Temp list to store all the iterated images for the current product.
+                List<Bitmap> product_images = new ArrayList<Bitmap>();
+
                 // Loop returned list of image strings, decode them and add them to the Bitmap list.
                 for (String image : image_list) {
                     Bitmap decoded_img = decodeBase64(image);
-                    imageId.add(decoded_img);
+                    product_images.add(decoded_img);
                 }
 
+                imageId.add(product_images);
                 county[i] = products.get(i).getCounty();
                 real_description[i] = products.get(i).getDescription();
                 contact[i] = products.get(i).getMobileNo();
@@ -170,10 +181,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void automotive(View view) {
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

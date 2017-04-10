@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 // Altered from:
@@ -22,10 +23,10 @@ public class CustomList extends ArrayAdapter<String>{
     private final String[] web;
     private final String[] desc;
     private final String[] county;
-    private final List<Bitmap> list_image;
+    private final List<List<Bitmap>> list_image;
 
     public CustomList(Activity context,
-                      String[] web,String[] desc,String[] county, List<Bitmap> list_image) {
+                      String[] web,String[] desc,String[] county, List<List<Bitmap>> list_image) {
         super(context, R.layout.mylist, web);
         this.context = context;
         this.web = web;
@@ -68,8 +69,9 @@ public class CustomList extends ArrayAdapter<String>{
         // Setting it as the first one in the list
         if(list_image.size() > 0)
         {
-            Bitmap lastbitmap = list_image.get(position);
-            imageView.setImageBitmap(lastbitmap);
+            List<Bitmap> current_product_images = list_image.get(position);
+            Bitmap last_bitmap = current_product_images.get(0);
+            imageView.setImageBitmap(last_bitmap);
         }
 
         return rowView;

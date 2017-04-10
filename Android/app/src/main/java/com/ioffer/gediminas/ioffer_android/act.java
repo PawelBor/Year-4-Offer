@@ -5,14 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -25,7 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-public class ProfileActivity extends Activity{
+public class act extends Activity{
 
 
     ListView list;
@@ -37,10 +29,10 @@ public class ProfileActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_act);
 
         CustomList adapter = new
-                CustomList(ProfileActivity.this, web, description, county, imageId);
+                CustomList(act.this, web, description, county, imageId);
         list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -48,12 +40,13 @@ public class ProfileActivity extends Activity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(ProfileActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
-                Intent myIntent = new Intent(ProfileActivity.this, ItemActivity.class);
+                Toast.makeText(act.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(act.this, ItemActivity.class);
                 startActivity(myIntent);
 
             }
         });
+
 
         TextView name =(TextView)findViewById(R.id.name);
         name.setText("Name: "+LoginActivity.Name);
@@ -72,8 +65,8 @@ public class ProfileActivity extends Activity{
         editor.remove("logged_in");
         editor.commit();
 
-        Intent myIntent = new Intent(ProfileActivity.this, LoginActivity.class);
+        Intent myIntent = new Intent(act.this, LoginActivity.class);
         startActivity(myIntent);
     }
 
-    }
+}

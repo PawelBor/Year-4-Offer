@@ -39,12 +39,11 @@ public class LoginActivity extends Activity{
             Intent myIntent = new Intent(LoginActivity.this, ProfileActivity.class);
             startActivity(myIntent);
         }
-
     }
 
 
     public void register(View view) throws JSONException, NoSuchAlgorithmException, UnsupportedEncodingException {
-        Intent myIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+        Intent myIntent = new Intent(LoginActivity.this, act.class);
         startActivity(myIntent);
     }
 

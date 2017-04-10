@@ -17,7 +17,7 @@ public class LikedActivity extends Activity{
     String[] web = {} ;
     String[] description = {} ;
     String[] county = {} ;
-    public static List<Bitmap> imageId = null;
+    public static List<List<Bitmap>> imageId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
