@@ -76,4 +76,4 @@ public class ProfileActivity extends Activity{
         startActivity(myIntent);
     }
 
-    }
+}

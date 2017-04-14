@@ -27,6 +27,62 @@ public class JsonParser {
             Log.i("ERROR" ,y.toString()); return null;}
     }
 
+    // Exposing the parse json products method
+    public List<Product> getParsedProductsCat(String json_products)
+    {
+        List<Product> product_list;
+
+        try{
+            product_list = parse_json_productsCat(json_products);
+            return product_list;
+        }catch(JSONException y){
+            Log.i("ERROR" ,y.toString()); return null;}
+    }
+
+    private List<Product> parse_json_productsCat(String json_products) throws JSONException {
+
+        // Create a json object array from the json string.
+        JSONArray product_array = new JSONArray(json_products);
+
+        // Create a list for the returned product list after parsing the json.
+        List<Product> product_list = new ArrayList<>();
+
+        // Looping over every product in the product array
+        for(int i = 0; i < product_array.length(); i++){
+
+            // Creating a json object of the current object
+            JSONObject json_product_object = product_array.getJSONObject(i);
+
+            // Creating a new Product and calling it's constructor.
+            Product product = new Product(json_product_object.getString("name"),
+                    json_product_object.getString("description"));
+
+            // Populating the product object details.
+            product.setPrice(json_product_object.getDouble("price"));
+            product.setCounty(json_product_object.getString("county"));
+            product.setAuthor(json_product_object.getString("author"));
+            product.setCategory(json_product_object.getString("category"));
+            product.setProductId(json_product_object.getString("productId"));
+            product.setMobileNo(json_product_object.getString("mobileNo"));
+
+            product.setLocation(
+                    (float)json_product_object.getJSONObject("location").getDouble("latitude"),
+                    (float)json_product_object.getJSONObject("location").getDouble("longitude"));
+
+
+            List<String> image_list = new ArrayList<String>();
+
+            image_list.add(json_product_object.getString("image"));
+
+            product.setImage(image_list);
+
+            // Populate the product list.
+            product_list.add(product);
+        }
+
+        return product_list;
+    }
+
     private List<Product> parse_json_products(String json_products) throws JSONException {
 
         // Create a json object array from the json string.

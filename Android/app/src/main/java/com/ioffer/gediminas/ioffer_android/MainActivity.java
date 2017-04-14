@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     public static String[] description = null;
     public static String[] real_description = null;
     public static String[] county = null;
+    public static String filter = null;
     public static int pos;
 
     @Override
@@ -214,5 +217,11 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void electronics(View view) {
+        filter = "electronics";
+        Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
+        startActivity(myIntent);
     }
 }

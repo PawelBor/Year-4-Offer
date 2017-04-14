@@ -25,7 +25,7 @@ public class RequestService {
     private static final String CLIENT_LOGIN_URL =
             "http://34.209.10.185:8080/service/webapi/user/";
 
-    private static final String PRODUCT_BY_CATAEGORY =
+    private static final String PRODUCT_BY_CATEGORY =
             "http://34.209.10.185:8080/service/webapi/product/category/";
 
 
@@ -46,12 +46,12 @@ public class RequestService {
     public List<Product> getProductsByCat(String category) throws JSONException {
 
         // Request all the products as json.
-        String json_products = request_content(PRODUCT_BY_CATAEGORY+ category);
+        String json_products = request_content(PRODUCT_BY_CATEGORY+ category);
 
         JsonParser json_parser = new JsonParser();
 
         // List of product objects returned after parsing the json.
-        List<Product> all_products = json_parser.getParsedProducts(json_products);
+        List<Product> all_products = json_parser.getParsedProductsCat(json_products);
 
         return all_products;
     }
