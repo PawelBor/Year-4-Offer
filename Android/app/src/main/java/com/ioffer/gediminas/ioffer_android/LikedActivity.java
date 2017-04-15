@@ -27,6 +27,12 @@ public class LikedActivity extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        web= null;
+        description = null;
+        county= null;
+        imageId.clear();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liked);
 
@@ -65,6 +71,7 @@ public class LikedActivity extends Activity{
                     county[i] = products.get(i).getCounty();
                 }
 
+
                 MainActivity.filter = null; // Clear the filter after completion.
             }catch (JSONException jsx)
             {
@@ -90,6 +97,8 @@ public class LikedActivity extends Activity{
                 startActivity(myIntent);
             }
         });
+
+
     }
 
     // Decode the returned Base64 encoded string back to a Bitmap

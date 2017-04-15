@@ -97,12 +97,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void automotive(View view) throws JSONException {
-        RequestService rs = new RequestService();
-        List<Product> catProducts = rs.getProductsByCat("automotive");
-
-    }
-
 
     private void populate_product_lists() {
 
@@ -221,6 +215,36 @@ public class MainActivity extends AppCompatActivity
 
     public void electronics(View view) {
         filter = "electronics";
+        Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
+        startActivity(myIntent);
+    }
+
+    public void food(View view) {
+        filter = "food";
+        Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
+        startActivity(myIntent);
+    }
+
+    public void automotive(View view) {
+        filter = "automotive";
+        Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
+        startActivity(myIntent);
+    }
+
+    public void entertainment(View view) {
+        filter = "entertainment";
+        Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
+        startActivity(myIntent);
+    }
+
+    public void leisure(View view) {
+        filter = "leisure";
+        Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
+        startActivity(myIntent);
+    }
+
+    public void other(View view) {
+        filter = "other";
         Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
         startActivity(myIntent);
     }
