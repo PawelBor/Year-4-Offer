@@ -23,6 +23,18 @@ The project will be a web / android based application created using technologies
 * Google Api's
 * Agile
 
+# How to Run</br>
+### Website
+1. Download the repository
+2. Import the solution as a Maven project into Eclipse or any IDE of your choice.
+3. Make sure your IDE can support the Tomcat webserver to run your project on.
+4. Download Tomcat (if not done so previously) and add it to your IDE.
+5. Download + SetUp MongoDB as specified below under the Database section.
+6. Run the project as : Run on server (Eclipse IDE).
+
+### Android
+1. 
+
 
 # Functionality</br>
 
