@@ -47,6 +47,10 @@
         <activity
             android:name=".RegisterActivity"
             android:label="iOffer" />
+
+        <activity
+            android:name=".CreateProduct"
+            android:label="iOffer" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

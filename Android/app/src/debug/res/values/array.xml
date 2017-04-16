@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="county">
+        <item>Mayo</item>
+        <item>Galway</item>
+        <item>Dublin</item>
+        <item>Cork</item>
+    </string-array>
+
+    <string-array name="category">
+        <item>Electronics</item>
+        <item>Entertainment</item>
+        <item>Leisure</item>
+        <item>Automotive</item>
+        <item>Food</item>
+        <item>Other</item>
+    </string-array>
+</resources>

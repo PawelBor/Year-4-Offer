@@ -32,7 +32,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/price_txt"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@color/cast_expanded_controller_progress_text_color"
@@ -44,13 +44,12 @@
         android:textColor="#000000"
         android:textColorHint="#444444"
         android:textSize="15dp"
+        android:inputType="number"
         android:singleLine="true">
-
     </EditText>
 
-    //
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/desc_txt"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@color/cast_expanded_controller_progress_text_color"
@@ -59,7 +58,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="140dp"
         android:hint="Description"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textColorHint="#444444"
         android:textSize="15dp"
         android:singleLine="true">
@@ -76,14 +75,13 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="200dp"
         android:hint="Mobile Number"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textColorHint="#444444"
         android:textSize="15dp"
+        android:inputType="number"
         android:singleLine="true">
 
     </EditText>
-
-    //mobile number , location, image, county, catagory
 
     <Button
         android:id="@+id/button_send"
@@ -92,31 +90,47 @@
         android:text="Create"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="390dp"
-        android:onClick="sendMessage"
+        android:layout_marginTop="510dp"
+        android:onClick="create"
         android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
         android:textColor="#ffffff"
         />
 
-    <Spinner
+    <Button
+        android:id="@+id/button_image"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="Select Image"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="260dp"
-        android:id="@+id/spinner1"
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown" />
+        android:layout_marginTop="390dp"
+        android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
+        android:textColor="#ffffff"
+        android:clickable="true"
+        android:onClick="select_image"
+        />
 
     <Spinner
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="320dp"
-        android:id="@+id/spinner2"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="260dp"
+        android:id="@+id/category"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dropdown"
+        android:entries="@array/category"/>
+
+    <Spinner
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="320dp"
+        android:id="@+id/county"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:entries="@array/county"/>
 
     <Button
         android:id="@+id/button_register"

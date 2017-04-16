@@ -76,4 +76,9 @@ public class ProfileActivity extends Activity{
         startActivity(myIntent);
     }
 
+    public void post(View view) throws JSONException, NoSuchAlgorithmException, UnsupportedEncodingException {
+        Intent myIntent = new Intent(ProfileActivity.this, CreateProduct.class);
+        startActivity(myIntent);
+    }
+
 }

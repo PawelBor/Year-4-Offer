@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="{relativePackage}.${activityClass}"
-                android:layout_marginTop="195dp"
+                android:layout_marginTop="295dp"
                 >
 
                 <ListView
@@ -91,6 +91,20 @@
                 android:layout_marginTop="140dp"
                 android:onClick="logout"
                 android:background="@color/colorAccent"
+                android:textColor="#ffffff"
+
+                />
+
+            <Button
+                android:id="@+id/post_item"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="POST PRODUCT"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="200dp"
+                android:onClick="post"
+                android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
                 android:textColor="#ffffff"
 
                 />

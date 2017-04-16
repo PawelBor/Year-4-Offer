@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -69,6 +70,33 @@ public class RequestService {
             return Boolean.parseBoolean(result);
         }
         return false;
+    }
+
+    public String postProduct(String title,String price,String description,String mobile,
+        String category_text,String county_text,String base64Image, String email) throws IOException, JSONException {
+
+        HttpClient httpclient = new DefaultHttpClient();
+        String mUrl = "http://34.209.10.185:8080/service/webapi/post_product";
+        HttpPost httppost = new HttpPost(mUrl);
+        httppost.addHeader("Content-Type", "application/json");
+        httppost.setHeader(HTTP.CONTENT_TYPE,
+                "application/x-www-form-urlencoded;charset=UTF-8");
+
+        String locationCSV = "0 0";
+
+        StringEntity se = new StringEntity("name="+title+"&author="+email+"&category="+category_text+
+                "&county="+county_text+"&description="+description+"&location="+locationCSV+"&price="+price+
+                "&image="+ URLEncoder.encode(base64Image,"UTF-8")+"&mobileNo="+mobile,"UTF-8");
+
+        httppost.setEntity(se);
+        HttpResponse response = httpclient.execute(httppost);
+        if (response != null) {
+            String result = EntityUtils.toString(response.getEntity());
+            Log.i("result",result.toString());
+            return result;
+        }
+
+        return null;
     }
 
     public List<Product> getProductsBySearch
