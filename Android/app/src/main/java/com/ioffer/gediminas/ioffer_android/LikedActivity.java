@@ -43,7 +43,6 @@ public class LikedActivity extends Activity{
                 RequestService rs = new RequestService();
                 List<Product> products = rs.getProductsByCat(MainActivity.filter);
 
-                Log.i("TTG", products.get(0).getName().toLowerCase().toString());
                 // Setting up lists size of the returned product list for the scroll item data.
                 web = new String[products.size()];
                 description = new String[products.size()];

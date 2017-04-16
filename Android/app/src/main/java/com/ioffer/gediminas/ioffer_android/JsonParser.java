@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -72,15 +73,18 @@ public class JsonParser {
 
             List<String> image_list = new ArrayList<String>();
 
-            image_list.add(json_product_object.getString("image"));
-
-            product.setImage(image_list);
+            List<String> resultList =  parse_csv_string(json_product_object.getString("image"));
+            product.setImage(resultList);
 
             // Populate the product list.
             product_list.add(product);
         }
 
         return product_list;
+    }
+
+    private List<String> parse_csv_string(String imagesCSV){
+        return Arrays.asList(imagesCSV.split("\\s*,\\s*"));
     }
 
     private List<Product> parse_json_products(String json_products) throws JSONException {
@@ -130,5 +134,4 @@ public class JsonParser {
 
         return product_list;
     }
-
 }
