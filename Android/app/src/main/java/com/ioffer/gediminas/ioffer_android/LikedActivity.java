@@ -19,11 +19,15 @@ import java.util.List;
 
 public class LikedActivity extends Activity{
 
-    ListView list;
-    String[] web = null;
-    String[] description = null ;
-    String[] county = null ;
+    public static ListView list;
     public static List<List<Bitmap>> imageId = new ArrayList<List<Bitmap>>();
+    public static String[] web = null;
+    public static String[] contact = null;
+    public static String[] description = null;
+    public static String[] real_description = null;
+    public static String[] county = null;
+    public static String filter = null;
+    public static int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +51,15 @@ public class LikedActivity extends Activity{
                 web = new String[products.size()];
                 description = new String[products.size()];
                 county = new String[products.size()];
+                real_description = new String[products.size()];
+                contact = new String[products.size()];
 
                 // Iterating through all the products and adding their description & bitmap
                 // to the relative arrays to be displayed on the main activity.
                 for (int i = 0; i < products.size(); i++) {
                     web[i] = products.get(i).getName();
                     description[i] = Double.toString(products.get(i).getPrice());
-
+                    real_description[i] =  products.get(i).getDescription();
                     // All images for the current product
                     List<String> image_list = products.get(i).getImage();
 
@@ -68,6 +74,7 @@ public class LikedActivity extends Activity{
 
                     imageId.add(product_images);
                     county[i] = products.get(i).getCounty();
+                    contact[i] = products.get(i).getMobileNo();
                 }
 
 
@@ -92,11 +99,12 @@ public class LikedActivity extends Activity{
                                     int position, long id) {
                 Toast.makeText(LikedActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
 
-                Intent myIntent = new Intent(LikedActivity.this, ItemActivity.class);
+                pos = position;
+
+                Intent myIntent = new Intent(LikedActivity.this, ItemActivityFiltered.class);
                 startActivity(myIntent);
             }
         });
-
 
     }
 
