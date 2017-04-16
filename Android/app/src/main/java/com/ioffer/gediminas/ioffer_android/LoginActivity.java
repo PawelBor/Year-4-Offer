@@ -43,7 +43,7 @@ public class LoginActivity extends Activity{
 
 
     public void register(View view) throws JSONException, NoSuchAlgorithmException, UnsupportedEncodingException {
-        Intent myIntent = new Intent(LoginActivity.this, act.class);
+        Intent myIntent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(myIntent);
     }
 
@@ -54,7 +54,7 @@ public class LoginActivity extends Activity{
         String password = editText.getText().toString();
 
         EditText editText_user = (EditText) findViewById(R.id.username_text);
-        String username = editText_user.getText().toString();
+        String username = editText_user.getText().toString().replaceAll("\\s+","");
 
         RequestService rs = new RequestService();
 

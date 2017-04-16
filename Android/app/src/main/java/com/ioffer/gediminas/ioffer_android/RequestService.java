@@ -2,10 +2,15 @@ package com.ioffer.gediminas.ioffer_android;
 
 import android.util.Log;
 
+import com.google.android.gms.plus.model.people.Person;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +51,26 @@ public class RequestService {
         return all_products;
     }
 
+    public boolean postUser(String name,String email,String password) throws IOException, JSONException {
+
+        HttpClient httpclient = new DefaultHttpClient();
+        String mUrl = "http://34.209.10.185:8080/service/webapi/user";
+        HttpPost httppost = new HttpPost(mUrl);
+        httppost.addHeader("Content-Type", "application/json");
+        httppost.setHeader(HTTP.CONTENT_TYPE,
+                "application/x-www-form-urlencoded;charset=UTF-8");
+
+        StringEntity se = new StringEntity("name="+name+"&email="+email+"&password="+password,"UTF-8");
+        httppost.setEntity(se);
+        HttpResponse response = httpclient.execute(httppost);
+        if (response != null) {
+            String result = EntityUtils.toString(response.getEntity());
+            Log.i("result",result.toString());
+            return Boolean.parseBoolean(result);
+        }
+        return false;
+    }
+
     public List<Product> getProductsBySearch
             (String name, int minPrice, int maxPrice, String category, String county) throws JSONException {
 
@@ -78,8 +103,6 @@ public class RequestService {
 
         // Request all the products as json.
         String json_login = request_content(CLIENT_LOGIN_URL+username);
-
-
 
         return json_login;
     }
