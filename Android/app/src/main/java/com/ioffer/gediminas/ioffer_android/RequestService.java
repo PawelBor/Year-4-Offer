@@ -28,6 +28,9 @@ public class RequestService {
     private static final String PRODUCT_BY_CATEGORY =
             "http://34.209.10.185:8080/service/webapi/product/category/";
 
+    private static final String PRODUCT_BY_SEARCH =
+                "http://34.209.10.185:8080/service/webapi/products/";
+
 
 
     public List<Product> getAllProducts() throws JSONException {
@@ -39,6 +42,21 @@ public class RequestService {
 
         // List of product objects returned after parsing the json.
         List<Product> all_products = json_parser.getParsedProducts(json_products);
+
+        return all_products;
+    }
+
+    public List<Product> getProductsBySearch
+            (String name, int minPrice, int maxPrice, String category, String county) throws JSONException {
+
+        // Request all the products as json.
+        String json_products = request_content(PRODUCT_BY_SEARCH+ name+"/"+minPrice+"/"+maxPrice+"/"+
+        category+"/"+county);
+
+        JsonParser json_parser = new JsonParser();
+
+        // List of product objects returned after parsing the json.
+        List<Product> all_products = json_parser.getParsedProductsCat(json_products);
 
         return all_products;
     }

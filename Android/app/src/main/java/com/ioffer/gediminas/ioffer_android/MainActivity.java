@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.StrictMode;
 import android.util.Base64;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity
     public static String[] county = null;
     public static String filter = null;
     public static int pos;
+    public static String search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +66,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(MainActivity.this, "You Clicked at " +web[+ position],
-                        Toast.LENGTH_SHORT).show();
+
 
                 pos = position;
 
@@ -84,15 +86,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        ImageView img = (ImageView) findViewById(R.id.imageView1);
-
-        img.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
-                startActivity(myIntent);
-            }
-        });
 
 
     }
@@ -247,5 +240,19 @@ public class MainActivity extends AppCompatActivity
         filter = "other";
         Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
         startActivity(myIntent);
+    }
+
+    public void search(View view) {
+        filter = "search";
+        EditText editText = (EditText)findViewById(R.id.editText1);
+        String search_txt = editText.getText().toString();
+
+        if(!search_txt.matches("")) {
+            search = search_txt;
+            Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
+            startActivity(myIntent);
+        }else
+            Toast.makeText(MainActivity.this, "Enter a search word",
+                    Toast.LENGTH_SHORT).show();
     }
 }

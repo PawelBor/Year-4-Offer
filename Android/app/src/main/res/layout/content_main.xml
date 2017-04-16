@@ -63,7 +63,8 @@
                 android:layout_alignBottom="@+id/editText1"
                 android:layout_alignRight="@+id/editText1"
                 android:src="@drawable/search"
-                android:onClick="search"/>
+                android:clickable="true"
+                android:onClick="search" />
 
             <LinearLayout
                 android:layout_width="fill_parent"

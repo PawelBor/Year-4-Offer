@@ -71,8 +71,6 @@ public class JsonParser {
                     (float)json_product_object.getJSONObject("location").getDouble("longitude"));
 
 
-            List<String> image_list = new ArrayList<String>();
-
             List<String> resultList =  parse_csv_string(json_product_object.getString("image"));
             product.setImage(resultList);
 

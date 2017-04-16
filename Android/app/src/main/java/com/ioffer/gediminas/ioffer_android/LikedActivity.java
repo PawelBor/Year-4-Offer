@@ -44,8 +44,15 @@ public class LikedActivity extends Activity{
         {
             try{
 
+                List<Product> products;
+
                 RequestService rs = new RequestService();
-                List<Product> products = rs.getProductsByCat(MainActivity.filter);
+                if(MainActivity.filter.equals("search")) {
+                    products =rs.getProductsBySearch(MainActivity.search,0 , 999999999, "undefined","undefined");
+                }else {
+                    products = rs.getProductsByCat(MainActivity.filter);
+                }
+
 
                 // Setting up lists size of the returned product list for the scroll item data.
                 web = new String[products.size()];
