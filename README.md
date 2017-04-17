@@ -33,8 +33,12 @@ The project will be a web / android based application created using technologies
 6. Run the project as : Run on server (Eclipse IDE).
 
 ### Android
-1. 
+Download: [Play Store](https://play.google.com/store/apps/details?id=com.ioffer.gediminas.ioffer_android)
 
+1. Download the repository.
+2. Open the Android project using any IDE of your choice.
+3. Setup an emulator or any hardware device that is running the supported android version.
+4. Run/Deploy to the target device of your choice.
 
 # Functionality</br>
 
