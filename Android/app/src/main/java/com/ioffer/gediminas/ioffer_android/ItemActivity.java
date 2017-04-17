@@ -2,16 +2,21 @@ package com.ioffer.gediminas.ioffer_android;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +29,8 @@ public class ItemActivity extends Activity{
         setContentView(R.layout.activity_item);
 
         if(populate_page()){
-            // Continue
+
+
         }
 
     }
@@ -38,9 +44,38 @@ public class ItemActivity extends Activity{
         startActivity(intent);
     }
 
+    public void delete_click(View view) throws IOException, JSONException {
+        RequestService rs = new RequestService();
+        boolean success = rs.deleteProduct(MainActivity.productId[MainActivity.pos]);
+
+        if(!success) {
+            Toast.makeText(ItemActivity.this, "Error Please try again",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            Intent myIntent = new Intent(ItemActivity.this, ProfileActivity.class);
+            startActivity(myIntent);
+        }
+    }
+
     private boolean populate_page() {
 
         try{
+
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+
+            String email = "";
+
+            if(pref.getLong("logged_in", 0) == 1){
+                email = pref.getString("email", "");
+            }
+            Button delete_btn = (Button)findViewById(R.id.delete_button);
+
+            if(email.equals(MainActivity.author[MainActivity.pos])){
+                delete_btn.setVisibility(View.VISIBLE);
+            }else{
+                delete_btn.setVisibility(View.GONE);
+            }
+
             // Get a handle on the description textView and set it to relevant description.
             TextView description = (TextView)findViewById(R.id.description);
             description.setText(MainActivity.real_description[MainActivity.pos]);

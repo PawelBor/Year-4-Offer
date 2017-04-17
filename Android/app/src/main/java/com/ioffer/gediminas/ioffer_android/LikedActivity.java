@@ -2,6 +2,7 @@ package com.ioffer.gediminas.ioffer_android;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class LikedActivity extends Activity{
     public static String[] description = null;
     public static String[] real_description = null;
     public static String[] county = null;
+    public static String[] productId = null;
+    public static String[] author = null;
     public static String filter = null;
     public static int pos;
 
@@ -39,6 +42,9 @@ public class LikedActivity extends Activity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liked);
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+
 
         if(MainActivity.filter != null)
         {
@@ -61,13 +67,14 @@ public class LikedActivity extends Activity{
                     products = rs.getProductsByCat(MainActivity.filter);
                 }
 
-
                 // Setting up lists size of the returned product list for the scroll item data.
                 web = new String[products.size()];
                 description = new String[products.size()];
                 county = new String[products.size()];
                 real_description = new String[products.size()];
                 contact = new String[products.size()];
+                author =  new String[products.size()];
+                productId = new String[products.size()];
 
                 // Iterating through all the products and adding their description & bitmap
                 // to the relative arrays to be displayed on the main activity.
@@ -75,6 +82,9 @@ public class LikedActivity extends Activity{
                     web[i] = products.get(i).getName();
                     description[i] = Double.toString(products.get(i).getPrice());
                     real_description[i] =  products.get(i).getDescription();
+                    author[i] =  products.get(i).getAuthor();
+                    productId[i] = products.get(i).getProductId();
+
                     // All images for the current product
                     List<String> image_list = products.get(i).getImage();
 
@@ -98,10 +108,7 @@ public class LikedActivity extends Activity{
             {
                 Log.i("EX_JSON", jsx.toString());
             }
-
         }
-
-
 
         CustomList adapter = new
                 CustomList(LikedActivity.this, web,description, county, imageId);

@@ -2,13 +2,19 @@ package com.ioffer.gediminas.ioffer_android;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +41,38 @@ public class ItemActivityFiltered extends Activity{
         startActivity(intent);
     }
 
+    public void delete_click(View view) throws IOException, JSONException {
+        RequestService rs = new RequestService();
+        boolean success = rs.deleteProduct(LikedActivity.productId[LikedActivity.pos]);
+
+        if(!success) {
+            Toast.makeText(ItemActivityFiltered.this, "Error Please try again",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            Intent myIntent = new Intent(ItemActivityFiltered.this, ProfileActivity.class);
+            startActivity(myIntent);
+        }
+    }
+
     private boolean populate_page() {
 
         try{
+
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+
+            String email = "";
+
+            if(pref.getLong("logged_in", 0) == 1){
+                email = pref.getString("email", "");
+            }
+            Button delete_btn = (Button)findViewById(R.id.delete_button);
+
+            if(email.equals(LikedActivity.author[LikedActivity.pos])){
+                delete_btn.setVisibility(View.VISIBLE);
+            }else{
+                delete_btn.setVisibility(View.GONE);
+            }
+
             // Get a handle on the description textView and set it to relevant description.
             TextView description = (TextView)findViewById(R.id.description);
             description.setText(LikedActivity.real_description[LikedActivity.pos]);

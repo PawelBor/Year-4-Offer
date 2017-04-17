@@ -63,6 +63,8 @@ public class ProfileActivity extends Activity{
                     MainActivity.description = new String[products.size()];
                     MainActivity.county = new String[products.size()];
                     MainActivity.real_description = new String[products.size()];
+                    MainActivity.author = new String[products.size()];
+                    MainActivity.productId = new String[products.size()];
 
                     // Iterating through all the products and adding their description & bitmap
                     // to the relative arrays to be displayed on the main activity.
@@ -86,7 +88,8 @@ public class ProfileActivity extends Activity{
                         MainActivity.real_description[i]= products.get(i).getDescription();
                         MainActivity.imageId.add(product_images);
                         MainActivity.county[i] = products.get(i).getCounty();
-
+                        MainActivity.author[i]  = products.get(i).getAuthor();
+                        MainActivity.productId[i] = products.get(i).getProductId();
                     }
                 }
 
@@ -112,8 +115,6 @@ public class ProfileActivity extends Activity{
             });
 
         }
-
-
 
         TextView name =(TextView)findViewById(R.id.name);
         name.setText("Name: "+LoginActivity.Name);

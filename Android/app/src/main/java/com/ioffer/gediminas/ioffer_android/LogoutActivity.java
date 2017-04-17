@@ -30,10 +30,6 @@ public class LogoutActivity extends Activity{
 
         editor.remove("logged_in");
         editor.commit();
-
-
-        Intent myIntent = new Intent(LogoutActivity.this, LoginActivity.class);
-        startActivity(myIntent);
     }
 
 

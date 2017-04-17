@@ -10,6 +10,7 @@ import com.google.android.gms.plus.model.people.Person;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -44,6 +45,8 @@ public class RequestService implements LocationListener{
     private static final String PRODUCT_BY_AUTHOR =
             "http://34.209.10.185:8080/service/webapi/product/author/";
 
+    private static final String DELETE_PRODUCT =
+            "http://34.209.10.185:8080/service/webapi/product/";
 
 
     public List<Product> getAllProducts() throws JSONException {
@@ -122,6 +125,24 @@ public class RequestService implements LocationListener{
         }
 
         return null;
+    }
+
+    public boolean deleteProduct(String id) throws IOException, JSONException {
+
+        HttpClient httpclient = new DefaultHttpClient();
+        String mUrl = DELETE_PRODUCT+id;
+        HttpDelete httppost = new HttpDelete(mUrl);
+        httppost.addHeader("Content-Type", "application/json");
+        httppost.setHeader(HTTP.CONTENT_TYPE,
+                "application/x-www-form-urlencoded;charset=UTF-8");
+
+        HttpResponse response = httpclient.execute(httppost);
+        if (response != null) {
+            String result = EntityUtils.toString(response.getEntity());
+            Log.i("result",result.toString());
+            return Boolean.parseBoolean(result);
+        }
+        return false;
     }
 
     public List<Product> getProductsBySearch

@@ -1,6 +1,8 @@
 package com.ioffer.gediminas.ioffer_android;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -13,6 +15,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
@@ -76,13 +79,33 @@ public class CreateProduct extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_product);
 
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1,
                 1, mLocationListener);
 
+        if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            buildAlertMessageNoGps();
+        }
     }
 
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
 
 
     public void select_image(View view) {
@@ -111,27 +134,43 @@ public class CreateProduct extends Activity{
         Spinner county = (Spinner)findViewById(R.id.county);
         String county_text = county.getSelectedItem().toString();
 
+        if(title.getText().toString().equals("") || title.getText().toString() == null ||
+                price.getText().toString().equals("") || price.getText().toString() == null ||
+                description.getText().toString().equals("") || description.getText().toString() == null ||
+                mobile.getText().toString().equals("") || mobile.getText().toString() == null || product == null){
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+            Toast.makeText(CreateProduct.this, "Please fill in all data",
+                    Toast.LENGTH_SHORT).show();
 
-        String email = "";
-        if(pref.getLong("logged_in", 0) == 1){
-            email = pref.getString("email", "");
+        }else{
+
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+
+            String email = "";
+            if(pref.getLong("logged_in", 0) == 1){
+                email = pref.getString("email", "");
+            }
+
+            RequestService rs = new RequestService();
+
+            if(x == null)
+                x = new Location(""); x.setLatitude(0.0); x.setLongitude(0.0);
+
+            String isInserted =
+                    rs.postProduct(title.getText().toString(), price.getText().toString(), description.getText().toString(),
+                            mobile.getText().toString(), category_text, county_text, encodeTobase64(product),email,x);
+
+            if(isInserted == "")
+                Toast.makeText(CreateProduct.this, "Error Please try again",
+                        Toast.LENGTH_SHORT).show();
+            else{
+                Intent myIntent = new Intent(CreateProduct.this, ProfileActivity.class);
+                startActivity(myIntent);
+            }
+
+
         }
 
-        RequestService rs = new RequestService();
-
-        String isInserted =
-                rs.postProduct(title.getText().toString(), price.getText().toString(), description.getText().toString(),
-                        mobile.getText().toString(), category_text, county_text, encodeTobase64(product),email,x);
-
-        if(isInserted == "")
-            Toast.makeText(CreateProduct.this, "Failed",
-                    Toast.LENGTH_SHORT).show();
-        else{
-            Toast.makeText(CreateProduct.this, "Success",
-                    Toast.LENGTH_SHORT).show();
-        }
     }
 
     public static String encodeTobase64(Bitmap image)

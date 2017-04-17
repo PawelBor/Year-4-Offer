@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity
     public static String[] description = null;
     public static String[] real_description = null;
     public static String[] county = null;
+    public static String[] author = null;
+    public static String[] productId = null;
     public static String filter = null;
     public static Location[] markerArray = null;
     public static int pos;
@@ -121,9 +123,12 @@ public class MainActivity extends AppCompatActivity
             web = new String[products.size()];
             description = new String[products.size()];
             county = new String[products.size()];
+            productId = new String[products.size()];
             real_description = new String[products.size()];
             contact = new String[products.size()];
             markerArray = new Location[products.size()];
+            author = new String[products.size()];
+            imageId.clear();
 
             // Iterating through all the products and adding their description & bitmap
             // to the relative arrays to be displayed on the main activity.
@@ -151,6 +156,8 @@ public class MainActivity extends AppCompatActivity
                 county[i] = products.get(i).getCounty();
                 real_description[i] = products.get(i).getDescription();
                 contact[i] = products.get(i).getMobileNo();
+                productId[i] = products.get(i).getProductId();
+                author[i] = products.get(i).getAuthor();
             }
         }
         catch (JSONException e) {Log.i("error",e.toString());e.printStackTrace();}
@@ -204,9 +211,6 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_map) {
             Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
-            startActivity(myIntent);
-        }else if (id == R.id.nav_liked) {
-            Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
             startActivity(myIntent);
         }else if (id == R.id.filter) {
             Intent myIntent = new Intent(MainActivity.this, FilterProducts.class);
