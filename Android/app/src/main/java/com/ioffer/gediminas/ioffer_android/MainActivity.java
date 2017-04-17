@@ -3,6 +3,7 @@ package com.ioffer.gediminas.ioffer_android;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Debug;
 import android.os.StrictMode;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     public static String[] real_description = null;
     public static String[] county = null;
     public static String filter = null;
+    public static Location[] markerArray = null;
     public static int pos;
     public static String search;
 
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity
             county = new String[products.size()];
             real_description = new String[products.size()];
             contact = new String[products.size()];
+            markerArray = new Location[products.size()];
 
             // Iterating through all the products and adding their description & bitmap
             // to the relative arrays to be displayed on the main activity.
@@ -125,6 +129,10 @@ public class MainActivity extends AppCompatActivity
                     product_images.add(decoded_img);
                 }
 
+
+                markerArray[i] = products.get(i).getLocation();
+
+                Log.i("LOCATION: ", Double.toString(products.get(i).getLocation().getLatitude()));
                 imageId.add(product_images);
                 county[i] = products.get(i).getCounty();
                 real_description[i] = products.get(i).getDescription();

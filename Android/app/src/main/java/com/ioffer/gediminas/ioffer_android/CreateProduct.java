@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -34,12 +37,53 @@ public class CreateProduct extends Activity{
     private static int RESULT_LOAD_IMAGE = 1;
     Bitmap product = null;
 
+    // The minimum distance to change Updates in meters
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 50; // 10 meters
+
+    // The minimum time between updates in milliseconds
+    private static final long MIN_TIME_BW_UPDATES = 1; // 5 minute
+
+    // Declaring a Location Manager
+    protected LocationManager locationManager;
+
+    Location x;
+
+
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(final Location location) {
+            x = location;
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_product);
 
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1,
+                1, mLocationListener);
+
     }
+
+
 
     public void select_image(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK,
@@ -79,7 +123,7 @@ public class CreateProduct extends Activity{
 
         String isInserted =
                 rs.postProduct(title.getText().toString(), price.getText().toString(), description.getText().toString(),
-                        mobile.getText().toString(), category_text, county_text, encodeTobase64(product),email);
+                        mobile.getText().toString(), category_text, county_text, encodeTobase64(product),email,x);
 
         if(isInserted == "")
             Toast.makeText(CreateProduct.this, "Failed",
@@ -136,6 +180,5 @@ public class CreateProduct extends Activity{
 
         product = null;
     }
-
 
 }

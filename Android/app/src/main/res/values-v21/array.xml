@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="county">
+        <item>antrim</item>
+        <item>armagh</item>
+        <item>carlow</item>
+        <item>cavan</item>
+        <item>clare</item>
+        <item>cork</item>
+        <item>derry</item>
+        <item>donegal</item>
+        <item>down</item>
+        <item>dublin</item>
+        <item>fermanagh</item>
+        <item>galway</item>
+        <item>kerry</item>
+        <item>kildare</item>
+        <item>kilkenny</item>
+        <item>laois</item>
+        <item>leitrim</item>
+        <item>limerick</item>
+        <item>longford</item>
+        <item>louth</item>
+        <item>mayo</item>
+        <item>meath</item>
+        <item>monaghan</item>
+        <item>offaly</item>
+        <item>roscommon</item>
+        <item>sligo</item>
+        <item>tipperary</item>
+        <item>tyrone</item>
+        <item>waterford</item>
+        <item>westmeath</item>
+        <item>wexford</item>
+        <item>wicklow</item>
+    </string-array>
+
+    <string-array name="category">
+        <item>electronics</item>
+        <item>entertainment</item>
+        <item>leisure</item>
+        <item>automotive</item>
+        <item>food</item>
+        <item>other</item>
+    </string-array>
+</resources>

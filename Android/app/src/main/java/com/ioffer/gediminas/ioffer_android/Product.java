@@ -17,7 +17,7 @@ public class Product {
     private double price;
     private String description;
     private List<String> image;
-    private Location location;
+    private Location location = new Location("");
     private String county;
     private String author;
     private String category;
@@ -89,7 +89,6 @@ public class Product {
     }
 
     public void setLocation(float lat, float lng){
-        Location location = new Location("");
         location.setLatitude(lat);
         location.setLongitude(lng);
     }

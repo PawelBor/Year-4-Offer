@@ -7,9 +7,10 @@ android {
     defaultConfig {
         applicationId "com.ioffer.gediminas.ioffer_android"
         minSdkVersion 18
-        targetSdkVersion 25
+        targetSdkVersion
+        multiDexEnabled = true
         versionCode 1
-        versionName "1.0"
+        versionName "V1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

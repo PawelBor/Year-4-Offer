@@ -1,7 +1,11 @@
 package com.ioffer.gediminas.ioffer_android;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
 import android.util.Log;
 
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.plus.model.people.Person;
 
 import org.apache.http.HttpResponse;
@@ -23,7 +27,7 @@ import java.util.List;
  * Created by Gediminas on 20/03/2017.
  */
 
-public class RequestService {
+public class RequestService implements LocationListener{
 
     private static final String ALL_PRODUCTS_URL =
             "http://34.209.10.185:8080/service/webapi/products_android";
@@ -72,8 +76,9 @@ public class RequestService {
         return false;
     }
 
+
     public String postProduct(String title,String price,String description,String mobile,
-        String category_text,String county_text,String base64Image, String email) throws IOException, JSONException {
+        String category_text,String county_text,String base64Image, String email, Location x) throws IOException, JSONException {
 
         HttpClient httpclient = new DefaultHttpClient();
         String mUrl = "http://34.209.10.185:8080/service/webapi/post_product";
@@ -82,7 +87,9 @@ public class RequestService {
         httppost.setHeader(HTTP.CONTENT_TYPE,
                 "application/x-www-form-urlencoded;charset=UTF-8");
 
-        String locationCSV = "0 0";
+
+
+        String locationCSV = x.getLatitude()+" "+ x.getLongitude();
 
         StringEntity se = new StringEntity("name="+title+"&author="+email+"&category="+category_text+
                 "&county="+county_text+"&description="+description+"&location="+locationCSV+"&price="+price+
@@ -102,8 +109,11 @@ public class RequestService {
     public List<Product> getProductsBySearch
             (String name, int minPrice, int maxPrice, String category, String county) throws JSONException {
 
+        int i = name.indexOf(' ');
+        String word = name.substring(0, i); // get the first word for the search
+
         // Request all the products as json.
-        String json_products = request_content(PRODUCT_BY_SEARCH+ name+"/"+minPrice+"/"+maxPrice+"/"+
+        String json_products = request_content(PRODUCT_BY_SEARCH+ word+"/"+minPrice+"/"+maxPrice+"/"+
         category+"/"+county);
 
         JsonParser json_parser = new JsonParser();
@@ -158,5 +168,10 @@ public class RequestService {
         }
 
         return server_response;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
     }
 }
