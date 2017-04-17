@@ -106,7 +106,7 @@
 
             <Button
                 android:layout_width="fill_parent"
-                android:layout_height="50dp"
+                android:layout_height="30dp"
                 android:layout_weight="0.14"
                 android:textColor="#fff"
                 android:background="#00C853"

@@ -59,6 +59,27 @@ public class MainActivity extends AppCompatActivity
             StrictMode.setThreadPolicy(policy);
         }
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+    }
+
+    @Override
+    protected void onStart()
+    {
+        // TODO Auto-generated method stub
+        super.onStart();
+
         populate_product_lists();
 
         CustomList adapter = new CustomList(MainActivity.this, web, description, county, imageId);
@@ -77,22 +98,15 @@ public class MainActivity extends AppCompatActivity
                 startActivity(myIntent);
             }
         });
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
     }
 
+
+    @Override
+    protected void onResume()
+    {
+        // TODO Auto-generated method stub
+        super.onResume();
+    }
 
     private void populate_product_lists() {
 
@@ -191,21 +205,32 @@ public class MainActivity extends AppCompatActivity
             Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_account) {
-            Intent myIntent = new Intent(MainActivity.this, ProfileActivity.class);
+            Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_liked) {
             Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_share) {
+            /*
+            Intent myIntent = new Intent(android.content.Intent.ACTION_SEND);
+            myIntent.setType("text/plain");
+            String shareBody = "Check Out iOffer";
+            String shareSub = "Industry-standard application that helps people get exposure for their unwanted items in a unique way. A free platform for people to buy and sell their items. We've all been there, looking to sell an item but being unable to get enough exposure for it. We've also used the Google maps API to bring a fresh new style of getting your item out there to the public.";
+            myIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,shareSub);
+            myIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(myIntent, "Share via"));
 
-        } else if (id == R.id.nav_send) {
-
+*/
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.ioffer.gediminas.ioffer_android");
+            startActivity(Intent.createChooser(sharingIntent, "Share via"));
         }else if (id == R.id.nav_login) {
             Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(myIntent);
         }
         else if (id == R.id.nav_logout) {
-            Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
+            Intent myIntent = new Intent(MainActivity.this, LogoutActivity.class);
             startActivity(myIntent);
         }
 

@@ -50,6 +50,10 @@
             android:label="iOffer" />
 
         <activity
+            android:name=".LogoutActivity"
+            android:label="iOffer" />
+
+        <activity
             android:name=".CreateProduct"
             android:label="iOffer" />
         <!--

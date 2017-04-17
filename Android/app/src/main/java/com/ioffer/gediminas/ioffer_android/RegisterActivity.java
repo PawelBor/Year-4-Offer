@@ -29,7 +29,7 @@ public class RegisterActivity extends Activity{
         TextView password_txt = (TextView)findViewById(R.id.password);
 
         String name = name_txt.getText().toString();
-        String email = email_txt.getText().toString();
+        String email = email_txt.getText().toString().replaceAll("\\s+","");
         String password = sha256(password_txt.getText().toString());
 
         RequestService rs = new RequestService();

@@ -5,21 +5,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class LoginActivity extends Activity{
+public class LogoutActivity extends Activity{
 
     public static String Name = "";
     public static String Email = "";
@@ -30,21 +26,19 @@ public class LoginActivity extends Activity{
         setContentView(R.layout.activity_login);
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
+        editor.remove("logged_in");
+        editor.commit();
 
 
-        if(pref.getLong("logged_in", 0) == 1){
-            Name = pref.getString("name", "");
-            Email = pref.getString("email", "");
-
-            Intent myIntent = new Intent(LoginActivity.this, ProfileActivity.class);
-            startActivity(myIntent);
-        }
-
+        Intent myIntent = new Intent(LogoutActivity.this, LoginActivity.class);
+        startActivity(myIntent);
     }
 
 
     public void register(View view) throws JSONException, NoSuchAlgorithmException, UnsupportedEncodingException {
-        Intent myIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+        Intent myIntent = new Intent(LogoutActivity.this, RegisterActivity.class);
         startActivity(myIntent);
     }
 
@@ -81,7 +75,7 @@ public class LoginActivity extends Activity{
                 editor.putString("email", Email);
                 editor.commit();
 
-                Intent myIntent = new Intent(LoginActivity.this, ProfileActivity.class);
+                Intent myIntent = new Intent(LogoutActivity.this, ProfileActivity.class);
                 startActivity(myIntent);
             }else{
                 Toast.makeText(this, "WRONG PASSWORD",

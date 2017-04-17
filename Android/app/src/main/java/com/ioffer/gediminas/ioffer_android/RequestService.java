@@ -41,6 +41,9 @@ public class RequestService implements LocationListener{
     private static final String PRODUCT_BY_SEARCH =
                 "http://34.209.10.185:8080/service/webapi/products/";
 
+    private static final String PRODUCT_BY_AUTHOR =
+            "http://34.209.10.185:8080/service/webapi/product/author/";
+
 
 
     public List<Product> getAllProducts() throws JSONException {
@@ -52,6 +55,21 @@ public class RequestService implements LocationListener{
 
         // List of product objects returned after parsing the json.
         List<Product> all_products = json_parser.getParsedProducts(json_products);
+
+        return all_products;
+    }
+
+    public List<Product> getProductsByAuthor(String author) throws JSONException {
+
+        // Request all the products as json.
+        String json_products = request_content(PRODUCT_BY_AUTHOR+author);
+
+        Log.i("dfsddsfssfsdfsd",PRODUCT_BY_AUTHOR+author);
+
+        JsonParser json_parser = new JsonParser();
+
+        // List of product objects returned after parsing the json.
+        List<Product> all_products = json_parser.getParsedProductsCat(json_products);
 
         return all_products;
     }
@@ -109,11 +127,13 @@ public class RequestService implements LocationListener{
     public List<Product> getProductsBySearch
             (String name, int minPrice, int maxPrice, String category, String county) throws JSONException {
 
-        int i = name.indexOf(' ');
-        String word = name.substring(0, i); // get the first word for the search
+        if(name.contains(" ")){
+            int i = name.indexOf(' ');
+            name = name.substring(0, i); // get the first word for the search
+        }
 
-        // Request all the products as json.
-        String json_products = request_content(PRODUCT_BY_SEARCH+ word+"/"+minPrice+"/"+maxPrice+"/"+
+        // Request all the produmcts as json.
+        String json_products = request_content(PRODUCT_BY_SEARCH+ name+"/"+minPrice+"/"+maxPrice+"/"+
         category+"/"+county);
 
         JsonParser json_parser = new JsonParser();
