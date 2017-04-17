@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.ioffer.gediminas.ioffer_android.MainActivity"
+    android:background="@drawable/blurred_mountain"
+    >
+
+    <EditText
+        android:id="@+id/product_name"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/cast_expanded_controller_progress_text_color"
+        android:paddingLeft="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:hint="Product Title"
+        android:textColor="#000000"
+        android:textColorHint="#444444"
+        android:textSize="15dp"
+        android:singleLine="true">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/min_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/cast_expanded_controller_progress_text_color"
+        android:paddingLeft="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="120dp"
+        android:hint="Min Price"
+        android:textColor="#000000"
+        android:textColorHint="#444444"
+        android:textSize="15dp"
+        android:inputType="number"
+        android:singleLine="true">
+    </EditText>
+
+    <EditText
+        android:id="@+id/max_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/cast_expanded_controller_progress_text_color"
+        android:paddingLeft="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="180dp"
+        android:hint="Max Price"
+        android:textColor="#000000"
+        android:textColorHint="#444444"
+        android:textSize="15dp"
+        android:inputType="number"
+        android:singleLine="true">
+    </EditText>
+
+
+    <Button
+        android:id="@+id/button_send"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="APPLY FILTER"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="460dp"
+        android:onClick="filter"
+        android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
+        android:textColor="#ffffff"
+        />
+
+
+    <Spinner
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="260dp"
+        android:id="@+id/category"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:entries="@array/category_filter"/>
+
+    <Spinner
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="320dp"
+        android:id="@+id/county"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:entries="@array/county_filter"/>
+
+    <Button
+        android:id="@+id/button_register"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="Clear"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="400dp"
+        android:onClick="cancel"
+        android:background="@color/colorAccent"
+        android:textColor="#ffffff"
+        />
+
+
+
+</RelativeLayout>

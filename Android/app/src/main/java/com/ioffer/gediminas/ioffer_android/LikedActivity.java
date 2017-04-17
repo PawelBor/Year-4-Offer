@@ -48,7 +48,15 @@ public class LikedActivity extends Activity{
 
                 RequestService rs = new RequestService();
                 if(MainActivity.filter.equals("search")) {
-                    products =rs.getProductsBySearch(MainActivity.search,0 , 999999999, "undefined","undefined");
+                    products = rs.getProductsBySearch(MainActivity.search,0 , 999999999, "undefined","undefined");
+                }else if(MainActivity.filter.equals("filter")){
+                    Filter x = FilterProducts.productFilter;
+
+                    String title = x.getTitle();
+                    if(title.equals(""))
+                        title = "undefined";
+
+                    products = rs.getProductsBySearch(title,x.getMin() , x.getMax(), x.getCategory(),x.getCounty());
                 }else {
                     products = rs.getProductsByCat(MainActivity.filter);
                 }

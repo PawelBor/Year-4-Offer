@@ -189,7 +189,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent myIntent = new Intent(MainActivity.this, FilterProducts.class);
+            startActivity(myIntent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -204,23 +205,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_map) {
             Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
             startActivity(myIntent);
-        } else if (id == R.id.nav_account) {
-            Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(myIntent);
-        } else if (id == R.id.nav_liked) {
+        }else if (id == R.id.nav_liked) {
             Intent myIntent = new Intent(MainActivity.this, LikedActivity.class);
             startActivity(myIntent);
+        }else if (id == R.id.filter) {
+            Intent myIntent = new Intent(MainActivity.this, FilterProducts.class);
+            startActivity(myIntent);
         } else if (id == R.id.nav_share) {
-            /*
-            Intent myIntent = new Intent(android.content.Intent.ACTION_SEND);
-            myIntent.setType("text/plain");
-            String shareBody = "Check Out iOffer";
-            String shareSub = "Industry-standard application that helps people get exposure for their unwanted items in a unique way. A free platform for people to buy and sell their items. We've all been there, looking to sell an item but being unable to get enough exposure for it. We've also used the Google maps API to bring a fresh new style of getting your item out there to the public.";
-            myIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,shareSub);
-            myIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-            startActivity(Intent.createChooser(myIntent, "Share via"));
-
-*/
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.ioffer.gediminas.ioffer_android");

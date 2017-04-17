@@ -54,6 +54,10 @@
             android:label="iOffer" />
 
         <activity
+            android:name=".FilterProducts"
+            android:label="iOffer" />
+
+        <activity
             android:name=".CreateProduct"
             android:label="iOffer" />
         <!--
