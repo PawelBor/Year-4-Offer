@@ -31,22 +31,22 @@ import java.util.List;
 public class RequestService implements LocationListener{
 
     private static final String ALL_PRODUCTS_URL =
-            "http://34.209.10.185:8080/service/webapi/products_android";
+            "http://52.31.25.47:8080/service/webapi/products_android";
 
     private static final String CLIENT_LOGIN_URL =
-            "http://34.209.10.185:8080/service/webapi/user/";
+            "http://52.31.25.47:8080/service/webapi/user/";
 
     private static final String PRODUCT_BY_CATEGORY =
-            "http://34.209.10.185:8080/service/webapi/product/category/";
+            "http://52.31.25.47:8080/service/webapi/product/category/";
 
     private static final String PRODUCT_BY_SEARCH =
-                "http://34.209.10.185:8080/service/webapi/products/";
+                "http://52.31.25.47:8080/service/webapi/products/";
 
     private static final String PRODUCT_BY_AUTHOR =
-            "http://34.209.10.185:8080/service/webapi/product/author/";
+            "http://52.31.25.47:8080/service/webapi/product/author/";
 
     private static final String DELETE_PRODUCT =
-            "http://34.209.10.185:8080/service/webapi/product/";
+            "http://52.31.25.47:8080/service/webapi/product/";
 
 
     public List<Product> getAllProducts() throws JSONException {
